@@ -2,4 +2,4 @@
 Data Structures II Project
 
 Collaborator
-- Erick Joestar
+- Erick Joestar.
