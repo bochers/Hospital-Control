@@ -40,88 +40,78 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LoginButton = new javax.swing.JButton();
-        userLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
-        QuitButton = new javax.swing.JButton();
-        userTextField = new javax.swing.JTextField();
-        passwordTextField = new javax.swing.JPasswordField();
-        backgroundLabel = new javax.swing.JLabel();
+        jButtonSession = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldUser = new javax.swing.JTextField();
+        jPassword = new javax.swing.JPasswordField();
+        jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LoginButton.setBackground(new java.awt.Color(0, 204, 102));
-        LoginButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        LoginButton.setForeground(new java.awt.Color(255, 255, 255));
-        LoginButton.setText("Iniciar sesión");
-        LoginButton.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSession.setBackground(new java.awt.Color(0, 204, 102));
+        jButtonSession.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButtonSession.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSession.setText("Iniciar sesión");
+        jButtonSession.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginButtonActionPerformed(evt);
+                jButtonSessionActionPerformed(evt);
             }
         });
-        getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+        getContentPane().add(jButtonSession, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
 
-        userLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        userLabel.setForeground(new java.awt.Color(255, 255, 255));
-        userLabel.setText("Usuario :");
-        getContentPane().add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
-
-        passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
-        passwordLabel.setText("Contraseña :");
-        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
-
-        QuitButton.setBackground(new java.awt.Color(255, 153, 102));
-        QuitButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        QuitButton.setForeground(new java.awt.Color(255, 255, 255));
-        QuitButton.setText("Salir");
-        QuitButton.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(new java.awt.Color(255, 153, 102));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuitButtonActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(QuitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, -1, -1));
 
-        userTextField.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Usuario :");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Contraseña :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
+        getContentPane().add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 180, 30));
+
+        jPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userTextFieldActionPerformed(evt);
+                jPasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(userTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 180, 30));
+        getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 180, 30));
 
-        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextFieldActionPerformed(evt);
-            }
-        });
-        getContentPane().add(passwordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 180, 30));
-
-        backgroundLabel.setBackground(new java.awt.Color(255, 153, 0));
-        backgroundLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lgbt.png"))); // NOI18N
-        getContentPane().add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 822, 478));
+        jLabelFondo.setBackground(new java.awt.Color(255, 153, 0));
+        jLabelFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lgbt.png"))); // NOI18N
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 822, 478));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+    private void jButtonSessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSessionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LoginButtonActionPerformed
+    }//GEN-LAST:event_jButtonSessionActionPerformed
 
-    private void QuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_QuitButtonActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
+    private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextFieldActionPerformed
-
-    private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userTextFieldActionPerformed
+    }//GEN-LAST:event_jPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,12 +149,12 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LoginButton;
-    private javax.swing.JButton QuitButton;
-    private javax.swing.JLabel backgroundLabel;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JPasswordField passwordTextField;
-    private javax.swing.JLabel userLabel;
-    private javax.swing.JTextField userTextField;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonSession;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JPasswordField jPassword;
+    private javax.swing.JTextField jTextFieldUser;
     // End of variables declaration//GEN-END:variables
 }
