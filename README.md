@@ -5,3 +5,4 @@ Collaborator
 
 - Erick Joestar es puto
 - Jhonatan putolon
+- Isaac
