@@ -1,8 +1,15 @@
 # Hospital-Control
 Data Structures II Project
 
-Collaborator
+Collaborators
 
 - Erick Joestar es puto
 - Jhonatan putolon
-- Isaac
+- Isaac :clown_face:
+- Eduardo :kiss:
+
+Classes
+
+| PERSON |
+|:------:|
+| -name  |
