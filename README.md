@@ -5,7 +5,7 @@ Collaborator
 <<<<<<< HEAD
 - Erick Joestar.
 =======
-- Erick Joestar es puto
+- Erick Joestar es mas puto que todos
 
 
 
