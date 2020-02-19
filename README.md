@@ -18,15 +18,16 @@
 
 ### Guide
 
--JFrames
-  -Login / Eduardo
-  -Users / Isaac
-  -Patients / Jhonatan
-  -Appointment / Eduardo
-  -Employees / Jhonatan
-  -Stock / Erick
-  -Services / Erick
-  -Medical History / Isaac
+|JFrames|
+|:---------------:|
+|Login | Eduardo |
+|Users | Isaac |
+|Patients | Jhonatan |
+|Appointment | Eduardo |
+|Employees | Jhonatan |
+|Stock | Erick |
+|Services | Erick |
+|Medical History | Isaac |
 
 -Classes
   -Person
