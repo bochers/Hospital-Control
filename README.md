@@ -18,8 +18,8 @@
 
 ### Guide
 
-|JFrames|
-|:---------------:|
+|JFrames| Assigned to |
+|:-------:|:------:|
 |Login | Eduardo |
 |Users | Isaac |
 |Patients | Jhonatan |
@@ -29,6 +29,4 @@
 |Services | Erick |
 |Medical History | Isaac |
 
--Classes
-  -Person
-    -
+:octocat:
