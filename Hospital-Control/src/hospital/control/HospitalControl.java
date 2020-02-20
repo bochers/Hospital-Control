@@ -28,9 +28,7 @@ public class HospitalControl {
         p.setAddress("en tu kasa");
         
         Login mainwindow;
-        
         mainwindow = new Login();
-        
         mainwindow.show();
         
         System.out.print(p.getAddress() + " " + k.getMedic());
