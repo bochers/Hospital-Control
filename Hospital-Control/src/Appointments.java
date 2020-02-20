@@ -39,6 +39,8 @@ public class Appointments extends javax.swing.JFrame {
         jTappointment = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jSpinField1 = new com.toedter.components.JSpinField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -82,6 +84,8 @@ public class Appointments extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
+        jPanel1.add(jSpinField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 80, 10));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -129,11 +133,13 @@ public class Appointments extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTable jTappointment;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
