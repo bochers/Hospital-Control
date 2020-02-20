@@ -6,6 +6,8 @@
 package hospital.control;
 import classes.Person;
 import classes.Patient;
+import views.Login;
+
 
 /**
  *
@@ -24,6 +26,12 @@ public class HospitalControl {
         
          k.setMedic("EL erick");
         p.setAddress("en tu kasa");
+        
+        Login mainwindow;
+        
+        mainwindow = new Login();
+        
+        mainwindow.show();
         
         System.out.print(p.getAddress() + " " + k.getMedic());
         
