@@ -82,14 +82,14 @@ public class Users extends javax.swing.JFrame {
                 idTextActionPerformed(evt);
             }
         });
-        jPanel1.add(idText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 80, 25));
+        jPanel1.add(idText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 80, 30));
 
         nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextActionPerformed(evt);
             }
         });
-        jPanel1.add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 230, 25));
+        jPanel1.add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 230, 30));
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nameLabel.setText("Nombre:");
@@ -100,7 +100,7 @@ public class Users extends javax.swing.JFrame {
                 surnameTextActionPerformed(evt);
             }
         });
-        jPanel1.add(surnameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 230, 25));
+        jPanel1.add(surnameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 230, 30));
 
         surnameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         surnameLabel.setText("Apellidos:");
@@ -111,7 +111,7 @@ public class Users extends javax.swing.JFrame {
                 addressTextActionPerformed(evt);
             }
         });
-        jPanel1.add(addressText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 230, 25));
+        jPanel1.add(addressText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 230, 30));
 
         addressLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addressLabel.setText("Dirección:");
@@ -122,7 +122,7 @@ public class Users extends javax.swing.JFrame {
                 passwordTextActionPerformed(evt);
             }
         });
-        jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 230, 25));
+        jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 230, 30));
 
         passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         passwordLabel.setText("Password:");
@@ -137,14 +137,14 @@ public class Users extends javax.swing.JFrame {
                 phoneTextActionPerformed(evt);
             }
         });
-        jPanel1.add(phoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 230, 25));
+        jPanel1.add(phoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 230, 30));
 
         emailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailTextActionPerformed(evt);
             }
         });
-        jPanel1.add(emailText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 230, 25));
+        jPanel1.add(emailText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 230, 30));
 
         emailLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         emailLabel.setText("Email:");
