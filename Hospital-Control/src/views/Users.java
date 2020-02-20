@@ -1,10 +1,13 @@
 package views;
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author isaac
@@ -16,6 +19,10 @@ public class Users extends javax.swing.JFrame {
      */
     public Users() {
         initComponents();
+        Image img;
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
+        img = icon.getImage();
+        godButton.setIcon(new ImageIcon(img.getScaledInstance(godButton.getWidth(), godButton.getHeight(), WIDTH)));
     }
 
     /**
@@ -261,6 +268,7 @@ public class Users extends javax.swing.JFrame {
 
     private void godButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godButtonActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_godButtonActionPerformed
 
     /**
