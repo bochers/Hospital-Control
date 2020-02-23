@@ -31,6 +31,12 @@ public class HospitalControl {
         mainwindow = new Login();
         mainwindow.show();
         
+        
+        
+        
+        
+        
+        
         System.out.print(p.getAddress() + " " + k.getMedic());
         
     }
