@@ -19,10 +19,10 @@ public class Users extends javax.swing.JFrame {
      */
     public Users() {
         initComponents();
-        Image img;
+        /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
         img = icon.getImage();
-        godButton.setIcon(new ImageIcon(img.getScaledInstance(godButton.getWidth(), godButton.getHeight(), WIDTH)));
+        godButton.setIcon(new ImageIcon(img.getScaledInstance(godButton.getWidth(), godButton.getHeight(), WIDTH)));*/
     }
 
     /**
