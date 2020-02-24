@@ -1,6 +1,7 @@
 package views;
 
 import classes.Database;
+import classes.Patient;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -14,9 +15,11 @@ import javax.swing.ImageIcon;
  * @author isaac
  */
 public class Users extends javax.swing.JFrame {
-     String name, id, surname, address, username, phone;
+     String name, id, surname, address, username, phone, email, password, profile;
+     
      int age = 0;
      Database d;
+     
      
 
     /**
@@ -175,7 +178,6 @@ public class Users extends javax.swing.JFrame {
         jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 310, 350));
 
         profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador" }));
-        profileComboBox.setSelectedIndex(-1);
         jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
@@ -228,6 +230,11 @@ public class Users extends javax.swing.JFrame {
         jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, -1, -1));
 
         saveButton.setText("Guardar");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         bgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/UsersBGD.jpeg"))); // NOI18N
@@ -278,6 +285,35 @@ public class Users extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_godButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        Patient pat = new Patient();
+        
+        /*id = idText.getText();
+        name = nameText.getText();
+        surname = surnameText.getText();
+        address = addressText.getText();
+        phone = phoneText.getText();
+        email = emailText.getText();
+        password = passwordText.getText();
+        profile = (String) profileComboBox.getSelectedItem();
+        */
+        
+       pat.setID(id);
+       pat.setAddress(address);
+       pat.setName(name);
+       pat.setSurname(surname);
+       pat.setPassword(password);
+       pat.setPhone(phone);
+       //pat.setEmail
+       pat.setMedic(profile);
+       
+       
+        
+        
+        
+        
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments

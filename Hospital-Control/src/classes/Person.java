@@ -21,7 +21,7 @@ public class Person {
     private int age;
     
     //yiiiiiiiiiiiiii
-   public Person(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, int valueAge)
+   public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, int valueAge)
     {
         this.ID = valueID;
         this.name = valueName;

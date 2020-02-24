@@ -2,7 +2,13 @@ package views;
 
 import classes.Database;
 import classes.Person;
+import package.views
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+
 //import classes.Person;
 import javax.swing.JOptionPane;
 //import hospital.control.HospitalControl;
@@ -18,8 +24,14 @@ import javax.swing.JOptionPane;
  * @author isaac
  */
 public class Login extends javax.swing.JFrame {
+    DataInputStream inputFile;
+    DataOutputStream outputFile;
+    String name, id, surname, address, username, phone;
+    int age = 0;
     String pass = "";
-    ArrayList<Person> person = new ArrayList<>();
+    
+    
+ 
 
     
     
@@ -133,7 +145,12 @@ public class Login extends javax.swing.JFrame {
     private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
         
         
-        //p.getClass().getMethod(pass, parameterTypes)
+            //outputFile = new DataOutputStream(new FileOutputStream("data.txt", true));
+            //inputFile = new DataInputStream(new FileInputStream("data.txt"));
+            
+            
+
+                
         Users window = new Users();
         window.show();
         this.dispose();
