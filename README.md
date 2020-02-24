@@ -29,4 +29,13 @@
 |Services | Erick |
 |Medical History | Isaac |
 
+### To do:
 
+- 25/02/20
+  - Users: Eliminar
+  - Users: Employees ComboBox
+  - Users: Username
+  - Login: LoginButton
+  - Database: validateUser
+  - Database: UpdateDatabase
+  - Database: ReadDatabase
