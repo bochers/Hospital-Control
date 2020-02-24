@@ -15,18 +15,18 @@ import javax.swing.ImageIcon;
  * @author isaac
  */
 public class Users extends javax.swing.JFrame {
-     String name, id, surname, address, username, phone, email, password, profile;
-     
-     int age = 0;
-     Database d;
-     
-     
+
+    String name, id, surname, address, username, phone, email, password, profile;
+
+    int age = 0;
+    Database d;
 
     /**
      * Creates new form Users
      */
     public Users() {
         initComponents();
+        d = new Database();
         /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
         img = icon.getImage();
@@ -275,6 +275,15 @@ public class Users extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
+        Patient pat;
+
+       // profile = (String) profileComboBox.getSelectedItem();
+       
+        pat = d.searchPatient(idText.getText());
+        nameText.setText(pat.getName());
+        
+        d.newPatient(pat);
+        
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -288,31 +297,18 @@ public class Users extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         Patient pat = new Patient();
+
+       // profile = (String) profileComboBox.getSelectedItem();
+
+        pat.setID(idText.getText());
+        pat.setAddress(addressText.getText());
+        pat.setName(nameText.getText());
+        pat.setSurname(surnameText.getText());
+        pat.setPassword(passwordText.getText());
+        pat.setEmail(emailText.getText());
+        pat.setPhone(phoneText.getText());
         
-        /*id = idText.getText();
-        name = nameText.getText();
-        surname = surnameText.getText();
-        address = addressText.getText();
-        phone = phoneText.getText();
-        email = emailText.getText();
-        password = passwordText.getText();
-        profile = (String) profileComboBox.getSelectedItem();
-        */
-        
-       pat.setID(id);
-       pat.setAddress(address);
-       pat.setName(name);
-       pat.setSurname(surname);
-       pat.setPassword(password);
-       pat.setPhone(phone);
-       //pat.setEmail
-       pat.setMedic(profile);
-       
-       
-        
-        
-        
-        
+        d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**

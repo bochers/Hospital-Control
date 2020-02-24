@@ -29,7 +29,7 @@ public class Database {
         patients.add(p);
     }
     
-    public Patient searchPatient(int id) 
+    public Patient searchPatient(String id) 
     {    
         Patient c = new Patient();
         

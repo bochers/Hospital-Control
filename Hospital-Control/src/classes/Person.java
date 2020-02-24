@@ -18,6 +18,7 @@ public class Person {
     private String username;
     private String password;
     private String phone;
+    private String email;
     private int age;
     
     //yiiiiiiiiiiiiii
@@ -101,6 +102,16 @@ public class Person {
     public String getPhone()
     {
         return phone;
+    }
+    
+    public void setEmail(String value)
+    {
+        email = value;
+    }
+    
+    public String getEmail()
+    {
+        return email;
     }
     
     public void setAge(int value)

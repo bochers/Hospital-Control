@@ -2,7 +2,6 @@ package views;
 
 import classes.Database;
 import classes.Person;
-import package.views
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
@@ -28,13 +27,7 @@ public class Login extends javax.swing.JFrame {
     DataOutputStream outputFile;
     String name, id, surname, address, username, phone;
     int age = 0;
-    String pass = "";
-    
-    
- 
-
-    
-    
+    String pass = "";   
     
     public Login() {
         initComponents();
@@ -123,18 +116,9 @@ public class Login extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Contraseña incorrecta");
            
        }
-       
-       
-
-       
-       
-       
-      
        //passwordTxt.getText();
        //String clavedef=new String(pass);
 
-
-        
            
     }//GEN-LAST:event_loginActionPerformed
     
