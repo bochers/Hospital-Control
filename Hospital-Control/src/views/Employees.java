@@ -27,7 +27,7 @@ public class Employees extends javax.swing.JFrame {
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
 
         Image img1;
-        ImageIcon icon1 = new ImageIcon(this.getClass().getResource("assets/newbutton.png"));
+        ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
         img1 = icon1.getImage();
         btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
          

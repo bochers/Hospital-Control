@@ -1,6 +1,7 @@
 package views;
 
 import classes.Database;
+import classes.Employee;
 import classes.Patient;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -281,6 +282,14 @@ public class Users extends javax.swing.JFrame {
        
         pat = d.searchPatient(idText.getText());
         nameText.setText(pat.getName());
+        idText.setText(pat.getID());
+        addressText.setText(pat.getAddress());
+        surnameText.setText(pat.getSurname());
+        passwordText.setText(pat.getPassword());
+        emailText.setText(pat.getEmail());
+        phoneText.setText(pat.getPhone());
+                
+        
         
         d.newPatient(pat);
         
@@ -297,18 +306,36 @@ public class Users extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         Patient pat = new Patient();
-
-       // profile = (String) profileComboBox.getSelectedItem();
-
-        pat.setID(idText.getText());
-        pat.setAddress(addressText.getText());
-        pat.setName(nameText.getText());
-        pat.setSurname(surnameText.getText());
-        pat.setPassword(passwordText.getText());
-        pat.setEmail(emailText.getText());
-        pat.setPhone(phoneText.getText());
+        Employee emp = new Employee();
+        profile = profileComboBox.getName();
+       
+       
+        if(profile == "Pacientes")
+        {
+            pat.setID(idText.getText());
+            pat.setAddress(addressText.getText());
+            pat.setName(nameText.getText());
+            pat.setSurname(surnameText.getText());
+            pat.setPassword(passwordText.getText());
+            pat.setEmail(emailText.getText());
+            pat.setPhone(phoneText.getText());
+            d.newPatient(pat);
+        }
+        if(profile == "Empleado")
+        {/*
+            emp.setID(idText.getText());
+            emp.setAddress(addressText.getText());
+            emp.setName(nameText.getText());
+            emp.setSurname(surnameText.getText());
+            emp.setPassword(passwordText.getText());
+            emp.setEmail(emailText.getText());
+            emp.setPhone(phoneText.getText());
+            */
+            //d.newEmployee(pat);
+        }
         
-        d.newPatient(pat);
+        
+        //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
