@@ -43,16 +43,17 @@ public class Database {
         return c;
     }
     
-    public void modifyPatient(Patient pat)
+    public Patient modifyPatient(Patient pat)
     {
        for(Patient p : patients)
        {
             if(p.getID().equals(pat.getID()))
             {
                 p = pat;
-                break;
+                return p;
             }
        }
+       return pat;
     }
     
     public void newEmployee(Employee e) 
