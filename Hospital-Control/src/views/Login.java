@@ -1,6 +1,11 @@
 package views;
 
+import classes.Database;
+import classes.Person;
+import java.util.ArrayList;
+//import classes.Person;
 import javax.swing.JOptionPane;
+//import hospital.control.HospitalControl;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,6 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     String pass = "";
+    ArrayList<Person> person = new ArrayList<>();
+
     
     
     
@@ -36,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         passwordText = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         login = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        checkIn = new javax.swing.JButton();
         jLabelFondoLoggin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,14 +79,14 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 170, 40));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Registrarse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        checkIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        checkIn.setText("Registrarse");
+        checkIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                checkInActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 160, 40));
+        getContentPane().add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 160, 40));
 
         jLabelFondoLoggin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lgbt.png"))); // NOI18N
         getContentPane().add(jLabelFondoLoggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -123,12 +130,16 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userTxtActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
         
+        
+        //p.getClass().getMethod(pass, parameterTypes)
         Users window = new Users();
         window.show();
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+    }//GEN-LAST:event_checkInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +178,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton checkIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

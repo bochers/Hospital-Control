@@ -255,13 +255,11 @@
         <Component class="javax.swing.JComboBox" name="profileComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="Administrador"/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -275,13 +273,13 @@
         <Component class="javax.swing.JComboBox" name="sexComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Masculino"/>
+                <StringItem index="1" value="Femenino"/>
+                <StringItem index="2" value="Otro"/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -295,13 +293,42 @@
         <Component class="javax.swing.JComboBox" name="stateComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="32">
+                <StringItem index="0" value="Aguascalientes"/>
+                <StringItem index="1" value="Baja California"/>
+                <StringItem index="2" value="Baja California Sur"/>
+                <StringItem index="3" value="Campeche"/>
+                <StringItem index="4" value="Chiapas"/>
+                <StringItem index="5" value="Chihuahua"/>
+                <StringItem index="6" value="Coahuila"/>
+                <StringItem index="7" value="Colima"/>
+                <StringItem index="8" value="Distrito Federal"/>
+                <StringItem index="9" value="Durango"/>
+                <StringItem index="10" value="Estado de M&#xe9;xico"/>
+                <StringItem index="11" value="Guanajuato"/>
+                <StringItem index="12" value="Guerrero"/>
+                <StringItem index="13" value="Hidalgo"/>
+                <StringItem index="14" value="Jalisco"/>
+                <StringItem index="15" value="Michoac&#xe1;n"/>
+                <StringItem index="16" value="Morelos"/>
+                <StringItem index="17" value="Nayarit"/>
+                <StringItem index="18" value="Nuevo Le&#xf3;n"/>
+                <StringItem index="19" value="Oaxaca"/>
+                <StringItem index="20" value="Puebla"/>
+                <StringItem index="21" value="Quer&#xe9;taro"/>
+                <StringItem index="22" value="Quintana Roo"/>
+                <StringItem index="23" value="San Luis Potos&#xed;"/>
+                <StringItem index="24" value="Sinaloa"/>
+                <StringItem index="25" value="Sonora"/>
+                <StringItem index="26" value="Tabasco"/>
+                <StringItem index="27" value="Tamaulipas"/>
+                <StringItem index="28" value="Tlaxcala"/>
+                <StringItem index="29" value="Veracruz"/>
+                <StringItem index="30" value="Yucat&#xe1;n"/>
+                <StringItem index="31" value="Zacatecas"/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

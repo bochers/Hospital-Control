@@ -24,7 +24,7 @@ public class HospitalControl {
         Person p = new Person();
         Patient k = new Patient();
         
-         k.setMedic("EL erick");
+        k.setMedic("EL erick");
         p.setAddress("en tu kasa");
         
         Login mainwindow;

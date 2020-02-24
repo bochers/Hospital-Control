@@ -1,5 +1,6 @@
 package views;
 
+import classes.Database;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -13,6 +14,10 @@ import javax.swing.ImageIcon;
  * @author isaac
  */
 public class Users extends javax.swing.JFrame {
+     String name, id, surname, address, username, phone;
+     int age = 0;
+     Database d;
+     
 
     /**
      * Creates new form Users
@@ -169,13 +174,16 @@ public class Users extends javax.swing.JFrame {
         godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (1).png"))); // NOI18N
         jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 310, 350));
 
-        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador" }));
+        profileComboBox.setSelectedIndex(-1);
         jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
 
-        sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
+        sexComboBox.setSelectedIndex(-1);
         jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
-        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
+        stateComboBox.setSelectedIndex(-1);
         jPanel1.add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
         idLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

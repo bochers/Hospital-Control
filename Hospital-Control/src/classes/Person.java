@@ -20,6 +20,19 @@ public class Person {
     private String phone;
     private int age;
     
+    //yiiiiiiiiiiiiii
+   public Person(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, int valueAge)
+    {
+        this.ID = valueID;
+        this.name = valueName;
+        this.surname = valueSurname;
+        this.address = valueAddress;
+        this.username = valueUsername;
+        this.phone = valuePhone;
+        this.password = valuePassword; 
+        this.age = valueAge;        
+    }
+    
     public void setID(String value)
     {
         ID = value;
