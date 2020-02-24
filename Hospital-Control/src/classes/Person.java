@@ -20,6 +20,7 @@ public class Person {
     private String phone;
     private String email;
     private int age;
+    private String sex;
     
     //yiiiiiiiiiiiiii
    public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, int valueAge)
@@ -31,7 +32,7 @@ public class Person {
         this.username = valueUsername;
         this.phone = valuePhone;
         this.password = valuePassword; 
-        this.age = valueAge;        
+        this.age = valueAge;
     }
     
     public void setID(String value)
@@ -122,6 +123,16 @@ public class Person {
     public int getAge()
     {
         return age;
+    }
+    
+    public void setSex(String value)
+    {
+        sex = value;
+    }
+    
+    public String getSex()
+    {
+        return sex;
     }
     
 }
