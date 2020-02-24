@@ -33,4 +33,19 @@ public class Patient extends Person{
     {
         appointment = value;
     }
+    
+    public void equalsOverload(Patient p)
+    {
+        this.setName(p.getName());
+        this.setSurname(p.getSurname());
+        this.setEmail(p.getEmail());
+        this.setPassword(p.getPassword());
+        this.setAddress(p.getAddress());
+        this.setMedic(p.getMedic());
+        this.setAppointment(p.getAppointment());
+        this.setPhone(p.getPhone());
+        this.setAge(p.getAge());
+        this.setUsername(p.getUsername());
+        
+    }
 }

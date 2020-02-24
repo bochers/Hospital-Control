@@ -49,7 +49,7 @@ public class Database {
        {
             if(p.getID().equals(pat.getID()))
             {
-                p = pat;
+                p.equalsOverload(pat);
                 break;
             }
        }
