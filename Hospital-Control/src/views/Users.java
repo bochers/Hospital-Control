@@ -5,6 +5,7 @@ import classes.Employee;
 import classes.Patient;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +18,7 @@ import javax.swing.ImageIcon;
  */
 public class Users extends javax.swing.JFrame {
 
-    String name, id, surname, address, username, phone, email, password, profile;
+    String name, id, surname, address, username, phone, email, password, profile, sex;
 
     int age = 0;
     Database d;
@@ -178,7 +179,8 @@ public class Users extends javax.swing.JFrame {
         godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (1).png"))); // NOI18N
         jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 310, 350));
 
-        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador" }));
+        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Paciente", "Empleado" }));
+        profileComboBox.setSelectedIndex(-1);
         jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
@@ -209,6 +211,11 @@ public class Users extends javax.swing.JFrame {
         jPanel1.add(cityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
 
         modifyButton.setText("Modificar");
+        modifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
 
         updateButton.setText("Actualizar");
@@ -278,20 +285,13 @@ public class Users extends javax.swing.JFrame {
         // TODO add your handling code here:
         Patient pat;
 
-       // profile = (String) profileComboBox.getSelectedItem();
-       
-        pat = d.searchPatient(idText.getText());
-        nameText.setText(pat.getName());
-        idText.setText(pat.getID());
-        addressText.setText(pat.getAddress());
-        surnameText.setText(pat.getSurname());
-        passwordText.setText(pat.getPassword());
-        emailText.setText(pat.getEmail());
-        phoneText.setText(pat.getPhone());
+       profile = (String) profileComboBox.getSelectedItem();
+       pat = d.searchPatient(idText.getText());
+        displayPatient(pat);
+        
                 
         
         
-        d.newPatient(pat);
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -307,10 +307,11 @@ public class Users extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         Patient pat = new Patient();
         Employee emp = new Employee();
-        profile = profileComboBox.getName();
+        profile = (String) profileComboBox.getSelectedItem();
+        sex = (String) profileComboBox.getSelectedItem();
+        
        
-       
-        if(profile == "Pacientes")
+        if("Paciente" == profileComboBox.getSelectedItem())
         {
             pat.setID(idText.getText());
             pat.setAddress(addressText.getText());
@@ -319,10 +320,13 @@ public class Users extends javax.swing.JFrame {
             pat.setPassword(passwordText.getText());
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
+            
             d.newPatient(pat);
+            JOptionPane.showMessageDialog(null, "Guardado con éxito.");
         }
-        if(profile == "Empleado")
-        {/*
+        //if(profile == 2)
+        /*
+        {
             emp.setID(idText.getText());
             emp.setAddress(addressText.getText());
             emp.setName(nameText.getText());
@@ -332,11 +336,41 @@ public class Users extends javax.swing.JFrame {
             emp.setPhone(phoneText.getText());
             */
             //d.newEmployee(pat);
-        }
+        
         
         
         //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
+public void displayPatient(Patient pat){
+       profile = (String) profileComboBox.getSelectedItem();
+        nameText.setText(pat.getName());
+        idText.setText(pat.getID());
+        addressText.setText(pat.getAddress());
+        surnameText.setText(pat.getSurname());
+        passwordText.setText(pat.getPassword());
+        emailText.setText(pat.getEmail());
+        phoneText.setText(pat.getPhone());
+    
+    
+}
+    private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
+        Patient pat = new Patient();
+        
+        if("Paciente" == profileComboBox.getSelectedItem())
+        {   
+            pat.setID(idText.getText());
+            pat.setAddress(addressText.getText());
+            pat.setName(nameText.getText());
+            pat.setSurname(surnameText.getText());
+            pat.setPassword(passwordText.getText());
+            pat.setEmail(emailText.getText());
+            pat.setPhone(phoneText.getText());
+            d.modifyPatient(pat);
+            
+            JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+        }
+                
+    }//GEN-LAST:event_modifyButtonActionPerformed
 
     /**
      * @param args the command line arguments

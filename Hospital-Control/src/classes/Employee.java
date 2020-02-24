@@ -33,4 +33,20 @@ public class Employee extends Person{
     {
         occupation = degree;
     }
+    
+    public void equalsOverload(Employee e)
+    {
+        this.setName(e.getName());
+        this.setUsername(e.getUsername());
+        this.setAge(e.getAge());
+        this.setDegree(e.getDegree());
+        this.setPhone(e.getPhone());
+        this.setSurname(e.getSurname());
+        this.setAddress(e.getAddress());
+        this.setEmail(e.getEmail());
+        this.setPassword(e.getPassword());
+        this.setOccupation(e.getOccupation());
+        
+        
+    }
 }
