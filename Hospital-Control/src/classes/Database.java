@@ -19,8 +19,8 @@ public class Database {
         ArrayList<Patient> patients;
         patients = new ArrayList<>();
         
-    }
-    
-    
+        
+        
+    }    
     
 }
