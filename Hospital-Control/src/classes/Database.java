@@ -41,5 +41,23 @@ public class Database {
             }
         }
         return c;
+    }
+    
+    public void newEmployee(Employee e) 
+    {    
+        employees.add(e);
+    }
+    
+    public Employee searchEmployee(String id) 
+    {    
+        Employee c = new Employee();
+        for(Employee e: employees)
+        {
+            if(e.getID().equals(id))
+            {
+                return e;
+            }
+        }
+        return c;
     }  
 }
