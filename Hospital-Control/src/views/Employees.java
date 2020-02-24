@@ -25,12 +25,12 @@ public class Employees extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
-        
+
         Image img1;
         ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
         img1 = icon1.getImage();
         btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
-        
+         
     }
 
     /**
@@ -43,21 +43,21 @@ public class Employees extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        buscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
+        BuscarText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        IDText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        AMText = new javax.swing.JTextField();
+        NameText = new javax.swing.JTextField();
+        DireccionText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        APText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        PhoneText = new javax.swing.JTextField();
+        EmailText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         ComboBoxPUESTO = new javax.swing.JComboBox<>();
@@ -67,75 +67,76 @@ public class Employees extends javax.swing.JFrame {
         btnNew = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        UserText = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        PasswordText = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        ComboBoxSEXO = new javax.swing.JComboBox<>();
         ComboBoxESTADO = new javax.swing.JComboBox<>();
-        ComboBoxCITY = new javax.swing.JComboBox<>();
+        ComboBoxSEXO = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        ComboBoxCITY = new javax.swing.JComboBox<>();
+        separator = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 154, -1));
+        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 130, 30));
+
+        jLabel1.setText("ID:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 20));
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 64, 64));
-
-        jLabel1.setText("ID:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 190, 20));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 60, 60));
+        jPanel1.add(IDText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 190, 30));
 
         jLabel2.setText("Dirección:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 190, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jLabel3.setText("Nombre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 190, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 190, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 190, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(AMText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 190, 30));
+        jPanel1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 190, 30));
+        jPanel1.add(DireccionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 190, 30));
 
         jLabel4.setText("A. Paterno:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanel1.add(APText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
 
         jLabel5.setText("A. Materno:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 80, -1));
 
         jLabel6.setText("Teléfono:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 190, -1));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 190, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 70, -1));
+        jPanel1.add(PhoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 190, 30));
+        jPanel1.add(EmailText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 190, 30));
 
         jLabel7.setText("E-mail:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 50, 30));
 
         jLabel8.setText("Estado:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         ComboBoxPUESTO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Médico", "Enfermero", "Administrador" }));
         ComboBoxPUESTO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxPUESTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 190, -1));
+        jPanel1.add(ComboBoxPUESTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 190, 30));
 
         btnEdit.setText("EDIT");
-        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 100, -1));
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 100, -1));
 
         btnCancel.setText("CANCEL");
-        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 100, -1));
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, 100, -1));
 
         btnDelete.setText("DELETE");
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 100, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 100, -1));
 
         btnNew.setText("NEW");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -143,46 +144,50 @@ public class Employees extends javax.swing.JFrame {
                 btnNewActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 100, 50));
+        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 50, 50));
 
         btnSave.setText("SAVE");
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 100, 30));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 100, 30));
 
         jLabel9.setText("USER:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, -1, 20));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 150, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 150, 40, 20));
+        jPanel1.add(UserText, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 150, 30));
 
         jLabel10.setText("PASSWORD:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, 20));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 150, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, 20));
+        jPanel1.add(PasswordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 150, 30));
 
         jLabel11.setText("Puesto:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         jLabel12.setText("Ciudad:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
         jLabel13.setText("Sexo:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, -1, -1));
-
-        ComboBoxSEXO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
-        ComboBoxSEXO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxSEXO, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 170, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 316, -1, -1));
 
         ComboBoxESTADO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
         ComboBoxESTADO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, -1, -1));
+        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
+        ComboBoxESTADO.getAccessibleContext().setAccessibleName("");
+        ComboBoxESTADO.getAccessibleContext().setAccessibleDescription("");
 
-        ComboBoxCITY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(ComboBoxCITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 170, -1));
+        ComboBoxSEXO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
+        ComboBoxSEXO.setSelectedIndex(-1);
+        jPanel1.add(ComboBoxSEXO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 190, 30));
 
         jLabel14.setFont(new java.awt.Font("Phosphate", 1, 36)); // NOI18N
         jLabel14.setText("EMPLOYEES");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 52, 800, 20));
+        ComboBoxCITY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(ComboBoxCITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 190, 30));
+
+        separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
+        jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 4));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -233,23 +238,33 @@ public class Employees extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AMText;
+    private javax.swing.JTextField APText;
+    private javax.swing.JTextField BuscarText;
     private javax.swing.JComboBox<String> ComboBoxCITY;
     private javax.swing.JComboBox<String> ComboBoxESTADO;
     private javax.swing.JComboBox<String> ComboBoxPUESTO;
     private javax.swing.JComboBox<String> ComboBoxSEXO;
+    private javax.swing.JTextField DireccionText;
+    private javax.swing.JTextField EmailText;
+    private javax.swing.JTextField IDText;
+    private javax.swing.JTextField NameText;
+    private javax.swing.JTextField PasswordText;
+    private javax.swing.JTextField PhoneText;
+    private javax.swing.JTextField UserText;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
-    private javax.swing.JTextField buscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -259,15 +274,6 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
 }
