@@ -68,7 +68,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Usuario: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         login.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         login.setText("Iniciar sesión");
@@ -86,9 +86,9 @@ public class Login extends javax.swing.JFrame {
                 checkInActionPerformed(evt);
             }
         });
-        getContentPane().add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 160, 40));
+        getContentPane().add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 40));
 
-        jLabelFondoLoggin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lgbt.png"))); // NOI18N
+        jLabelFondoLoggin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/halo.jpg"))); // NOI18N
         getContentPane().add(jLabelFondoLoggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

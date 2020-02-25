@@ -83,7 +83,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="220" width="-1" height="-1"/>
+          <AbsoluteConstraints x="220" y="220" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -115,14 +115,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="620" y="420" width="160" height="40"/>
+          <AbsoluteConstraints x="610" y="40" width="160" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelFondoLoggin">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/assets/lgbt.png"/>
+          <Image iconType="3" name="/assets/halo.jpg"/>
         </Property>
       </Properties>
       <Constraints>

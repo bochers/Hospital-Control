@@ -259,8 +259,7 @@ public class Users extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void clearTxt()
-    {
+    public void clearTxt() {
         idText.setText("");
         addressText.setText("");
         nameText.setText("");
@@ -272,19 +271,17 @@ public class Users extends javax.swing.JFrame {
         profileComboBox.setSelectedIndex(-1);
     }
 
-    public boolean isValidUser()
-    {
+    public boolean isValidUser() {
         boolean valid = false;
 
-        if(idText.getText().length() > 0 && nameText.getText().length() > 0 
+        if (idText.getText().length() > 0 && nameText.getText().length() > 0
                 && addressText.getText().length() > 0 && surnameText.getText().length() > 0
-                && passwordText.getText().length() > 0 && emailText.getText().length() > 0 
+                && passwordText.getText().length() > 0 && emailText.getText().length() > 0
                 && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
-                && profileComboBox.getSelectedIndex()!=-1)
-        {
+                && profileComboBox.getSelectedIndex() != -1) {
             valid = true;
         }
-        
+
         return valid;
     }
 
@@ -318,16 +315,13 @@ public class Users extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-       Patient pat;
+        Patient pat;
 
-       profile = (String) profileComboBox.getSelectedItem();
-       pat = d.searchPatient(idText.getText());
+        profile = (String) profileComboBox.getSelectedItem();
+        pat = d.searchPatient(idText.getText());
         displayPatient(pat);
-        
-                
-        
-        
-        
+
+
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -344,11 +338,9 @@ public class Users extends javax.swing.JFrame {
         Employee emp = new Employee();
         profile = (String) profileComboBox.getSelectedItem();
         sex = (String) profileComboBox.getSelectedItem();
-        
-       
-        if("Paciente" == profileComboBox.getSelectedItem())
-        {
-            
+
+        if ("Paciente" == profileComboBox.getSelectedItem()) {
+
             pat.setID(idText.getText());
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
@@ -356,19 +348,16 @@ public class Users extends javax.swing.JFrame {
             pat.setPassword(passwordText.getText());
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
-            
-            
-            if(isValid()){
+
+            if (isValid()) {
                 d.newPatient(pat);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(null, "Datos incompletos.");
-                
-                
+            }
+
             clearTxt();
-        }else if("Empleado" == profileComboBox.getSelectedItem())
-        {
+        } else if ("Empleado" == profileComboBox.getSelectedItem()) {
             emp.setID(idText.getText());
             emp.setAddress(addressText.getText());
             emp.setName(nameText.getText());
@@ -378,25 +367,21 @@ public class Users extends javax.swing.JFrame {
             emp.setPhone(phoneText.getText());
             emp.setSex((String) sexComboBox.getSelectedItem());
             //emp.setOccupation(occupationComboBox.getSelectedItem());
-            
-            
-            if(isValidUser()) {
+
+            if (isValidUser()) {
                 d.newEmployee(emp);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-            }
-            else
+            } else {
                 JOptionPane.showMessageDialog(null, "Datos incompletos.");
-             
-            
-        }else{
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecciona un perfil, por favor");
         }
-        
 
-        
         //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
-public void displayPatient(Patient pat){
+    public void displayPatient(Patient pat) {
         profile = (String) profileComboBox.getSelectedItem();
         nameText.setText(pat.getName());
         idText.setText(pat.getID());
@@ -406,11 +391,10 @@ public void displayPatient(Patient pat){
         emailText.setText(pat.getEmail());
         phoneText.setText(pat.getPhone());
         sexComboBox.setSelectedItem(pat.getSex());
-        
-    
-    
-}
-public void displayEmployee(Employee emp){
+
+    }
+
+    public void displayEmployee(Employee emp) {
         profile = (String) profileComboBox.getSelectedItem();
         nameText.setText(emp.getName());
         idText.setText(emp.getID());
@@ -420,19 +404,12 @@ public void displayEmployee(Employee emp){
         emailText.setText(emp.getEmail());
         phoneText.setText(emp.getPhone());
         sexComboBox.setSelectedItem(emp.getSex());
-        
-         
-    
-}
 
-
-
-
+    }
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         Patient pat = new Patient();
-        
-        if("Paciente" == profileComboBox.getSelectedItem())
-        {   
+
+        if ("Paciente" == profileComboBox.getSelectedItem()) {
             pat.setID(idText.getText());
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
@@ -441,11 +418,11 @@ public void displayEmployee(Employee emp){
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
             d.modifyPatient(pat);
-            
+
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
             clearTxt();
         }
-                
+
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void sexComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexComboBoxActionPerformed
