@@ -285,6 +285,32 @@ public class Users extends javax.swing.JFrame {
 
         return valid;
     }
+     public void displayPatient(Patient pat) {
+        profile = (String) profileComboBox.getSelectedItem();
+        nameText.setText(pat.getName());
+        idText.setText(pat.getID());
+        addressText.setText(pat.getAddress());
+        surnameText.setText(pat.getSurname());
+        passwordText.setText(pat.getPassword());
+        emailText.setText(pat.getEmail());
+        phoneText.setText(pat.getPhone());
+        sexComboBox.setSelectedItem(pat.getSex());
+        profileComboBox.setSelectedItem(pat.getProfile());
+
+    }
+
+    public void displayEmployee(Employee emp) {
+        profile = (String) profileComboBox.getSelectedItem();
+        nameText.setText(emp.getName());
+        idText.setText(emp.getID());
+        addressText.setText(emp.getAddress());
+        surnameText.setText(emp.getSurname());
+        passwordText.setText(emp.getPassword());
+        emailText.setText(emp.getEmail());
+        phoneText.setText(emp.getPhone());
+        sexComboBox.setSelectedItem(emp.getSex());
+
+    }
 
     private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
         // TODO add your handling code here:
@@ -338,7 +364,7 @@ public class Users extends javax.swing.JFrame {
         Patient pat = new Patient();
         Employee emp = new Employee();
         profile = (String) profileComboBox.getSelectedItem();
-        sex = (String) profileComboBox.getSelectedItem();
+        //sex = (String) profileComboBox.getSelectedItem();
 
         if ("Paciente" == profileComboBox.getSelectedItem()) {
 
@@ -349,7 +375,9 @@ public class Users extends javax.swing.JFrame {
             pat.setPassword(passwordText.getText());
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
-
+            pat.setSex((String) sexComboBox.getSelectedItem());
+            pat.setProfile((String) profileComboBox.getSelectedItem());
+            
             if (isValid()) {
                 d.newPatient(pat);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
@@ -382,31 +410,7 @@ public class Users extends javax.swing.JFrame {
 
         //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
-    public void displayPatient(Patient pat) {
-        profile = (String) profileComboBox.getSelectedItem();
-        nameText.setText(pat.getName());
-        idText.setText(pat.getID());
-        addressText.setText(pat.getAddress());
-        surnameText.setText(pat.getSurname());
-        passwordText.setText(pat.getPassword());
-        emailText.setText(pat.getEmail());
-        phoneText.setText(pat.getPhone());
-        sexComboBox.setSelectedItem(pat.getSex());
-
-    }
-
-    public void displayEmployee(Employee emp) {
-        profile = (String) profileComboBox.getSelectedItem();
-        nameText.setText(emp.getName());
-        idText.setText(emp.getID());
-        addressText.setText(emp.getAddress());
-        surnameText.setText(emp.getSurname());
-        passwordText.setText(emp.getPassword());
-        emailText.setText(emp.getEmail());
-        phoneText.setText(emp.getPhone());
-        sexComboBox.setSelectedItem(emp.getSex());
-
-    }
+   
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         Patient pat = new Patient();
 

@@ -21,9 +21,10 @@ public class Person {
     private String email = "";
     private int age = 0;
     private String sex = "";
+    private String profile = "";
     
     //yiiiiiiiiiiiiii
-   public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, int valueAge)
+   public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, String valueProfile, int valueAge)
     {
         this.ID = valueID;
         this.name = valueName;
@@ -32,6 +33,7 @@ public class Person {
         this.username = valueUsername;
         this.phone = valuePhone;
         this.password = valuePassword; 
+        this.profile = valueProfile;
         this.age = valueAge;
     }
     
@@ -43,6 +45,15 @@ public class Person {
     public String getID()
     {
         return ID;
+    }
+    public void setProfile(String value)
+    {
+        profile = value;
+    }
+    
+    public String getProfile()
+    {
+        return profile;
     }
     
     public void setName(String value)
