@@ -16,8 +16,10 @@ import java.util.logging.Logger;
  */
 public class Database {
 
-    ArrayList<Patient> patients;
-    ArrayList<Employee> employees;
+    ArrayList<User> users;
+    ArrayList<User> medics;
+    ArrayList<User> patients;
+    
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
     DataInputStream inputEmployees;
@@ -172,8 +174,33 @@ public class Database {
                 break;
             }
         }
-
         updateDB();
+    }
+    
+    public void deletePatient(String id)
+    {
+        int i = 0;
+        for(Patient p: patients)
+        {
+            if (p.getID().equals(id)) {
+                patients.remove(i);
+                break;
+            }
+            ++i;
+        }
+    }
+    
+    public void deleteEmployee(String id)
+    {
+        int i = 0;
+        for(Employee e: employees)
+        {
+            if (e.getID().equals(id)) {
+                employees.remove(i);
+                break;
+            }
+            ++i;
+        }
     }
 
     public void newEmployee(Employee e) {

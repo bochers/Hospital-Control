@@ -371,7 +371,7 @@ public class Users extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        d.deletePatient(idText.getText());
         clearTxt();
     }//GEN-LAST:event_deleteButtonActionPerformed
 

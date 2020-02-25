@@ -15,28 +15,11 @@ public class Person {
     private String name = "";
     private String surname = "";
     private String address = "";
-    //private String username = "";
-    //private String password = "";
     private String phone = "";
     private String email = "";
     private int age = 0;
     private String sex = "";
-    //private String profile = "";
     private String state = "";
-    
-    //yiiiiiiiiiiiiii
-   public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valuePhone, int valueAge)
-    {
-        this.ID = valueID;
-        this.name = valueName;
-        this.surname = valueSurname;
-        this.address = valueAddress;
-        //this.username = valueUsername;
-        this.phone = valuePhone;
-        //this.password = valuePassword; 
-        //this.profile = valueProfile;
-        this.age = valueAge;
-    }
     
     public void setID(String value)
     {
