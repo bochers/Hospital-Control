@@ -1,12 +1,6 @@
 package views;
 
 import classes.Database;
-import classes.Person;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
 
 //import classes.Person;
 import javax.swing.JOptionPane;
@@ -17,18 +11,17 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author isaac
  */
 public class Login extends javax.swing.JFrame {
-    DataInputStream inputFile;
-    DataOutputStream outputFile;
+
     String name, id, surname, address, username, phone;
     int age = 0;
-    String pass = "";   
-    
+    String pass = "";
+    Database data = new Database();
+
     public Login() {
         initComponents();
     }
@@ -101,45 +94,61 @@ public class Login extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-       //String aux = new String (pass);
-       
-       if(userTxt.getText().equals("Admin") && passwordText.getText().equals("123")){
-        JOptionPane.showMessageDialog(null,"Bienvenido...");
-        Users window;
-        window = new Users();
-        window.show();
-       
-        
-        this.setVisible(false);
-        }else
-       {
-           JOptionPane.showMessageDialog(null,"Contraseña incorrecta");
-           
-       }
-       //passwordTxt.getText();
-       //String clavedef=new String(pass);
+        //String aux = new String (pass);
 
-           
+        switch (data.validateUser(userTxt.getText(), passwordText.getText())) {
+
+            case 0:
+                JOptionPane.showMessageDialog(null, "Bienvenido...");
+                Users patientWindow;
+                patientWindow = new Users();
+                patientWindow.show();
+                this.dispose();
+                break;
+
+            case 1:
+                JOptionPane.showMessageDialog(null, "Bienvenido...");
+                Users employeeWindow;
+                employeeWindow = new Users();
+                employeeWindow.show();
+                this.dispose();
+                break;
+
+            default:
+                System.out.print(data.validateUser(userTxt.getText(), passwordText.getText()));
+                if (userTxt.getText().equals("Admin") && passwordText.getText().equals("123")) {
+                    
+                    JOptionPane.showMessageDialog(null, "Bienvenido...");
+                    Users window;
+                    window = new Users();
+                    window.show();
+                    this.dispose();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos");
+
+                }
+                break;
+
+        }
+
+        //passwordTxt.getText();
+        //String clavedef=new String(pass);
+
     }//GEN-LAST:event_loginActionPerformed
-    
+
     private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userTxtActionPerformed
 
     private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
-        
-        
-            //outputFile = new DataOutputStream(new FileOutputStream("data.txt", true));
-            //inputFile = new DataInputStream(new FileInputStream("data.txt"));
-            
-            
 
-                
+        //outputFile = new DataOutputStream(new FileOutputStream("data.txt", true));
+        //inputFile = new DataInputStream(new FileInputStream("data.txt"));
         Users window = new Users();
         window.show();
         this.dispose();
-        
-        
+
     }//GEN-LAST:event_checkInActionPerformed
 
     /**
@@ -168,11 +177,11 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new Login().setVisible(true);
             }
         });

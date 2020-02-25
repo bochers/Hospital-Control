@@ -39,6 +39,7 @@ public class Database {
         } catch (IOException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
+        loadDB();
 
     }
 
@@ -206,24 +207,21 @@ public class Database {
     {
         for(Patient p : patients)
         {
-            if(p.getUsername().equals(username))
+            if(p.getName().equals(username))
             {
                 if(p.getPassword().equals(password))
                     return 0;
-                break;
             }
         }
         
         for(Employee e : employees)
         {
-            if(e.getUsername().equals(username))
+            if(e.getName().equals(username))
             {
                 if(e.getPassword().equals(password))
                     return 1;
-                break;
             }
         }
-        
         return -1;
     }
 }
