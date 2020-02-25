@@ -29,7 +29,6 @@ public class Users extends javax.swing.JFrame {
     public Users() {
         initComponents();
         d = new Database();
-        d.loadDB();
         /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
         img = icon.getImage();
@@ -365,12 +364,13 @@ public class Users extends javax.swing.JFrame {
     }//GEN-LAST:event_godButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        
         Patient pat = new Patient();
         Employee emp = new Employee();
         profile = (String) profileComboBox.getSelectedItem();
         //sex = (String) profileComboBox.getSelectedItem();
 
-        if ("Paciente" == profileComboBox.getSelectedItem()) {
+        if (profileComboBox.getSelectedItem().equals("Paciente")) {
 
             pat.setID(idText.getText());
             pat.setAddress(addressText.getText());
@@ -382,11 +382,13 @@ public class Users extends javax.swing.JFrame {
             pat.setSex((String) sexComboBox.getSelectedItem());
             pat.setProfile((String) profileComboBox.getSelectedItem());
             
-            if (isValid() == true) {
+            if (isValidUser()) 
+            {
                 d.newPatient(pat);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
                 clearTxt();
-            } 
+            }
+            
             else{
                 JOptionPane.showMessageDialog(null, "Datos incompletos.");
             }
