@@ -29,7 +29,7 @@ public class Users extends javax.swing.JFrame {
     public Users() {
         initComponents();
         d = new Database();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
 
         /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
@@ -262,6 +262,7 @@ public class Users extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void clearTxt() {
+
         idText.setText("");
         addressText.setText("");
         nameText.setText("");
@@ -269,8 +270,11 @@ public class Users extends javax.swing.JFrame {
         usernameText.setText("");
         emailText.setText("");
         phoneText.setText("");
+        passwordText.setText("");
         sexComboBox.setSelectedIndex(-1);
         profileComboBox.setSelectedIndex(-1);
+        stateComboBox.setSelectedIndex(-1);
+
     }
 
     public boolean isValidUser() {
@@ -284,9 +288,8 @@ public class Users extends javax.swing.JFrame {
 
         return valid;
     }
-    
-     public void displayPatient(Patient pat) 
-     {
+
+    public void displayPatient(Patient pat) {
         idText.setText(pat.getID());
         nameText.setText(pat.getName());
         surnameText.setText(pat.getSurname());
@@ -301,7 +304,7 @@ public class Users extends javax.swing.JFrame {
     }
 
     public void displayEmployee(Employee emp) {
-        
+
         idText.setText(emp.getID());
         nameText.setText(emp.getName());
         surnameText.setText(emp.getSurname());
@@ -348,27 +351,28 @@ public class Users extends javax.swing.JFrame {
         // TODO add your handling code here:
         Patient pat;
         Employee emp;
-        
-        if(profileComboBox.getSelectedItem().equals("Paciente"))
+
+        try {
+
+            if (profileComboBox.getSelectedItem().equals("Paciente")) {
+                pat = d.searchPatient(idText.getText());
+                displayPatient(pat);
+            } else if (profileComboBox.getSelectedItem().equals("Empleado")) {
+
+                emp = d.searchEmployee(idText.getText());
+                displayEmployee(emp);
+            }
+
+        }catch(Exception e) 
         {
-            pat = d.searchPatient(idText.getText());
-            displayPatient(pat);
+            JOptionPane.showMessageDialog(null, "Seleccione un perfil, por favor...");
         }
-        
-        else if(profileComboBox.getSelectedItem().equals("Empleado"))
-        {
-            
-            emp = d.searchEmployee(idText.getText());
-            displayEmployee(emp);
-        }
-        else
-        {
-           JOptionPane.showMessageDialog(null, "Selecciona un perfil, por favor"); 
-        }
+
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        clearTxt();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void godButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godButtonActionPerformed
@@ -377,7 +381,7 @@ public class Users extends javax.swing.JFrame {
     }//GEN-LAST:event_godButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        
+
         Patient pat = new Patient();
         Employee emp = new Employee();
 
@@ -387,33 +391,30 @@ public class Users extends javax.swing.JFrame {
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
             pat.setSurname(surnameText.getText());
-            pat.setPassword(usernameText.getText());
+            pat.setPassword(passwordText.getText());
             pat.setEmail(emailText.getText());
             pat.setUsername(usernameText.getText());
             pat.setPhone(phoneText.getText());
             pat.setSex((String) sexComboBox.getSelectedItem());
             pat.setState((String) stateComboBox.getSelectedItem());
             pat.setProfile((String) profileComboBox.getSelectedItem());
-            
-            if (isValidUser()) 
-            {
+
+            if (isValidUser()) {
                 d.newPatient(pat);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
                 clearTxt();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Datos incompletos.");
             }
 
-            
-        } else if ("Empleado" == profileComboBox.getSelectedItem()) {
-            
+        } else if (profileComboBox.getSelectedItem().equals("Empleado")) {
+
             emp.setID(idText.getText());
             emp.setAddress(addressText.getText());
             emp.setName(nameText.getText());
             emp.setSurname(surnameText.getText());
             emp.setUsername(usernameText.getText());
-            emp.setPassword(usernameText.getText());
+            emp.setPassword(passwordText.getText());
             emp.setEmail(emailText.getText());
             emp.setPhone(phoneText.getText());
             emp.setSex((String) sexComboBox.getSelectedItem());
@@ -421,11 +422,11 @@ public class Users extends javax.swing.JFrame {
             emp.setProfile((String) profileComboBox.getSelectedItem());
 
             if (isValidUser()) {
-                
+
                 d.newEmployee(emp);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
                 clearTxt();
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Datos incompletos.");
             }
@@ -436,47 +437,45 @@ public class Users extends javax.swing.JFrame {
 
         //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
-   
+
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         Patient pat = new Patient();
         Employee emp = new Employee();
 
         if ("Paciente" == profileComboBox.getSelectedItem()) {
-            
+
             pat.setID(idText.getText());
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
             pat.setSurname(surnameText.getText());
-            pat.setPassword(usernameText.getText());
+            pat.setPassword(passwordText.getText());
             pat.setEmail(emailText.getText());
             pat.setUsername(usernameText.getText());
             pat.setPhone(phoneText.getText());
             pat.setSex((String) sexComboBox.getSelectedItem());
             pat.setState((String) stateComboBox.getSelectedItem());
             pat.setProfile((String) profileComboBox.getSelectedItem());
-            
+
             d.modifyPatient(pat);
 
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
             clearTxt();
-        }
-        
-        else if ("Empleado" == profileComboBox.getSelectedItem()) {
-            
+        } else if (profileComboBox.getSelectedItem().equals("Empleado")) {
+
             emp.setID(idText.getText());
             emp.setAddress(addressText.getText());
             emp.setName(nameText.getText());
             emp.setSurname(surnameText.getText());
             emp.setUsername(usernameText.getText());
-            emp.setPassword(usernameText.getText());
+            emp.setPassword(passwordText.getText());
             emp.setEmail(emailText.getText());
             emp.setPhone(phoneText.getText());
             emp.setSex((String) sexComboBox.getSelectedItem());
             emp.setState((String) stateComboBox.getSelectedItem());
             emp.setProfile((String) profileComboBox.getSelectedItem());
-            
+
             d.modifyEmployee(emp);
-            
+
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
             clearTxt();
         }
