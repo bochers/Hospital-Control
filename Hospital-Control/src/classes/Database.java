@@ -189,4 +189,41 @@ public class Database {
         }
         return c;
     }
+    
+    public void modifyEmployee(Employee emp) {
+        for (Employee e : employees) {
+            if (e.getID().equals(emp.getID())) {
+                e.equalsOverload(emp);
+                break;
+            }
+        }
+
+        updateDB();
+    }
+    
+    
+    public int validateUser(String username, String password)
+    {
+        for(Patient p : patients)
+        {
+            if(p.getUsername().equals(username))
+            {
+                if(p.getPassword().equals(password))
+                    return 0;
+                break;
+            }
+        }
+        
+        for(Employee e : employees)
+        {
+            if(e.getUsername().equals(username))
+            {
+                if(e.getPassword().equals(password))
+                    return 1;
+                break;
+            }
+        }
+        
+        return -1;
+    }
 }

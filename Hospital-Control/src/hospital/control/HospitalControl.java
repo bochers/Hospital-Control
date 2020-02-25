@@ -6,10 +6,6 @@
 package hospital.control;
 import classes.Person;
 import classes.Patient;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import views.Login;
 
 
