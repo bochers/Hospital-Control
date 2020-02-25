@@ -279,6 +279,7 @@ public class Users extends javax.swing.JFrame {
                 && passwordText.getText().length() > 0 && emailText.getText().length() > 0
                 && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
                 && profileComboBox.getSelectedIndex() != -1) {
+            
             valid = true;
         }
 
