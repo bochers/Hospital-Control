@@ -258,17 +258,36 @@ public class Users extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void clearTxt()
-{
-    idText.setText("");
-    addressText.setText("");
-    nameText.setText("");
-    surnameText.setText("");
-    passwordText.setText("");
-    emailText.setText("");
-    phoneText.setText("");
-    sexComboBox.setSelectedIndex(-1);
-}
+
+    public void clearTxt()
+    {
+        idText.setText("");
+        addressText.setText("");
+        nameText.setText("");
+        surnameText.setText("");
+        passwordText.setText("");
+        emailText.setText("");
+        phoneText.setText("");
+        sexComboBox.setSelectedIndex(-1);
+        profileComboBox.setSelectedIndex(-1);
+    }
+
+    public boolean isValidUser()
+    {
+        boolean valid = false;
+
+        if(idText.getText().length()>0 && nameText.getText().length()>0 && addressText.getText().length()>0 && surnameText.getText().length()>0
+                    && passwordText.getText().length()>0 && emailText.getText().length()>0 && phoneText.getText().length()>0 && sexComboBox.getSelectedIndex()!=-1
+                    && profileComboBox.getSelectedIndex()!=-1)
+        {
+            valid = true;
+        }
+        else
+        {
+            valid = false;
+        }
+        return valid;
+    }
 
     private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
         // TODO add your handling code here:
@@ -300,7 +319,7 @@ public void clearTxt()
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-        Patient pat;
+       Patient pat;
 
        profile = (String) profileComboBox.getSelectedItem();
        pat = d.searchPatient(idText.getText());
@@ -330,6 +349,7 @@ public void clearTxt()
        
         if("Paciente" == profileComboBox.getSelectedItem())
         {
+            
             pat.setID(idText.getText());
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
@@ -338,13 +358,17 @@ public void clearTxt()
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
             
-            d.newPatient(pat);
-            JOptionPane.showMessageDialog(null, "Guardado con éxito.");
             
+            if(isValid()){
+                d.newPatient(pat);
+                JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Datos incompletos.");
+                
+                
             clearTxt();
-        }
-        //if(profile == 2)
-        /*
+        }else if("Empleado" == profileComboBox.getSelectedItem())
         {
             emp.setID(idText.getText());
             emp.setAddress(addressText.getText());
@@ -353,15 +377,28 @@ public void clearTxt()
             emp.setPassword(passwordText.getText());
             emp.setEmail(emailText.getText());
             emp.setPhone(phoneText.getText());
-            */
-            //d.newEmployee(pat);
+            emp.setSex((String) sexComboBox.getSelectedItem());
+            //emp.setOccupation(occupationComboBox.getSelectedItem());
+            
+            
+            if(isValidUser()) {
+                d.newEmployee(emp);
+                JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Datos incompletos.");
+             
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecciona un perfil, por favor");
+        }
         
-        
+
         
         //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
 public void displayPatient(Patient pat){
-       profile = (String) profileComboBox.getSelectedItem();
+        profile = (String) profileComboBox.getSelectedItem();
         nameText.setText(pat.getName());
         idText.setText(pat.getID());
         addressText.setText(pat.getAddress());
@@ -369,9 +406,27 @@ public void displayPatient(Patient pat){
         passwordText.setText(pat.getPassword());
         emailText.setText(pat.getEmail());
         phoneText.setText(pat.getPhone());
+        sexComboBox.setSelectedItem(pat.getSex());
+        
     
     
 }
+public void displayEmployee(Employee emp){
+        profile = (String) profileComboBox.getSelectedItem();
+        nameText.setText(emp.getName());
+        idText.setText(emp.getID());
+        addressText.setText(emp.getAddress());
+        surnameText.setText(emp.getSurname());
+        passwordText.setText(emp.getPassword());
+        emailText.setText(emp.getEmail());
+        phoneText.setText(emp.getPhone());
+        sexComboBox.setSelectedItem(emp.getSex());
+        
+         
+    
+}
+
+
 
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
