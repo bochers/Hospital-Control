@@ -274,7 +274,7 @@ public class Users extends javax.swing.JFrame {
     public boolean isValidUser() {
         boolean valid;
 
-        if (idText.getText().length() > 0 || nameText.getText().length() > 0
+        if (idText.getText().length() > 0 && nameText.getText().length() > 0
                 && addressText.getText().length() > 0 && surnameText.getText().length() > 0
                 && passwordText.getText().length() > 0 && emailText.getText().length() > 0
                 && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
