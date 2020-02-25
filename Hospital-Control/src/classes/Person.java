@@ -15,26 +15,26 @@ public class Person {
     private String name = "";
     private String surname = "";
     private String address = "";
-    private String username = "";
-    private String password = "";
+    //private String username = "";
+    //private String password = "";
     private String phone = "";
     private String email = "";
     private int age = 0;
     private String sex = "";
-    private String profile = "";
+    //private String profile = "";
     private String state = "";
     
     //yiiiiiiiiiiiiii
-   public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, String valueProfile, int valueAge)
+   public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valuePhone, int valueAge)
     {
         this.ID = valueID;
         this.name = valueName;
         this.surname = valueSurname;
         this.address = valueAddress;
-        this.username = valueUsername;
+        //this.username = valueUsername;
         this.phone = valuePhone;
-        this.password = valuePassword; 
-        this.profile = valueProfile;
+        //this.password = valuePassword; 
+        //this.profile = valueProfile;
         this.age = valueAge;
     }
     
@@ -46,15 +46,6 @@ public class Person {
     public String getID()
     {
         return ID;
-    }
-    public void setProfile(String value)
-    {
-        profile = value;
-    }
-    
-    public String getProfile()
-    {
-        return profile;
     }
     
     public void setName(String value)
@@ -86,26 +77,7 @@ public class Person {
     {
         return address;
     }
-    
-     public void setUsername(String value)
-    {
-        username = value;
-    }
-    
-    public String getUsername()
-    {
-        return username;
-    }
-    
-     public void setPassword(String value)
-    {
-        password = value;
-    }
-    
-    public String getPassword()
-    {
-        return password;
-    }
+     
          
     public void setPhone(String value)
     {
