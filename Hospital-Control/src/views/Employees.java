@@ -26,10 +26,10 @@ public class Employees extends javax.swing.JFrame {
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
 
-        Image img1;
-        ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
-        img1 = icon1.getImage();
-        btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
+        //Image img1;
+        //ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
+        //img1 = icon1.getImage();
+        //btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
          
     }
 
@@ -60,17 +60,11 @@ public class Employees extends javax.swing.JFrame {
         EmailText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        occupationComboBox = new javax.swing.JComboBox<>();
         btnEdit = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        UserText = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        PasswordText = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         ComboBoxESTADO = new javax.swing.JComboBox<>();
@@ -123,11 +117,7 @@ public class Employees extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 50, 30));
 
         jLabel8.setText("Estado:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
-
-        occupationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Médico", "Enfermero", "Administrador" }));
-        occupationComboBox.setSelectedIndex(-1);
-        jPanel1.add(occupationComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 190, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         btnEdit.setText("EDIT");
         jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 100, -1));
@@ -149,39 +139,28 @@ public class Employees extends javax.swing.JFrame {
         btnSave.setText("SAVE");
         jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 100, 30));
 
-        jLabel9.setText("USER:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 150, 40, 20));
-        jPanel1.add(UserText, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 150, 30));
-
-        jLabel10.setText("PASSWORD:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, 20));
-        jPanel1.add(PasswordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 150, 30));
-
-        jLabel11.setText("Puesto:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
-
         jLabel12.setText("Ciudad:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         jLabel13.setText("Sexo:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 316, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, 30));
 
         ComboBoxESTADO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
         ComboBoxESTADO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
+        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 190, 30));
         ComboBoxESTADO.getAccessibleContext().setAccessibleName("");
         ComboBoxESTADO.getAccessibleContext().setAccessibleDescription("");
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
         sexComboBox.setSelectedIndex(-1);
-        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 190, 30));
+        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 190, 30));
 
         jLabel14.setFont(new java.awt.Font("Phosphate", 1, 36)); // NOI18N
         jLabel14.setText("EMPLOYEES");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         ComboBoxCITY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(ComboBoxCITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 190, 30));
+        jPanel1.add(ComboBoxCITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 4));
@@ -194,13 +173,13 @@ public class Employees extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,9 +226,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JTextField EmailText;
     private javax.swing.JTextField IDText;
     private javax.swing.JTextField NameText;
-    private javax.swing.JTextField PasswordText;
     private javax.swing.JTextField PhoneText;
-    private javax.swing.JTextField UserText;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
@@ -257,8 +234,6 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -270,9 +245,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> occupationComboBox;
     private javax.swing.JSeparator separator;
     private javax.swing.JComboBox<String> sexComboBox;
     // End of variables declaration//GEN-END:variables
