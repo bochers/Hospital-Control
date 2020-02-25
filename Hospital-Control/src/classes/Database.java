@@ -17,24 +17,31 @@ import java.util.logging.Logger;
 public class Database {
 
     ArrayList<User> users;
-    ArrayList<User> medics;
-    ArrayList<User> patients;
+    ArrayList<Person> medics;
+    ArrayList<Person> patients;
     
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
-    DataInputStream inputEmployees;
-    DataOutputStream outputEmployees;
+    DataInputStream inputMedics;
+    DataOutputStream outputMedics;
+    DataInputStream inputUsers;
+    DataOutputStream outputUsers;
 
     public Database() {
-
+        
+        users = new ArrayList<>();
+        medics = new ArrayList<>();
         patients = new ArrayList<>();
-        employees = new ArrayList<>();
+        
         try {
             
+            outputUsers = new DataOutputStream(new FileOutputStream("users.txt", true));
             outputPatients = new DataOutputStream(new FileOutputStream("patients.txt", true));
-            outputEmployees = new DataOutputStream(new FileOutputStream("employees.txt", true));
+            outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
+            
+            outputUsers.close();
             outputPatients.close();
-            outputEmployees.close();
+            outputMedics.close();
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,17 +49,18 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         loadDB();
-
     }
-
+    
     public void loadDB() {
-        Patient pat = new Patient();
-        Employee emp = new Employee();
+        
+        User u = new User();
+        Person p = new Person();
 
         try {
 
+            inputUsers = new DataInputStream(new FileInputStream("users.txt"));
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
-            inputEmployees = new DataInputStream(new FileInputStream("employees.txt"));
+            inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
 
             while (inputPatients.available() > 0) {
 
