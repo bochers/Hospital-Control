@@ -276,16 +276,15 @@ public class Users extends javax.swing.JFrame {
     {
         boolean valid = false;
 
-        if(idText.getText().length()>0 && nameText.getText().length()>0 && addressText.getText().length()>0 && surnameText.getText().length()>0
-                    && passwordText.getText().length()>0 && emailText.getText().length()>0 && phoneText.getText().length()>0 && sexComboBox.getSelectedIndex()!=-1
-                    && profileComboBox.getSelectedIndex()!=-1)
+        if(idText.getText().length() > 0 && nameText.getText().length() > 0 
+                && addressText.getText().length() > 0 && surnameText.getText().length() > 0
+                && passwordText.getText().length() > 0 && emailText.getText().length() > 0 
+                && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
+                && profileComboBox.getSelectedIndex()!=-1)
         {
             valid = true;
         }
-        else
-        {
-            valid = false;
-        }
+        
         return valid;
     }
 
