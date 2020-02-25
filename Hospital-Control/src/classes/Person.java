@@ -11,16 +11,16 @@ package classes;
  */
 public class Person {
     
-    private String ID;
-    private String name;
-    private String surname;
-    private String address;
-    private String username;
-    private String password;
-    private String phone;
-    private String email;
-    private int age;
-    private String sex;
+    private String ID = "";
+    private String name = "";
+    private String surname = "";
+    private String address = "";
+    private String username = "";
+    private String password = "";
+    private String phone = "";
+    private String email = "";
+    private int age = 0;
+    private String sex = "";
     
     //yiiiiiiiiiiiiii
    public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, int valueAge)

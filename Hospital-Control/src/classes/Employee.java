@@ -11,8 +11,8 @@ package classes;
  */
 public class Employee extends Person{
     
-    private String occupation;
-    private String degree;
+    private String occupation = "";
+    private String degree = "";
     
     public String getOccupation()
     {

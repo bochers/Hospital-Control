@@ -29,6 +29,7 @@ public class Users extends javax.swing.JFrame {
     public Users() {
         initComponents();
         d = new Database();
+        d.loadDB();
         /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
         img = icon.getImage();

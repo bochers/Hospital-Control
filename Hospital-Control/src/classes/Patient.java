@@ -11,8 +11,8 @@ package classes;
  */
 public class Patient extends Person{
     
-    private String medic;
-    private String appointment;
+    private String medic = "";
+    private String appointment = "";
     
     public String getMedic()
     {
