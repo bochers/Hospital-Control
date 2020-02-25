@@ -186,6 +186,11 @@ public class Users extends javax.swing.JFrame {
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
         sexComboBox.setSelectedIndex(-1);
+        sexComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexComboBoxActionPerformed(evt);
+            }
+        });
         jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
@@ -253,6 +258,17 @@ public class Users extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void clearTxt()
+{
+    idText.setText("");
+    addressText.setText("");
+    nameText.setText("");
+    surnameText.setText("");
+    passwordText.setText("");
+    emailText.setText("");
+    phoneText.setText("");
+    sexComboBox.setSelectedIndex(-1);
+}
 
     private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
         // TODO add your handling code here:
@@ -324,6 +340,8 @@ public class Users extends javax.swing.JFrame {
             
             d.newPatient(pat);
             JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+            
+            clearTxt();
         }
         //if(profile == 2)
         /*
@@ -354,6 +372,8 @@ public void displayPatient(Patient pat){
     
     
 }
+
+
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
         Patient pat = new Patient();
         
@@ -369,9 +389,14 @@ public void displayPatient(Patient pat){
             d.modifyPatient(pat);
             
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+            clearTxt();
         }
                 
     }//GEN-LAST:event_modifyButtonActionPerformed
+
+    private void sexComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sexComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
