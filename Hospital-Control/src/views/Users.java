@@ -272,15 +272,19 @@ public class Users extends javax.swing.JFrame {
     }
 
     public boolean isValidUser() {
-        boolean valid = false;
+        boolean valid;
 
-        if (idText.getText().length() > 0 && nameText.getText().length() > 0
+        if (idText.getText().length() > 0 || nameText.getText().length() > 0
                 && addressText.getText().length() > 0 && surnameText.getText().length() > 0
                 && passwordText.getText().length() > 0 && emailText.getText().length() > 0
                 && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
                 && profileComboBox.getSelectedIndex() != -1) {
             
             valid = true;
+        }
+        else
+        {
+            valid = false;
         }
 
         return valid;
@@ -378,14 +382,16 @@ public class Users extends javax.swing.JFrame {
             pat.setSex((String) sexComboBox.getSelectedItem());
             pat.setProfile((String) profileComboBox.getSelectedItem());
             
-            if (isValid()) {
+            if (isValid() == true) {
                 d.newPatient(pat);
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-            } else {
+                clearTxt();
+            } 
+            else{
                 JOptionPane.showMessageDialog(null, "Datos incompletos.");
             }
 
-            clearTxt();
+            
         } else if ("Empleado" == profileComboBox.getSelectedItem()) {
             emp.setID(idText.getText());
             emp.setAddress(addressText.getText());
