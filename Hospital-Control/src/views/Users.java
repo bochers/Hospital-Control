@@ -29,6 +29,8 @@ public class Users extends javax.swing.JFrame {
     public Users() {
         initComponents();
         d = new Database();
+        this.setLocationRelativeTo(null); 
+
         /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
         img = icon.getImage();
@@ -47,7 +49,6 @@ public class Users extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         usersLabel = new javax.swing.JLabel();
         separator = new javax.swing.JSeparator();
-        cityLabel = new javax.swing.JLabel();
         idText = new javax.swing.JTextField();
         nameText = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
@@ -55,8 +56,8 @@ public class Users extends javax.swing.JFrame {
         surnameLabel = new javax.swing.JLabel();
         addressText = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
-        passwordText = new javax.swing.JTextField();
-        passwordLabel = new javax.swing.JLabel();
+        usernameText = new javax.swing.JTextField();
+        usernameLabel = new javax.swing.JLabel();
         phoneLabel = new javax.swing.JLabel();
         phoneText = new javax.swing.JTextField();
         emailText = new javax.swing.JTextField();
@@ -70,15 +71,16 @@ public class Users extends javax.swing.JFrame {
         sexLabel = new javax.swing.JLabel();
         stateLabel = new javax.swing.JLabel();
         profileLabel = new javax.swing.JLabel();
-        cityComboBox = new javax.swing.JComboBox<>();
         modifyButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
         godButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
+        passwordLabel = new javax.swing.JLabel();
+        passwordText = new javax.swing.JPasswordField();
         bgd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -90,10 +92,6 @@ public class Users extends javax.swing.JFrame {
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 740, 4));
-
-        cityLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cityLabel.setText("Ciudad:");
-        jPanel1.add(cityLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
 
         idText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,16 +133,16 @@ public class Users extends javax.swing.JFrame {
         addressLabel.setText("Dirección:");
         jPanel1.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        passwordText.addActionListener(new java.awt.event.ActionListener() {
+        usernameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextActionPerformed(evt);
+                usernameTextActionPerformed(evt);
             }
         });
-        jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 230, 30));
+        jPanel1.add(usernameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 230, 30));
 
-        passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        passwordLabel.setText("Password:");
-        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+        usernameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        usernameLabel.setText("Username:");
+        jPanel1.add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         phoneLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         phoneLabel.setText("Teléfono:");
@@ -179,9 +177,9 @@ public class Users extends javax.swing.JFrame {
         godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (1).png"))); // NOI18N
         jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 310, 350));
 
-        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Paciente", "Empleado" }));
+        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paciente", "Empleado" }));
         profileComboBox.setSelectedIndex(-1);
-        jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, -1, -1));
+        jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
         sexComboBox.setSelectedIndex(-1);
@@ -190,11 +188,11 @@ public class Users extends javax.swing.JFrame {
                 sexComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
+        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
 
         stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
         stateComboBox.setSelectedIndex(-1);
-        jPanel1.add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
+        jPanel1.add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
 
         idLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         idLabel.setText("ID:");
@@ -202,18 +200,15 @@ public class Users extends javax.swing.JFrame {
 
         sexLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         sexLabel.setText("Sexo:");
-        jPanel1.add(sexLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+        jPanel1.add(sexLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
         stateLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         stateLabel.setText("Estado:");
-        jPanel1.add(stateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
+        jPanel1.add(stateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
 
         profileLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         profileLabel.setText("Perfil:");
-        jPanel1.add(profileLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
-
-        cityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
+        jPanel1.add(profileLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         modifyButton.setText("Modificar");
         modifyButton.addActionListener(new java.awt.event.ActionListener() {
@@ -221,10 +216,7 @@ public class Users extends javax.swing.JFrame {
                 modifyButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
-
-        updateButton.setText("Actualizar");
-        jPanel1.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, -1, -1));
+        jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, -1));
 
         godButton.setText("Chayanne");
         godButton.addActionListener(new java.awt.event.ActionListener() {
@@ -250,8 +242,19 @@ public class Users extends javax.swing.JFrame {
         });
         jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
-        bgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/UsersBGD.jpeg"))); // NOI18N
-        jPanel1.add(bgd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
+        passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        passwordLabel.setText("Password:");
+        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+
+        passwordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 230, 30));
+
+        bgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/UsersBGD.jpg"))); // NOI18N
+        jPanel1.add(bgd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -263,7 +266,7 @@ public class Users extends javax.swing.JFrame {
         addressText.setText("");
         nameText.setText("");
         surnameText.setText("");
-        passwordText.setText("");
+        usernameText.setText("");
         emailText.setText("");
         phoneText.setText("");
         sexComboBox.setSelectedIndex(-1);
@@ -273,33 +276,28 @@ public class Users extends javax.swing.JFrame {
     public boolean isValidUser() {
         boolean valid;
 
-        if (idText.getText().length() > 0 && nameText.getText().length() > 0
+        valid = idText.getText().length() > 0 && nameText.getText().length() > 0
                 && addressText.getText().length() > 0 && surnameText.getText().length() > 0
-                && passwordText.getText().length() > 0 && emailText.getText().length() > 0
+                && usernameText.getText().length() > 0 && emailText.getText().length() > 0
                 && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
-                && profileComboBox.getSelectedIndex() != -1) {
-            
-            valid = true;
-        }
-        else
-        {
-            valid = false;
-        }
+                && profileComboBox.getSelectedIndex() != -1;
 
         return valid;
     }
-     public void displayPatient(Patient pat) {
-        profile = (String) profileComboBox.getSelectedItem();
-        nameText.setText(pat.getName());
+    
+     public void displayPatient(Patient pat) 
+     {
         idText.setText(pat.getID());
-        addressText.setText(pat.getAddress());
+        nameText.setText(pat.getName());
         surnameText.setText(pat.getSurname());
-        passwordText.setText(pat.getPassword());
+        usernameText.setText(pat.getUsername());
         emailText.setText(pat.getEmail());
+        passwordText.setText(pat.getPassword());
+        addressText.setText(pat.getAddress());
         phoneText.setText(pat.getPhone());
         sexComboBox.setSelectedItem(pat.getSex());
         profileComboBox.setSelectedItem(pat.getProfile());
-
+        stateComboBox.setSelectedItem(pat.);
     }
 
     public void displayEmployee(Employee emp) {
@@ -308,7 +306,7 @@ public class Users extends javax.swing.JFrame {
         idText.setText(emp.getID());
         addressText.setText(emp.getAddress());
         surnameText.setText(emp.getSurname());
-        passwordText.setText(emp.getPassword());
+        usernameText.setText(emp.getPassword());
         emailText.setText(emp.getEmail());
         phoneText.setText(emp.getPhone());
         sexComboBox.setSelectedItem(emp.getSex());
@@ -331,9 +329,9 @@ public class Users extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addressTextActionPerformed
 
-    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+    private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextActionPerformed
+    }//GEN-LAST:event_usernameTextActionPerformed
 
     private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
         // TODO add your handling code here:
@@ -376,7 +374,7 @@ public class Users extends javax.swing.JFrame {
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
             pat.setSurname(surnameText.getText());
-            pat.setPassword(passwordText.getText());
+            pat.setPassword(usernameText.getText());
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
             pat.setSex((String) sexComboBox.getSelectedItem());
@@ -399,7 +397,7 @@ public class Users extends javax.swing.JFrame {
             emp.setAddress(addressText.getText());
             emp.setName(nameText.getText());
             emp.setSurname(surnameText.getText());
-            emp.setPassword(passwordText.getText());
+            emp.setPassword(usernameText.getText());
             emp.setEmail(emailText.getText());
             emp.setPhone(phoneText.getText());
             emp.setSex((String) sexComboBox.getSelectedItem());
@@ -427,7 +425,7 @@ public class Users extends javax.swing.JFrame {
             pat.setAddress(addressText.getText());
             pat.setName(nameText.getText());
             pat.setSurname(surnameText.getText());
-            pat.setPassword(passwordText.getText());
+            pat.setPassword(usernameText.getText());
             pat.setEmail(emailText.getText());
             pat.setPhone(phoneText.getText());
             d.modifyPatient(pat);
@@ -441,6 +439,10 @@ public class Users extends javax.swing.JFrame {
     private void sexComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sexComboBoxActionPerformed
+
+    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,8 +483,6 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressText;
     private javax.swing.JLabel bgd;
-    private javax.swing.JComboBox<String> cityComboBox;
-    private javax.swing.JLabel cityLabel;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
@@ -495,7 +495,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameText;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextField passwordText;
+    private javax.swing.JPasswordField passwordText;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneText;
     private javax.swing.JComboBox<String> profileComboBox;
@@ -509,7 +509,8 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel stateLabel;
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JTextField surnameText;
-    private javax.swing.JButton updateButton;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JTextField usernameText;
     private javax.swing.JLabel usersLabel;
     // End of variables declaration//GEN-END:variables
 }

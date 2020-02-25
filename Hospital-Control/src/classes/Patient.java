@@ -46,6 +46,7 @@ public class Patient extends Person{
         this.setPhone(p.getPhone());
         this.setAge(p.getAge());
         this.setUsername(p.getUsername());
-        
+        this.setState(p.getState());
+        this.setSex(p.getSex());
     }
 }

@@ -22,6 +22,7 @@ public class Person {
     private int age = 0;
     private String sex = "";
     private String profile = "";
+    private String state = "";
     
     //yiiiiiiiiiiiiii
    public void init(String valueID, String valueName, String valueSurname, String valueAddress, String valueUsername, String valuePassword, String valuePhone, String valueProfile, int valueAge)
@@ -144,6 +145,16 @@ public class Person {
     public String getSex()
     {
         return sex;
+    }
+    
+    public void setState(String value)
+    {
+        state = value;
+    }
+    
+    public String getState()
+    {
+        return state;
     }
     
 }

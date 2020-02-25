@@ -46,7 +46,8 @@ public class Employee extends Person{
         this.setEmail(e.getEmail());
         this.setPassword(e.getPassword());
         this.setOccupation(e.getOccupation());
-        
+        this.setSex(e.getSex());
+        this.setState(e.getState());
         
     }
 }
