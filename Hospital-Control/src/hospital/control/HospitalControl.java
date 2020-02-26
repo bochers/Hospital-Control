@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package hospital.control;
-import classes.Person;
 import views.Login;
 
 
@@ -19,17 +18,9 @@ public class HospitalControl {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
-        Person p = new Person();
-        
-        p.setAddress("en tu kasa");
-        
+     
         Login mainwindow;
         mainwindow = new Login();
         mainwindow.show();
-        
-        System.out.print(p.getAddress());
-        
     }
-    
 }
