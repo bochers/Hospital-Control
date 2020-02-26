@@ -1,8 +1,7 @@
 package views;
 
 import classes.Database;
-import classes.Employee;
-import classes.Patient;
+import classes.User;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -18,9 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class Users extends javax.swing.JFrame {
 
-    String name, id, surname, address, username, phone, email, password, profile, sex;
-
-    int age = 0;
     Database d;
 
     /**
@@ -48,35 +44,20 @@ public class Users extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         usersLabel = new javax.swing.JLabel();
+        godLabel = new javax.swing.JLabel();
         separator = new javax.swing.JSeparator();
-        idText = new javax.swing.JTextField();
-        nameText = new javax.swing.JTextField();
-        nameLabel = new javax.swing.JLabel();
-        surnameText = new javax.swing.JTextField();
-        surnameLabel = new javax.swing.JLabel();
-        addressText = new javax.swing.JTextField();
-        addressLabel = new javax.swing.JLabel();
-        usernameText = new javax.swing.JTextField();
-        usernameLabel = new javax.swing.JLabel();
-        phoneLabel = new javax.swing.JLabel();
-        phoneText = new javax.swing.JTextField();
         emailText = new javax.swing.JTextField();
         emailLabel = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
-        godLabel = new javax.swing.JLabel();
         profileComboBox = new javax.swing.JComboBox<>();
-        sexComboBox = new javax.swing.JComboBox<>();
-        stateComboBox = new javax.swing.JComboBox<>();
-        idLabel = new javax.swing.JLabel();
-        sexLabel = new javax.swing.JLabel();
-        stateLabel = new javax.swing.JLabel();
         profileLabel = new javax.swing.JLabel();
         modifyButton = new javax.swing.JButton();
-        godButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         passwordLabel = new javax.swing.JLabel();
         passwordText = new javax.swing.JPasswordField();
+        usernameLabel = new javax.swing.JLabel();
+        usernameText = new javax.swing.JTextField();
         bgd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,168 +71,85 @@ public class Users extends javax.swing.JFrame {
         usersLabel.setText("Users");
         jPanel1.add(usersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 140, 60));
 
+        godLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (2).png"))); // NOI18N
+        jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 410, 480));
+
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 740, 4));
-
-        idText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(idText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 80, 30));
-
-        nameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 230, 30));
-
-        nameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nameLabel.setText("Nombre:");
-        jPanel1.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
-
-        surnameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                surnameTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(surnameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 230, 30));
-
-        surnameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        surnameLabel.setText("Apellidos:");
-        jPanel1.add(surnameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        addressText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(addressText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 230, 30));
-
-        addressLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        addressLabel.setText("Dirección:");
-        jPanel1.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-
-        usernameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(usernameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 230, 30));
-
-        usernameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        usernameLabel.setText("Username:");
-        jPanel1.add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
-
-        phoneLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        phoneLabel.setText("Teléfono:");
-        jPanel1.add(phoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
-
-        phoneText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneTextActionPerformed(evt);
-            }
-        });
-        jPanel1.add(phoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 230, 30));
 
         emailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailTextActionPerformed(evt);
             }
         });
-        jPanel1.add(emailText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 230, 30));
+        jPanel1.add(emailText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 230, 30));
 
         emailLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         emailLabel.setText("Email:");
-        jPanel1.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 50, -1));
+        jPanel1.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
+        searchButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         searchButton.setText("Buscar");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 130, -1));
+        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 90, -1));
 
-        godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (1).png"))); // NOI18N
-        jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 310, 350));
-
-        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paciente", "Empleado" }));
+        profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Supervisor", "Secretari@" }));
         profileComboBox.setSelectedIndex(-1);
-        jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
-
-        sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
-        sexComboBox.setSelectedIndex(-1);
-        sexComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sexComboBoxActionPerformed(evt);
-            }
-        });
-        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, -1));
-
-        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
-        stateComboBox.setSelectedIndex(-1);
-        jPanel1.add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
-
-        idLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        idLabel.setText("ID:");
-        jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-
-        sexLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        sexLabel.setText("Sexo:");
-        jPanel1.add(sexLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
-
-        stateLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        stateLabel.setText("Estado:");
-        jPanel1.add(stateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
+        jPanel1.add(profileComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, 30));
 
         profileLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         profileLabel.setText("Perfil:");
-        jPanel1.add(profileLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+        jPanel1.add(profileLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
+        modifyButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         modifyButton.setText("Modificar");
         modifyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, -1));
+        jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 110, 40));
 
-        godButton.setText("Chayanne");
-        godButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                godButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(godButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, -1, -1));
-
+        deleteButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteButton.setText("Eliminar");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, -1, -1));
+        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 110, 40));
 
+        saveButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         saveButton.setText("Guardar");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 110, 40));
 
         passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         passwordLabel.setText("Password:");
-        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
-        passwordText.addActionListener(new java.awt.event.ActionListener() {
+        passwordText.setPreferredSize(new java.awt.Dimension(230, 30));
+        jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
+
+        usernameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        usernameLabel.setText("Username:");
+        jPanel1.add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+
+        usernameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextActionPerformed(evt);
+                usernameTextActionPerformed(evt);
             }
         });
-        jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 230, 30));
+        jPanel1.add(usernameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 230, 30));
 
         bgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/UsersBGD.jpg"))); // NOI18N
         jPanel1.add(bgd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -263,85 +161,37 @@ public class Users extends javax.swing.JFrame {
 
     public void clearTxt() {
 
-        idText.setText("");
-        addressText.setText("");
-        nameText.setText("");
-        surnameText.setText("");
         usernameText.setText("");
         emailText.setText("");
-        phoneText.setText("");
         passwordText.setText("");
-        sexComboBox.setSelectedIndex(-1);
         profileComboBox.setSelectedIndex(-1);
-        stateComboBox.setSelectedIndex(-1);
-
     }
 
     public boolean isValidUser() {
         boolean valid;
 
-        valid = idText.getText().length() > 0 && nameText.getText().length() > 0
-                && addressText.getText().length() > 0 && surnameText.getText().length() > 0
-                && usernameText.getText().length() > 0 && emailText.getText().length() > 0
-                && phoneText.getText().length() > 0 && sexComboBox.getSelectedIndex() != -1
-                && profileComboBox.getSelectedIndex() != -1;
+        valid = usernameText.getText().length() > 0 && emailText.getText().length() > 0
+                && passwordText.getText().length() > 0 && profileComboBox.getSelectedIndex() != -1;
 
         return valid;
     }
 
-    public void displayPatient(Patient pat) {
-        idText.setText(pat.getID());
-        nameText.setText(pat.getName());
-        surnameText.setText(pat.getSurname());
-        usernameText.setText(pat.getUsername());
-        emailText.setText(pat.getEmail());
-        passwordText.setText(pat.getPassword());
-        addressText.setText(pat.getAddress());
-        phoneText.setText(pat.getPhone());
-        sexComboBox.setSelectedItem(pat.getSex());
-        profileComboBox.setSelectedItem(pat.getProfile());
-        stateComboBox.setSelectedItem(pat.getState());
+    public void displayUser(User user) {
+
+        usernameText.setText(user.getUsername());
+        emailText.setText(user.getEmail());
+        passwordText.setText(user.getPassword());
+
+        //Profile Selection
+        if (user.getEditUsers() && user.getEditMedics() && user.getEditPatients()) {
+            profileComboBox.setSelectedItem("Administrador");
+        } else if (user.getEditMedics() && user.getEditPatients()) {
+            profileComboBox.setSelectedItem("Supervisor");
+        } else if (user.getEditPatients()) {
+            profileComboBox.setSelectedItem("Secretari@");
+        }
     }
 
-    public void displayEmployee(Employee emp) {
-
-        idText.setText(emp.getID());
-        nameText.setText(emp.getName());
-        surnameText.setText(emp.getSurname());
-        addressText.setText(emp.getAddress());
-        usernameText.setText(emp.getUsername());
-        passwordText.setText(emp.getPassword());
-        emailText.setText(emp.getEmail());
-        phoneText.setText(emp.getPhone());
-        sexComboBox.setSelectedItem(emp.getSex());
-        profileComboBox.setSelectedItem(emp.getState());
-        stateComboBox.setSelectedItem(emp.getState());
-
-    }
-
-    private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idTextActionPerformed
-
-    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextActionPerformed
-
-    private void surnameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_surnameTextActionPerformed
-
-    private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressTextActionPerformed
-
-    private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameTextActionPerformed
-
-    private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneTextActionPerformed
 
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
         // TODO add your handling code here:
@@ -349,146 +199,85 @@ public class Users extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-        Patient pat;
-        Employee emp;
+        User u;
 
-        try {
-
-            if (profileComboBox.getSelectedItem().equals("Paciente")) {
-                pat = d.searchPatient(idText.getText());
-                displayPatient(pat);
-            } else if (profileComboBox.getSelectedItem().equals("Empleado")) {
-
-                emp = d.searchEmployee(idText.getText());
-                displayEmployee(emp);
-            }
-
-        }catch(Exception e) 
-        {
-            JOptionPane.showMessageDialog(null, "Seleccione un perfil, por favor...");
-        }
-
+        u = d.searchUser(usernameText.getText());
+        displayUser(u);
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        d.deletePatient(idText.getText());
+        d.deleteUser(usernameText.getText());
         clearTxt();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void godButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godButtonActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_godButtonActionPerformed
-
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
-        Patient pat = new Patient();
-        Employee emp = new Employee();
+        User u = new User();
 
-        if (profileComboBox.getSelectedItem().equals("Paciente")) {
+        if (isValidUser()) {
 
-            pat.setID(idText.getText());
-            pat.setAddress(addressText.getText());
-            pat.setName(nameText.getText());
-            pat.setSurname(surnameText.getText());
-            pat.setPassword(passwordText.getText());
-            pat.setEmail(emailText.getText());
-            pat.setUsername(usernameText.getText());
-            pat.setPhone(phoneText.getText());
-            pat.setSex((String) sexComboBox.getSelectedItem());
-            pat.setState((String) stateComboBox.getSelectedItem());
-            pat.setProfile((String) profileComboBox.getSelectedItem());
+            u.setUsername(usernameText.getText());
+            u.setEmail(emailText.getText());
+            u.setPassword(passwordText.getText());
 
-            if (isValidUser()) {
-                d.newPatient(pat);
-                JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-                clearTxt();
-            } else {
-                JOptionPane.showMessageDialog(null, "Datos incompletos.");
+            if (profileComboBox.getSelectedItem().equals("Administrador")) {
+                u.setEditMedics(true);
+                u.setEditPatients(true);
+                u.setEditUsers(true);
+            } else if (profileComboBox.getSelectedItem().equals("Supervisor")) {
+                u.setEditMedics(true);
+                u.setEditPatients(true);
+                u.setEditUsers(false);
+            } else if (profileComboBox.getSelectedItem().equals("Secretari@")) {
+                u.setEditMedics(false);
+                u.setEditPatients(true);
+                u.setEditUsers(false);
             }
 
-        } else if (profileComboBox.getSelectedItem().equals("Empleado")) {
-
-            emp.setID(idText.getText());
-            emp.setAddress(addressText.getText());
-            emp.setName(nameText.getText());
-            emp.setSurname(surnameText.getText());
-            emp.setUsername(usernameText.getText());
-            emp.setPassword(passwordText.getText());
-            emp.setEmail(emailText.getText());
-            emp.setPhone(phoneText.getText());
-            emp.setSex((String) sexComboBox.getSelectedItem());
-            emp.setState((String) stateComboBox.getSelectedItem());
-            emp.setProfile((String) profileComboBox.getSelectedItem());
-
-            if (isValidUser()) {
-
-                d.newEmployee(emp);
-                JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-                clearTxt();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Datos incompletos.");
-            }
+            d.newUser(u);
+            JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+            clearTxt();
 
         } else {
-            JOptionPane.showMessageDialog(null, "Selecciona un perfil, por favor");
+            JOptionPane.showMessageDialog(null, "Datos incompletos.");
         }
-
-        //d.newPatient(pat);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
-        Patient pat = new Patient();
-        Employee emp = new Employee();
+       
+        User u = new User();
+        
+        if (isValidUser()) {
 
-        if ("Paciente" == profileComboBox.getSelectedItem()) {
+            u.setUsername(usernameText.getText());
+            u.setEmail(emailText.getText());
+            u.setPassword(passwordText.getText());
 
-            pat.setID(idText.getText());
-            pat.setAddress(addressText.getText());
-            pat.setName(nameText.getText());
-            pat.setSurname(surnameText.getText());
-            pat.setPassword(passwordText.getText());
-            pat.setEmail(emailText.getText());
-            pat.setUsername(usernameText.getText());
-            pat.setPhone(phoneText.getText());
-            pat.setSex((String) sexComboBox.getSelectedItem());
-            pat.setState((String) stateComboBox.getSelectedItem());
-            pat.setProfile((String) profileComboBox.getSelectedItem());
+            if (profileComboBox.getSelectedItem().equals("Administrador")) {
+                u.setEditMedics(true);
+                u.setEditPatients(true);
+                u.setEditUsers(true);
+            } else if (profileComboBox.getSelectedItem().equals("Supervisor")) {
+                u.setEditMedics(true);
+                u.setEditPatients(true);
+                u.setEditUsers(false);
+            } else if (profileComboBox.getSelectedItem().equals("Secretari@")) {
+                u.setEditMedics(false);
+                u.setEditPatients(true);
+                u.setEditUsers(false);
+            }
 
-            d.modifyPatient(pat);
-
+            d.modifyUsers(u);
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
             clearTxt();
-        } else if (profileComboBox.getSelectedItem().equals("Empleado")) {
-
-            emp.setID(idText.getText());
-            emp.setAddress(addressText.getText());
-            emp.setName(nameText.getText());
-            emp.setSurname(surnameText.getText());
-            emp.setUsername(usernameText.getText());
-            emp.setPassword(passwordText.getText());
-            emp.setEmail(emailText.getText());
-            emp.setPhone(phoneText.getText());
-            emp.setSex((String) sexComboBox.getSelectedItem());
-            emp.setState((String) stateComboBox.getSelectedItem());
-            emp.setProfile((String) profileComboBox.getSelectedItem());
-
-            d.modifyEmployee(emp);
-
-            JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-            clearTxt();
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos incompletos.");
         }
-
     }//GEN-LAST:event_modifyButtonActionPerformed
 
-    private void sexComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexComboBoxActionPerformed
+    private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sexComboBoxActionPerformed
-
-    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextActionPerformed
+    }//GEN-LAST:event_usernameTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -526,35 +315,20 @@ public class Users extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addressLabel;
-    private javax.swing.JTextField addressText;
     private javax.swing.JLabel bgd;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
-    private javax.swing.JButton godButton;
     private javax.swing.JLabel godLabel;
-    private javax.swing.JLabel idLabel;
-    private javax.swing.JTextField idText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modifyButton;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField nameText;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordText;
-    private javax.swing.JLabel phoneLabel;
-    private javax.swing.JTextField phoneText;
     private javax.swing.JComboBox<String> profileComboBox;
     private javax.swing.JLabel profileLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JSeparator separator;
-    private javax.swing.JComboBox<String> sexComboBox;
-    private javax.swing.JLabel sexLabel;
-    private javax.swing.JComboBox<String> stateComboBox;
-    private javax.swing.JLabel stateLabel;
-    private javax.swing.JLabel surnameLabel;
-    private javax.swing.JTextField surnameText;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameText;
     private javax.swing.JLabel usersLabel;

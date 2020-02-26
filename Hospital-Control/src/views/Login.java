@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -98,43 +98,35 @@ public class Login extends javax.swing.JFrame {
 
         switch (data.validateUser(userTxt.getText(), passwordText.getText())) {
 
-            case 0:
-                JOptionPane.showMessageDialog(null, "Bienvenido...");
+            case 1:
+                JOptionPane.showMessageDialog(null, "Bienvenido Administrador...");
                 Users patientWindow;
                 patientWindow = new Users();
                 patientWindow.show();
                 this.dispose();
                 break;
 
-            case 1:
-                JOptionPane.showMessageDialog(null, "Bienvenido...");
+            case 2:
+                JOptionPane.showMessageDialog(null, "Bienvenido Supervisor...");
                 Users employeeWindow;
                 employeeWindow = new Users();
                 employeeWindow.show();
                 this.dispose();
                 break;
 
-            default:
-                System.out.print(data.validateUser(userTxt.getText(), passwordText.getText()));
-                if (userTxt.getText().equals("Admin") && passwordText.getText().equals("123")) {
-                    
-                    JOptionPane.showMessageDialog(null, "Bienvenido...");
-                    Users window;
-                    window = new Users();
-                    window.show();
-                    this.dispose();
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            case 3:
+                JOptionPane.showMessageDialog(null, "Bienvenido Secretari@...");
+                Users secretaryWindow;
+                secretaryWindow = new Users();
+                secretaryWindow.show();
+                this.dispose();
+                break;
 
-                }
+            default:
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
                 break;
 
         }
-
-        //passwordTxt.getText();
-        //String clavedef=new String(pass);
-
     }//GEN-LAST:event_loginActionPerformed
 
     private void userTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTxtActionPerformed

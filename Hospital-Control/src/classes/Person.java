@@ -21,6 +21,20 @@ public class Person {
     private String sex = "";
     private String state = "";
     
+    
+    public void fakeOverload(Person p)
+    {
+        this.setID(p.getID());
+        this.setName(p.getName());
+        this.setSurname(p.getSurname());
+        this.setAddress(p.getAddress());
+        this.setPhone(p.getPhone());
+        this.setEmail(p.getEmail());
+        this.setAge(p.getAge());
+        this.setSex(p.getSex());
+        this.setState(p.getState());
+    }
+    
     public void setID(String value)
     {
         ID = value;

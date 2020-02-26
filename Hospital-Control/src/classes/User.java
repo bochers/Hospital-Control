@@ -25,6 +25,16 @@ public class User {
         editUsers = false;
     }
     
+      public void fakeOverload(User user) {
+        
+        this.setUsername(user.getUsername());
+        this.setEmail(user.getEmail());
+        this.setPassword(user.getPassword());
+        this.setEditPatients(user.getEditPatients());
+        this.setEditMedics(user.getEditMedics());
+        this.setEditUsers(user.getEditUsers());
+    }
+    
     public void setUsername(String value)
     {
         username = value;
@@ -83,5 +93,5 @@ public class User {
     public boolean getEditUsers()
     {
         return editUsers;
-    }    
+    }
 }

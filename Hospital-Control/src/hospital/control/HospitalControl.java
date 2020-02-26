@@ -5,7 +5,6 @@
  */
 package hospital.control;
 import classes.Person;
-import classes.Patient;
 import views.Login;
 
 
@@ -22,16 +21,14 @@ public class HospitalControl {
     public static void main(String[] args) {
        
         Person p = new Person();
-        Patient k = new Patient();
         
-        k.setMedic("EL erick");
         p.setAddress("en tu kasa");
         
         Login mainwindow;
         mainwindow = new Login();
         mainwindow.show();
         
-        System.out.print(p.getAddress() + " " + k.getMedic());
+        System.out.print(p.getAddress());
         
     }
     

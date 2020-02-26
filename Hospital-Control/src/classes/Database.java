@@ -19,7 +19,7 @@ public class Database {
     ArrayList<User> users;
     ArrayList<Person> medics;
     ArrayList<Person> patients;
-    
+
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
     DataInputStream inputMedics;
@@ -28,21 +28,21 @@ public class Database {
     DataOutputStream outputUsers;
 
     public Database() {
-        
+
         users = new ArrayList<>();
         medics = new ArrayList<>();
         patients = new ArrayList<>();
-        
+
         try {
-            
+
             outputUsers = new DataOutputStream(new FileOutputStream("users.txt", true));
             outputPatients = new DataOutputStream(new FileOutputStream("patients.txt", true));
             outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
-            
+
             outputUsers.close();
             outputPatients.close();
             outputMedics.close();
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -50,9 +50,9 @@ public class Database {
         }
         loadDB();
     }
-    
+
     public void loadDB() {
-        
+
         User u = new User();
         Person p = new Person();
 
@@ -62,41 +62,66 @@ public class Database {
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
 
-            while (inputPatients.available() > 0) {
+            while (inputUsers.available() > 0) {
+                u.setUsername(inputUsers.readUTF());
+                u.setEmail(inputUsers.readUTF());
+                u.setPassword(inputUsers.readUTF());
+                u.setEditUsers(inputUsers.readBoolean());
+                u.setEditPatients(inputUsers.readBoolean());
+                u.setEditMedics(inputUsers.readBoolean());
 
-                pat.setID(inputPatients.readUTF());
-                pat.setName(inputPatients.readUTF());
-                pat.setSurname(inputPatients.readUTF());
-                pat.setUsername(inputPatients.readUTF());
-                pat.setEmail(inputPatients.readUTF());
-                pat.setPassword(inputPatients.readUTF());
-                pat.setAddress(inputPatients.readUTF());
-                pat.setPhone(inputPatients.readUTF());
-                pat.setAge(inputPatients.readInt());
-                pat.setSex(inputPatients.readUTF());
-                pat.setMedic(inputPatients.readUTF());
-                pat.setAppointment(inputPatients.readUTF());
-
-                patients.add(pat);
-
+                users.add(u);
             }
 
-            while (inputEmployees.available() > 0) {
+            while (inputPatients.available() > 0) {
 
-                emp.setID(inputEmployees.readUTF());
-                emp.setName(inputEmployees.readUTF());
-                emp.setSurname(inputEmployees.readUTF());
-                emp.setUsername(inputEmployees.readUTF());
-                emp.setEmail(inputEmployees.readUTF());
-                emp.setPassword(inputEmployees.readUTF());
-                emp.setAddress(inputEmployees.readUTF());
-                emp.setPhone(inputEmployees.readUTF());
-                emp.setAge(inputEmployees.readInt());
-                emp.setSex(inputEmployees.readUTF());
-                emp.setOccupation(inputEmployees.readUTF());
-                emp.setDegree(inputEmployees.readUTF());
+                p.setID(inputPatients.readUTF());
+                p.setName(inputPatients.readUTF());
+                p.setSurname(inputPatients.readUTF());
+                p.setEmail(inputPatients.readUTF());
+                p.setAddress(inputPatients.readUTF());
+                p.setPhone(inputPatients.readUTF());
+                p.setAge(inputPatients.readInt());
+                p.setSex(inputPatients.readUTF());
+                p.setState(inputPatients.readUTF());
 
-                employees.add(emp);
+                patients.add(p);
+            }
+
+            while (inputMedics.available() > 0) {
+
+                p.setID(inputMedics.readUTF());
+                p.setName(inputMedics.readUTF());
+                p.setSurname(inputMedics.readUTF());
+                p.setEmail(inputMedics.readUTF());
+                p.setAddress(inputMedics.readUTF());
+                p.setPhone(inputMedics.readUTF());
+                p.setAge(inputMedics.readInt());
+                p.setSex(inputMedics.readUTF());
+                p.setState(inputMedics.readUTF());
+
+                medics.add(p);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateUsers() {
+        try {
+            outputUsers = new DataOutputStream(new FileOutputStream("users.txt", true));
+            FileOutputStream clearUsers = new FileOutputStream("users.txt");
+
+            for (User u : users) {
+                outputUsers.writeUTF(u.getUsername());
+                outputUsers.writeUTF(u.getEmail());
+                outputUsers.writeUTF(u.getPassword());
+                outputUsers.writeBoolean(u.getEditUsers());
+                outputUsers.writeBoolean(u.getEditPatients());
+                outputUsers.writeBoolean(u.getEditMedics());
 
             }
 
@@ -107,156 +132,220 @@ public class Database {
         }
     }
 
-    public void updateDB() {
-
+    public void updatePatients() {
         try {
-
             outputPatients = new DataOutputStream(new FileOutputStream("patients.txt", true));
-            outputEmployees = new DataOutputStream(new FileOutputStream("employees.txt", true));
-
             FileOutputStream clearPatients = new FileOutputStream("patients.txt");
-            FileOutputStream clearEmployees = new FileOutputStream("employees.txt");
 
-            for (Patient p : patients) {
+            for (Person p : patients) {
+                
                 outputPatients.writeUTF(p.getID());
                 outputPatients.writeUTF(p.getName());
                 outputPatients.writeUTF(p.getSurname());
-                outputPatients.writeUTF(p.getUsername());
                 outputPatients.writeUTF(p.getEmail());
-                outputPatients.writeUTF(p.getPassword());
                 outputPatients.writeUTF(p.getAddress());
                 outputPatients.writeUTF(p.getPhone());
                 outputPatients.writeInt(p.getAge());
                 outputPatients.writeUTF(p.getSex());
-                outputPatients.writeUTF(p.getMedic());
-                outputPatients.writeUTF(p.getAppointment());
+                outputPatients.writeUTF(p.getState());
             }
-            outputPatients.close();
-
-            for (Employee e : employees) {
-                outputEmployees.writeUTF(e.getID());
-                outputEmployees.writeUTF(e.getName());
-                outputEmployees.writeUTF(e.getSurname());
-                outputEmployees.writeUTF(e.getUsername());
-                outputEmployees.writeUTF(e.getEmail());
-                outputEmployees.writeUTF(e.getPassword());
-                outputEmployees.writeUTF(e.getAddress());
-                outputEmployees.writeUTF(e.getPhone());
-                outputEmployees.writeInt(e.getAge());
-                outputEmployees.writeUTF(e.getSex());
-                outputEmployees.writeUTF(e.getOccupation());
-                outputEmployees.writeUTF(e.getDegree());
-            }
-
-            outputEmployees.close();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
-    public void newPatient(Patient p) {
+    public void updateMedics() {
+        try {
+            outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
+            FileOutputStream clearMedics = new FileOutputStream("medics.txt");
+
+            for (Person p : medics) {
+                
+                outputMedics.writeUTF(p.getID());
+                outputMedics.writeUTF(p.getName());
+                outputMedics.writeUTF(p.getSurname());
+                outputMedics.writeUTF(p.getEmail());
+                outputMedics.writeUTF(p.getAddress());
+                outputMedics.writeUTF(p.getPhone());
+                outputMedics.writeInt(p.getAge());
+                outputMedics.writeUTF(p.getSex());
+                outputMedics.writeUTF(p.getState());
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void newUser(User u)
+    {
+        
+        users.add(u);
+        updateUsers();
+    }
+
+    public void newPatient(Person p) {
 
         patients.add(p);
-        updateDB();
+        updatePatients();
     }
+    
+    public void newMedic(Person p) {
 
-    public Patient searchPatient(String id) {
-        Patient c = new Patient();
-
-        for (Patient p : patients) {
+        medics.add(p);
+        updateMedics();
+    }
+    
+    public Person searchPatient(String id) {
+        
+        Person notFound = new Person();
+        
+        for (Person p : patients) {
+            
             if (p.getID().equals(id)) {
                 return p;
             }
         }
-        return c;
+        return notFound;
+    }
+    
+    public Person searchMedic(String id) {
+        
+        Person notFound = new Person();
+        
+        for (Person p : medics) {
+            
+            if (p.getID().equals(id)) {
+                return p;
+            }
+        }
+        return notFound;
+    }
+    
+    public User searchUser(String username)
+    {
+        User notFound = new User();
+        
+        for(User u: users)
+        {
+            if(u.getUsername().equals(username))
+            {
+                return u;
+            }
+        }
+        return notFound;
     }
 
-    public void modifyPatient(Patient pat) {
-        for (Patient p : patients) {
+    public void modifyPatient(Person pat) {
+       
+        for (Person p : patients) {
+            
             if (p.getID().equals(pat.getID())) {
-                p.equalsOverload(pat);
+                p.fakeOverload(pat);
                 break;
             }
         }
-        updateDB();
+        updatePatients();
     }
     
-    public void deletePatient(String id)
-    {
+    public void modifyMedics(Person med) {
+       
+        for (Person m : patients) {
+            
+            if (m.getID().equals(med.getID())) {
+                m.fakeOverload(med);
+                break;
+            }
+        }
+        updateMedics();
+    }
+    
+    public void modifyUsers(User user) {
+       
+        for (User u : users) {
+            
+            if (u.getUsername().equals(user.getUsername())) {
+                u.fakeOverload(user);
+                break;
+            }
+        }
+        updateUsers();
+    }
+
+    public void deletePatient(String id) {
+        
         int i = 0;
-        for(Patient p: patients)
-        {
+        for (Person p : patients) {
+            
             if (p.getID().equals(id)) {
                 patients.remove(i);
                 break;
             }
             ++i;
         }
+        updatePatients();
     }
     
-    public void deleteEmployee(String id)
-    {
+    public void deleteMedic(String id) {
+        
         int i = 0;
-        for(Employee e: employees)
-        {
-            if (e.getID().equals(id)) {
-                employees.remove(i);
+        for (Person p : medics) {
+            
+            if (p.getID().equals(id)) {
+                medics.remove(i);
                 break;
             }
             ++i;
         }
-    }
-
-    public void newEmployee(Employee e) {
-        employees.add(e);
-        updateDB();
-    }
-
-    public Employee searchEmployee(String id) {
-        Employee c = new Employee();
-        for (Employee e : employees) {
-            if (e.getID().equals(id)) {
-                return e;
-            }
-        }
-        return c;
+        updateMedics();
     }
     
-    public void modifyEmployee(Employee emp) {
-        for (Employee e : employees) {
-            if (e.getID().equals(emp.getID())) {
-                e.equalsOverload(emp);
+    public void deleteUser(String username) {
+        
+        int i = 0;
+        for (User u : users) {
+            
+            if (u.getUsername().equals(username)) {
+                users.remove(i);
                 break;
             }
+            ++i;
         }
-
-        updateDB();
+        updateUsers();
     }
-    
-    
-    public int validateUser(String username, String password)
-    {
-        for(Patient p : patients)
-        {
-            if(p.getName().equals(username))
-            {
-                if(p.getPassword().equals(password))
-                    return 0;
-            }
-        }
+
+    public int validateUser(String username, String password) {
         
-        for(Employee e : employees)
+        for(User u: users)
         {
-            if(e.getName().equals(username))
+            if(u.getUsername().equals(username))
             {
-                if(e.getPassword().equals(password))
-                    return 1;
+                if(u.getPassword().equals(password))
+                {
+                    //ADMIN
+                    if(u.getEditMedics() && u.getEditPatients() && u.getEditUsers())
+                    {
+                        return 1;
+                    }
+                    //SUPERVISOR
+                    else if(u.getEditMedics() && u.getEditPatients())
+                    {
+                        return 2;
+                    }
+                    //SECRETARY
+                    else if(u.getEditPatients())
+                    {
+                        return 3;
+                    }
+                    
+                }
             }
         }
-        return -1;
+        return 0;
     }
 }
