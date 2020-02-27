@@ -9,7 +9,7 @@
     <a href="https://github.com/EduardoPEMA">EduardoPEMA</a>
   </li> 
     <li>
-    <a href="https://github.com/EduardoPEMA">Isaac</a>
+    <a href="https://github.com/isaacfulcrum">Isaac</a>
   </li> 
     <li>
     <a href="https://github.com/Jhonn250">Jhonn250</a>
