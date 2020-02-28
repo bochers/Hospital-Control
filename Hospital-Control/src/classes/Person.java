@@ -11,7 +11,7 @@ package classes;
  */
 public class Person {
     
-    private String ID = "";
+    private int ID = 0;
     private String name = "";
     private String surname = "";
     private String address = "";
@@ -24,7 +24,7 @@ public class Person {
     
     public void fakeOverload(Person p)
     {
-        this.setID(p.getID());
+        this.setID(p.getID()+1);
         this.setName(p.getName());
         this.setSurname(p.getSurname());
         this.setAddress(p.getAddress());
@@ -35,12 +35,12 @@ public class Person {
         this.setState(p.getState());
     }
     
-    public void setID(String value)
+    public void setID(int value)
     {
         ID = value;
     }
     
-    public String getID()
+    public int getID()
     {
         return ID;
     }

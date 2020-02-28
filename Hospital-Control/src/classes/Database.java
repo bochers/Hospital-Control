@@ -75,7 +75,7 @@ public class Database {
 
             while (inputPatients.available() > 0) {
 
-                p.setID(inputPatients.readUTF());
+                p.setID(inputPatients.readInt()+1);
                 p.setName(inputPatients.readUTF());
                 p.setSurname(inputPatients.readUTF());
                 p.setEmail(inputPatients.readUTF());
@@ -90,7 +90,7 @@ public class Database {
 
             while (inputMedics.available() > 0) {
 
-                p.setID(inputMedics.readUTF());
+                p.setID(inputMedics.readInt()+1);
                 p.setName(inputMedics.readUTF());
                 p.setSurname(inputMedics.readUTF());
                 p.setEmail(inputMedics.readUTF());
@@ -139,7 +139,7 @@ public class Database {
 
             for (Person p : patients) {
                 
-                outputPatients.writeUTF(p.getID());
+                outputPatients.writeInt(p.getID());
                 outputPatients.writeUTF(p.getName());
                 outputPatients.writeUTF(p.getSurname());
                 outputPatients.writeUTF(p.getEmail());
@@ -164,7 +164,7 @@ public class Database {
 
             for (Person p : medics) {
                 
-                outputMedics.writeUTF(p.getID());
+                outputMedics.writeInt(p.getID());
                 outputMedics.writeUTF(p.getName());
                 outputMedics.writeUTF(p.getSurname());
                 outputMedics.writeUTF(p.getEmail());
@@ -201,26 +201,26 @@ public class Database {
         updateMedics();
     }
     
-    public Person searchPatient(String id) {
+    public Person searchPatient(int id) {
         
         Person notFound = new Person();
         
         for (Person p : patients) {
             
-            if (p.getID().equals(id)) {
+            if (p.getID()==id) {
                 return p;
             }
         }
         return notFound;
     }
     
-    public Person searchMedic(String id) {
+    public Person searchMedic(int id) {
         
         Person notFound = new Person();
         
         for (Person p : medics) {
             
-            if (p.getID().equals(id)) {
+            if (p.getID()==id) {
                 return p;
             }
         }
@@ -245,7 +245,7 @@ public class Database {
        
         for (Person p : patients) {
             
-            if (p.getID().equals(pat.getID())) {
+            if (p.getID()== pat.getID()) {
                 p.fakeOverload(pat);
                 break;
             }
@@ -257,7 +257,7 @@ public class Database {
        
         for (Person m : patients) {
             
-            if (m.getID().equals(med.getID())) {
+            if (m.getID()== med.getID()) {
                 m.fakeOverload(med);
                 break;
             }
@@ -277,12 +277,12 @@ public class Database {
         updateUsers();
     }
 
-    public void deletePatient(String id) {
+    public void deletePatient(int id) {
         
         int i = 0;
         for (Person p : patients) {
             
-            if (p.getID().equals(id)) {
+            if (p.getID() == id) {
                 patients.remove(i);
                 break;
             }
@@ -291,12 +291,12 @@ public class Database {
         updatePatients();
     }
     
-    public void deleteMedic(String id) {
+    public void deleteMedic(int id) {
         
         int i = 0;
         for (Person p : medics) {
             
-            if (p.getID().equals(id)) {
+            if (p.getID() == id) {
                 medics.remove(i);
                 break;
             }
