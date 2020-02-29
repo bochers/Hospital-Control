@@ -62,7 +62,7 @@ public class Database {
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
 
-            while (inputUsers.available() > 0) {
+            while (inputUsers.available()> 0) {
                 u.setUsername(inputUsers.readUTF());
                 u.setEmail(inputUsers.readUTF());
                 u.setPassword(inputUsers.readUTF());
@@ -73,17 +73,17 @@ public class Database {
                 users.add(u);
             }
 
-            while (inputPatients.available() > 0) {
+            while (inputPatients.available() >= 0) {
 
-                p.setID(inputPatients.readInt()+1);
+                p.setID(inputPatients.readInt());
                 p.setName(inputPatients.readUTF());
-                p.setSurname(inputPatients.readUTF());
-                p.setEmail(inputPatients.readUTF());
-                p.setAddress(inputPatients.readUTF());
+                p.setLast(inputPatients.readUTF());
+                p.setSLast(inputPatients.readUTF());
                 p.setPhone(inputPatients.readUTF());
-                p.setAge(inputPatients.readInt());
                 p.setSex(inputPatients.readUTF());
                 p.setState(inputPatients.readUTF());
+                p.setCity(inputPatients.readUTF());
+                p.setBlood(inputPatients.readUTF());
 
                 patients.add(p);
             }
@@ -141,13 +141,13 @@ public class Database {
                 
                 outputPatients.writeInt(p.getID());
                 outputPatients.writeUTF(p.getName());
-                outputPatients.writeUTF(p.getSurname());
-                outputPatients.writeUTF(p.getEmail());
-                outputPatients.writeUTF(p.getAddress());
+                outputPatients.writeUTF(p.getLast());
+                outputPatients.writeUTF(p.getSLast());
                 outputPatients.writeUTF(p.getPhone());
-                outputPatients.writeInt(p.getAge());
                 outputPatients.writeUTF(p.getSex());
                 outputPatients.writeUTF(p.getState());
+                outputPatients.writeUTF(p.getCity());
+                outputPatients.writeUTF(p.getBlood());
             }
 
         } catch (FileNotFoundException ex) {

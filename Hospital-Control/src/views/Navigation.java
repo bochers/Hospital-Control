@@ -27,7 +27,7 @@ public class Navigation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
         btnStock = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -38,9 +38,14 @@ public class Navigation extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Usuarios");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 220, 80));
+        btnRegistro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegistro.setText("Registro");
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 220, 80));
 
         btnStock.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnStock.setText("Stock");
@@ -57,6 +62,11 @@ public class Navigation extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Pacientes");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 220, 80));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -76,6 +86,7 @@ public class Navigation extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -87,6 +98,25 @@ public class Navigation extends javax.swing.JFrame {
     private void btnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnStockActionPerformed
+
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        // TODO add your handling code here:
+        Employees employeesWindow;
+                employeesWindow = new Employees();
+                employeesWindow.show();
+                this.dispose();
+    }//GEN-LAST:event_btnRegistroActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        Patients patientsWindow;
+                patientsWindow = new Patients();
+                patientsWindow.show();
+                this.dispose();
+        
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,9 +154,9 @@ public class Navigation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnStock;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

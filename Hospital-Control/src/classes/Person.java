@@ -13,6 +13,8 @@ public class Person {
     
     private int ID = 0;
     private String name = "";
+    private String last = ""; //first last name
+    private String sLast = ""; //second last name
     private String surname = "";
     private String address = "";
     private String phone = "";
@@ -20,12 +22,16 @@ public class Person {
     private int age = 0;
     private String sex = "";
     private String state = "";
+    private String city = "";
+    private String bloodType = "";
     
     
     public void fakeOverload(Person p)
     {
-        this.setID(p.getID()+1);
+        this.setID(p.getID());
         this.setName(p.getName());
+        this.setLast(p.getLast());
+        this.setSLast(p.getSLast());
         this.setSurname(p.getSurname());
         this.setAddress(p.getAddress());
         this.setPhone(p.getPhone());
@@ -33,6 +39,8 @@ public class Person {
         this.setAge(p.getAge());
         this.setSex(p.getSex());
         this.setState(p.getState());
+        this.setCity(p.getCity());
+        this.setBlood(p.getBlood());
     }
     
     public void setID(int value)
@@ -53,6 +61,23 @@ public class Person {
     public String getName()
     {
         return name;
+    }
+    public void setLast(String value)
+    {
+        last = value;
+    }
+    
+    public String getLast(){
+        return last;
+    }
+    
+    public void setSLast(String value)
+    {
+        sLast = value;
+    }
+    
+    public String getSLast(){
+        return sLast;
     }
     
     public void setSurname(String value)
@@ -125,5 +150,24 @@ public class Person {
     {
         return state;
     }
+    
+    public void setCity(String value){
+        city = value;
+    }
+    
+    public String getCity(){
+        return city;
+    }
+    
+    
+    
+    
+    public void setBlood(String value){
+        bloodType = value; 
+    }
+    public String getBlood(){
+        return bloodType;
+    }
+    
     
 }

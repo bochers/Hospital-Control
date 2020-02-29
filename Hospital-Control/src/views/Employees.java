@@ -21,18 +21,53 @@ public class Employees extends javax.swing.JFrame {
      */
     public Employees() {
         initComponents();
+        
+        
+        IDText.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnCancel.setEnabled(false);
+        btnEdit.setEnabled(false);
+        btnDelete.setEnabled(false);
+        NameText.setEnabled(false);
+        APText.setEnabled(false);
+        AMText.setEnabled(false);
+        DireccionText.setEnabled(false);
+        PhoneText.setEnabled(false);
+        EmailText.setEnabled(false);
+        sexComboBox.setEnabled(false);
+        ComboBoxESTADO.setEnabled(false);
+        ComboBoxCITY.setEnabled(false);
+        
         Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
 
-        //Image img1;
-        //ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
-        //img1 = icon1.getImage();
-        //btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
+        Image img1;
+        ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
+        img1 = icon1.getImage();
+        btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
          
     }
-
+    
+       public void clearTxt() {
+        IDText.setText("");
+        btnSave.setText("");
+        btnCancel.setText("");
+        btnEdit.setText("");
+        btnDelete.setText("");
+        NameText.setText("");
+        APText.setText("");
+        AMText.setText("");
+        DireccionText.setText("");
+        PhoneText.setText("");
+        EmailText.setText("");
+        sexComboBox.setSelectedIndex(-1);
+        ComboBoxESTADO.setSelectedIndex(-1);
+        ComboBoxCITY.setSelectedIndex(-1);
+    }
+    
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,9 +107,11 @@ public class Employees extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         ComboBoxCITY = new javax.swing.JComboBox<>();
         separator = new javax.swing.JSeparator();
+        btnBack = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -120,6 +157,11 @@ public class Employees extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, 100, -1));
 
         btnCancel.setText("CANCEL");
@@ -156,8 +198,8 @@ public class Employees extends javax.swing.JFrame {
         jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 190, 30));
 
         jLabel14.setFont(new java.awt.Font("Phosphate", 1, 36)); // NOI18N
-        jLabel14.setText("EMPLOYEES");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jLabel14.setText("Médicos");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 290, -1));
 
         ComboBoxCITY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(ComboBoxCITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
@@ -165,21 +207,56 @@ public class Employees extends javax.swing.JFrame {
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 4));
 
+        btnBack.setText("BACK TO MENU");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
+
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGreen.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
+        IDText.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnCancel.setEnabled(true);
+        btnEdit.setEnabled(true);
+        btnDelete.setEnabled(true);
+        NameText.setEnabled(true);
+        APText.setEnabled(true);
+        AMText.setEnabled(true);
+        DireccionText.setEnabled(true);
+        PhoneText.setEnabled(true);
+        EmailText.setEnabled(true);
+        sexComboBox.setEnabled(true);
+        ComboBoxESTADO.setEnabled(true);
+        ComboBoxCITY.setEnabled(true);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        Navigation navigationWindow;
+                navigationWindow = new Navigation();
+                navigationWindow.show();
+                this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +289,9 @@ public class Employees extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Employees().setVisible(true);
+                 
+
+                
             }
         });
     }
@@ -227,6 +307,7 @@ public class Employees extends javax.swing.JFrame {
     private javax.swing.JTextField IDText;
     private javax.swing.JTextField NameText;
     private javax.swing.JTextField PhoneText;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
