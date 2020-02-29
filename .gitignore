@@ -4,3 +4,4 @@
 /Hospital-Control/build/
 /Hospital-Control/dist/
 *.DS_Store
+/Hospital-Control/*.DS_Store
