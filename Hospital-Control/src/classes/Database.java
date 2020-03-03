@@ -73,7 +73,7 @@ public class Database {
                 users.add(u);
             }
 
-            while (inputPatients.available() >= 0) {
+            while (inputPatients.available() > 0) {
 
                 p.setID(inputPatients.readInt());
                 p.setName(inputPatients.readUTF());
