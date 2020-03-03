@@ -100,9 +100,9 @@ public class Login extends javax.swing.JFrame {
 
             case 1:
                 JOptionPane.showMessageDialog(null, "Bienvenido Administrador...");
-                Users patientWindow;
-                patientWindow = new Users();
-                patientWindow.show();
+                Navigation NavigationWindow;
+                NavigationWindow = new Navigation();
+                NavigationWindow.show();
                 this.dispose();
                 break;
 

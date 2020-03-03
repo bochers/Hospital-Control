@@ -58,6 +58,7 @@ public class Users extends javax.swing.JFrame {
         passwordText = new javax.swing.JPasswordField();
         usernameLabel = new javax.swing.JLabel();
         usernameText = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
         bgd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,6 +151,15 @@ public class Users extends javax.swing.JFrame {
             }
         });
         jPanel1.add(usernameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 230, 30));
+
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnBack.setText("Regresar");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 110, 40));
 
         bgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/UsersBGD.jpg"))); // NOI18N
         jPanel1.add(bgd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -279,6 +289,14 @@ public class Users extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        Login LoginWindow;
+                LoginWindow = new Login();
+                LoginWindow.show();
+                this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +334,7 @@ public class Users extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bgd;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
