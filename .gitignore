@@ -10,3 +10,6 @@ Hospital-Control/.DS_Store
 .DS_Store
 Hospital-Control/.DS_Store
 Hospital-Control/src/.DS_Store
+Hospital-Control/users.txt
+Hospital-Control/medics.txt
+Hospital-Control/patients.txt
