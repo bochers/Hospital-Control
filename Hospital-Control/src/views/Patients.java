@@ -59,7 +59,7 @@ public class Patients extends javax.swing.JFrame {
         PhoneText.setEnabled(true);
         sexComboBox.setEnabled(true);
         ComboBoxESTADO.setEnabled(true);
-        ComboBoxCITY.setEnabled(true);
+        CityText.setEnabled(true);
         CalendarFecha.setEnabled(true);
         CBSangre.setEnabled(true);
     }
@@ -76,7 +76,7 @@ public class Patients extends javax.swing.JFrame {
         PhoneText.setEnabled(false);
         sexComboBox.setEnabled(false);
         ComboBoxESTADO.setEnabled(false);
-        ComboBoxCITY.setEnabled(false);
+        CityText.setEnabled(false);
         CalendarFecha.setEnabled(false);
         CBSangre.setEnabled(false);
 }
@@ -90,7 +90,7 @@ public class Patients extends javax.swing.JFrame {
         BuscarText.setText("");
         sexComboBox.setSelectedIndex(-1);
         ComboBoxESTADO.setSelectedIndex(-1);
-        ComboBoxCITY.setSelectedIndex(-1);
+        CityText.setText("");
         CBSangre.setSelectedIndex(-1);
         CalendarFecha.setDate(null);
     }
@@ -111,7 +111,7 @@ public class Patients extends javax.swing.JFrame {
                         if(PhoneText.getText().length() > 0 && PhoneText.getText().length() == 10){
                             if(sexComboBox.getSelectedIndex() != -1){
                                 if(ComboBoxESTADO.getSelectedIndex() != -1){
-                                    if(ComboBoxCITY.getSelectedIndex() != -1){
+                                    if(CityText.getText().length() > 0){
                                         if(CBSangre.getSelectedIndex() != -1){
                                             if(CalendarFecha.getDate() != null){
                                                 valid = true;
@@ -136,7 +136,7 @@ public class Patients extends javax.swing.JFrame {
             p.setPhone(PhoneText.getText());    
             p.setSex((String) sexComboBox.getSelectedItem());
             p.setState((String) ComboBoxESTADO.getSelectedItem());
-            p.setCity((String) ComboBoxCITY.getSelectedItem());
+            p.setCity(CityText.getText());
             p.setBlood((String) CBSangre.getSelectedItem());
             p.setDate(dFormat.format(CalendarFecha.getDate()));
 
@@ -154,7 +154,7 @@ public class Patients extends javax.swing.JFrame {
                 PhoneText.setText(person.getPhone());
                 sexComboBox.setSelectedItem(person.getSex());
                 ComboBoxESTADO.setSelectedItem(person.getState());
-                ComboBoxCITY.setSelectedItem(person.getCity());
+                CityText.setText(person.getCity());
                 CBSangre.setSelectedItem(person.getBlood());
                 Date date = dFormat.parse(person.getDate());
                 CalendarFecha.setDate(date);
@@ -203,7 +203,6 @@ public class Patients extends javax.swing.JFrame {
         ComboBoxESTADO = new javax.swing.JComboBox<>();
         sexComboBox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        ComboBoxCITY = new javax.swing.JComboBox<>();
         separator = new javax.swing.JSeparator();
         btnBack = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
@@ -211,6 +210,7 @@ public class Patients extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         CalendarFecha = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
+        CityText = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -299,19 +299,15 @@ public class Patients extends javax.swing.JFrame {
 
         ComboBoxESTADO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
         ComboBoxESTADO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 190, 30));
+        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 193, 30));
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
         sexComboBox.setSelectedIndex(-1);
-        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 30));
+        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 193, 30));
 
         jLabel14.setFont(new java.awt.Font("Phosphate", 1, 36)); // NOI18N
         jLabel14.setText("PACIENTES");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 290, 40));
-
-        ComboBoxCITY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        ComboBoxCITY.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxCITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 190, 30));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 4));
@@ -329,7 +325,7 @@ public class Patients extends javax.swing.JFrame {
 
         CBSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-", " " }));
         CBSangre.setSelectedIndex(-1);
-        jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 190, 30));
+        jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 193, 30));
 
         jLabel17.setText("Fecha Nacimiento:");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, 30));
@@ -340,6 +336,7 @@ public class Patients extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga_.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 330, 240));
+        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 190, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -354,6 +351,7 @@ public class Patients extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Person p;  
+        
         p = d.searchPatient(Integer.parseInt(BuscarText.getText()));
             displayPerson(p);
             //BuscarText.setText("");
@@ -459,7 +457,7 @@ public class Patients extends javax.swing.JFrame {
     private javax.swing.JTextField BuscarText;
     private javax.swing.JComboBox<String> CBSangre;
     private com.toedter.calendar.JDateChooser CalendarFecha;
-    private javax.swing.JComboBox<String> ComboBoxCITY;
+    private javax.swing.JTextField CityText;
     private javax.swing.JComboBox<String> ComboBoxESTADO;
     private javax.swing.JTextField IDText;
     private javax.swing.JTextField NameText;
