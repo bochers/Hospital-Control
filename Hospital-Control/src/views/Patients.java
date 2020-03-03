@@ -210,6 +210,7 @@ public class Patients extends javax.swing.JFrame {
         CBSangre = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
         CalendarFecha = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -336,6 +337,9 @@ public class Patients extends javax.swing.JFrame {
         CalendarFecha.setMaxSelectableDate(new java.util.Date(1577862117000L));
         CalendarFecha.setMinSelectableDate(new java.util.Date(-631126683000L));
         jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 190, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga_.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 330, 240));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -474,6 +478,7 @@ public class Patients extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
