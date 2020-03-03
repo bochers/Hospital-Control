@@ -64,9 +64,12 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Citas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="200" width="220" height="80"/>
+          <AbsoluteConstraints x="160" y="190" width="220" height="80"/>
         </Constraint>
       </Constraints>
     </Component>
