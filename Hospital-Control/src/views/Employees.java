@@ -203,6 +203,7 @@ public final class Employees extends javax.swing.JFrame {
         separator = new javax.swing.JSeparator();
         btnBack = new javax.swing.JButton();
         CityText = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -268,6 +269,11 @@ public final class Employees extends javax.swing.JFrame {
         jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 80, 50));
 
         btnDelete.setText("DELETE");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 80, 50));
 
         btnNew.setText("NEW");
@@ -318,6 +324,9 @@ public final class Employees extends javax.swing.JFrame {
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
         jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doctor.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 380, 400));
+
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGreen.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -348,6 +357,14 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        if(isValidPatient()== true){
+            Person p = new Person();
+            d.modifyMedics(addPerson(p));
+
+            JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+            clearTxt();
+            deactivate();
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -374,6 +391,13 @@ public final class Employees extends javax.swing.JFrame {
             deactivate();
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        d.deleteMedic(Integer.parseInt(IDText.getText()));
+        deactivate();
+        clearTxt();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,6 +467,7 @@ public final class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator separator;
     private javax.swing.JComboBox<String> sexComboBox;
