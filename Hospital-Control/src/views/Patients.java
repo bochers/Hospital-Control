@@ -5,9 +5,14 @@ import classes.Person;
 
 import java.awt.Image;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.text.SimpleDateFormat;
+import static java.lang.String.format;
+import java.text.ParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,6 +28,8 @@ public class Patients extends javax.swing.JFrame {
     
     Database d;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat dFormato = new SimpleDateFormat("dd-MM-yyyy");
+    
 
     /**
      * Creates new form Patients
@@ -84,63 +91,88 @@ public class Patients extends javax.swing.JFrame {
         sexComboBox.setSelectedIndex(-1);
         ComboBoxESTADO.setSelectedIndex(-1);
         ComboBoxCITY.setSelectedIndex(-1);
-        CalendarFecha.setMaxSelectableDate(date);
         CBSangre.setSelectedIndex(-1);
+        CalendarFecha.setDate(null);
     }
     
     public int ID(){
         int size = d.patientsSize();
-        
-        if(size == 0){
-            return size; 
-        }
-        else{
             size++;
-            return size;
-        }     
+            return size;   
 };
     
-    /*public boolean isValid() {
-        boolean valid;
-
-        valid = usernameText.getText().length() > 0 && emailText.getText().length() > 0
-                && passwordText.getText().length() > 0 && profileComboBox.getSelectedIndex() != -1;
-
+    public boolean validPhone(){
+        boolean validate = false;
+        if(PhoneText.getText().length() == 10){
+            validate = true;
+        }
+        return validate;
+        
+    }
+    
+    public boolean isValidPatient(){
+        boolean valid = false;
+        
+           if(NameText.getText().length() > 0){
+                if(APText.getText().length() > 0){
+                    if(AMText.getText().length() > 0){
+                        if(PhoneText.getText().length() > 0){
+                            if(sexComboBox.getSelectedIndex() != -1){
+                                if(ComboBoxESTADO.getSelectedIndex() != -1){
+                                    if(ComboBoxCITY.getSelectedIndex() != -1){
+                                        if(CBSangre.getSelectedIndex() != -1){
+                                            if(CalendarFecha.getDate() != null){
+                                                valid = true;
+                                            }else{ JOptionPane.showMessageDialog(null, "Error en Fecha"); }
+                                        }else{ JOptionPane.showMessageDialog(null, "Error en Sangre"); }
+                                    }else{ JOptionPane.showMessageDialog(null, "Error en Ciudad"); }
+                                }else{ JOptionPane.showMessageDialog(null, "Error en Estado"); }
+                            }else{ JOptionPane.showMessageDialog(null, "Error en Sexo"); }  
+                        }else{ JOptionPane.showMessageDialog(null, "Error en Teléfono"); }
+                    }else{ JOptionPane.showMessageDialog(null, "Error en Apellido Materno"); }
+                }else{ JOptionPane.showMessageDialog(null, "Error en Apellido Paterno"); }
+            }else{ JOptionPane.showMessageDialog(null, "Error en Nombre"); }
+        
         return valid;
-    }*/
+    }
     
     public Person addPerson(Person p){
-        
-        String date = dFormat.format(CalendarFecha.getDate());
-        
-        
-        p.setID(Integer.parseInt(IDText.getText()));
-        p.setName(NameText.getText());
-        p.setLast(APText.getText());
-        p.setSLast(AMText.getText());
-        p.setPhone(PhoneText.getText());
-        p.setSex((String) sexComboBox.getSelectedItem());
-        p.setState((String) ComboBoxESTADO.getSelectedItem());
-        p.setCity((String) ComboBoxCITY.getSelectedItem());
-        p.setBlood((String) CBSangre.getSelectedItem());
-        
-        return p;
-        
+            p.setID(Integer.parseInt(IDText.getText()));
+            p.setName(NameText.getText());
+            p.setLast(APText.getText());
+            p.setSLast(AMText.getText());
+            //if(validPhone() == true){
+                p.setPhone(PhoneText.getText());
+            //} else{ PhoneText.setText("");}         
+            p.setSex((String) sexComboBox.getSelectedItem());
+            p.setState((String) ComboBoxESTADO.getSelectedItem());
+            p.setCity((String) ComboBoxCITY.getSelectedItem());
+            p.setBlood((String) CBSangre.getSelectedItem());
+            p.setDate(dFormat.format(CalendarFecha.getDate()));
 
+            return p;
     }
     
     public void displayPerson(Person person) {
    
         if(person.getID() != 0){
-            IDText.setText(String.valueOf(person.getID()));
-            NameText.setText(person.getName());
-            APText.setText(person.getLast());
-            AMText.setText(person.getSLast());
-            PhoneText.setText(person.getPhone());
-            sexComboBox.setSelectedItem(person.getSex());
-            ComboBoxESTADO.setSelectedItem(person.getState());
-            ComboBoxCITY.setSelectedItem(person.getCity());
-            CBSangre.setSelectedItem(person.getBlood());
+            try {
+                IDText.setText(String.valueOf(person.getID()));
+                NameText.setText(person.getName());
+                APText.setText(person.getLast());
+                AMText.setText(person.getSLast());
+                PhoneText.setText(person.getPhone());
+                sexComboBox.setSelectedItem(person.getSex());
+                ComboBoxESTADO.setSelectedItem(person.getState());
+                ComboBoxCITY.setSelectedItem(person.getCity());
+                CBSangre.setSelectedItem(person.getBlood());
+                Date date = dFormat.parse(person.getDate());
+                CalendarFecha.setDate(date);
+            } catch (ParseException ex) {
+                Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "Paciente no encontrado.");  
@@ -330,7 +362,7 @@ public class Patients extends javax.swing.JFrame {
         Person p;  
         p = d.searchPatient(Integer.parseInt(BuscarText.getText()));
             displayPerson(p);
-            BuscarText.setText("");
+            //BuscarText.setText("");
         if(p.getID()!= 0){
             activate();
         }
@@ -365,11 +397,10 @@ public class Patients extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        
-        d.deletePatient(Integer.parseInt(BuscarText.getText()));
-        clearTxt();
+        // TODO add your handling code here:   
+        d.deletePatient(Integer.parseInt(IDText.getText()));
         deactivate();
+        clearTxt();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -380,12 +411,14 @@ public class Patients extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Person p = new Person();
-        d.newPatient(addPerson(p));
- 
-        JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-        clearTxt();
-        deactivate();
+        if(isValidPatient()== true){
+            Person p = new Person();
+            d.newPatient(addPerson(p));
+
+            JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+            clearTxt();
+            deactivate();
+        }
  
         
     }//GEN-LAST:event_btnSaveActionPerformed
