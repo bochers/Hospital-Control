@@ -28,7 +28,6 @@ public class Patients extends javax.swing.JFrame {
     
     Database d;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
-    SimpleDateFormat dFormato = new SimpleDateFormat("dd-MM-yyyy");
     
 
     /**
@@ -335,7 +334,7 @@ public class Patients extends javax.swing.JFrame {
         jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 190, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga_.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 330, 240));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 400, 240));
         jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 190, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
