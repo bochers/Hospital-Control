@@ -90,7 +90,7 @@ public class Database {
 
             while (inputMedics.available() > 0) {
 
-                p.setID(inputMedics.readInt()+1);
+                p.setID(inputMedics.readInt());
                 p.setName(inputMedics.readUTF());
                 p.setSurname(inputMedics.readUTF());
                 p.setEmail(inputMedics.readUTF());
@@ -347,5 +347,21 @@ public class Database {
             }
         }
         return 0;
+    }
+    
+    public int patientsSize()
+    {
+        return patients.size();
+        
+    }
+    
+    public int medicsSize()
+    {
+        return medics.size();
+    }
+    
+    public int usersSize()
+    {
+        return users.size();
     }
 }
