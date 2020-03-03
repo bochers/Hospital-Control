@@ -15,6 +15,7 @@ public class Navigation extends javax.swing.JFrame {
      * Creates new form Navigation
      */
     public Navigation() {
+        
         initComponents();
     }
 
@@ -58,7 +59,12 @@ public class Navigation extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Citas");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 220, 80));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 220, 80));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Pacientes");
@@ -117,6 +123,13 @@ public class Navigation extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        /*Appointment appointmentWindow;
+                appointmentWindow = new Patients();
+                appointmentWindow.show();
+                this.dispose();*/
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -28,7 +28,7 @@ public class Database {
     DataOutputStream outputUsers;
 
     public Database() {
-
+        
         users = new ArrayList<>();
         medics = new ArrayList<>();
         patients = new ArrayList<>();
