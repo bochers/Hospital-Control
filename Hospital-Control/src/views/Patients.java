@@ -101,22 +101,14 @@ public class Patients extends javax.swing.JFrame {
             return size;   
 };
     
-    public boolean validPhone(){
-        boolean validate = false;
-        if(PhoneText.getText().length() == 10){
-            validate = true;
-        }
-        return validate;
-        
-    }
-    
+  
     public boolean isValidPatient(){
         boolean valid = false;
         
            if(NameText.getText().length() > 0){
                 if(APText.getText().length() > 0){
                     if(AMText.getText().length() > 0){
-                        if(PhoneText.getText().length() > 0){
+                        if(PhoneText.getText().length() > 0 && PhoneText.getText().length() == 10){
                             if(sexComboBox.getSelectedIndex() != -1){
                                 if(ComboBoxESTADO.getSelectedIndex() != -1){
                                     if(ComboBoxCITY.getSelectedIndex() != -1){
@@ -141,9 +133,7 @@ public class Patients extends javax.swing.JFrame {
             p.setName(NameText.getText());
             p.setLast(APText.getText());
             p.setSLast(AMText.getText());
-            //if(validPhone() == true){
-                p.setPhone(PhoneText.getText());
-            //} else{ PhoneText.setText("");}         
+            p.setPhone(PhoneText.getText());    
             p.setSex((String) sexComboBox.getSelectedItem());
             p.setState((String) ComboBoxESTADO.getSelectedItem());
             p.setCity((String) ComboBoxCITY.getSelectedItem());
@@ -372,19 +362,20 @@ public class Patients extends javax.swing.JFrame {
     
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        Person p = new Person();
- 
-        d.modifyPatient(addPerson(p));
+        if(isValidPatient()== true){
+            Person p = new Person();
+            d.modifyPatient(addPerson(p));
 
-        //d.modifyPatient(addPerson(p));
-        JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-        clearTxt();
-        deactivate();
+            JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+            clearTxt();
+            deactivate();
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
         activate();
+        clearTxt();
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -411,7 +402,7 @@ public class Patients extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(isValidPatient()== true){
+        if(isValidPatient() == true){
             Person p = new Person();
             d.newPatient(addPerson(p));
 
