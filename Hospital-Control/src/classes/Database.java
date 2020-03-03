@@ -84,6 +84,7 @@ public class Database {
                 p.setState(inputPatients.readUTF());
                 p.setCity(inputPatients.readUTF());
                 p.setBlood(inputPatients.readUTF());
+                p.setDate(inputPatients.readUTF());
 
                 patients.add(p);
             }
@@ -148,6 +149,7 @@ public class Database {
                 outputPatients.writeUTF(p.getState());
                 outputPatients.writeUTF(p.getCity());
                 outputPatients.writeUTF(p.getBlood());
+                outputPatients.writeUTF(p.getDate());
             }
 
         } catch (FileNotFoundException ex) {

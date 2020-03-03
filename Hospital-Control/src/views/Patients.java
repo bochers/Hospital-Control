@@ -5,6 +5,7 @@ import classes.Person;
 
 import java.awt.Image;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 public class Patients extends javax.swing.JFrame {
     
     Database d;
+    SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
      * Creates new form Patients
@@ -34,11 +36,12 @@ public class Patients extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
+        
 
         
     }
     public void activate(){
-        IDText.setEnabled(true);
+        //IDText.setEnabled(true);
         btnSave.setEnabled(true);
         btnCancel.setEnabled(true);
         btnEdit.setEnabled(true);
@@ -81,9 +84,21 @@ public class Patients extends javax.swing.JFrame {
         sexComboBox.setSelectedIndex(-1);
         ComboBoxESTADO.setSelectedIndex(-1);
         ComboBoxCITY.setSelectedIndex(-1);
-        //CalendarFecha.setMaxSelectableDate(30 ene. 2020);
+        CalendarFecha.setMaxSelectableDate(date);
         CBSangre.setSelectedIndex(-1);
     }
+    
+    public int ID(){
+        int size = d.patientsSize();
+        
+        if(size == 0){
+            return size; 
+        }
+        else{
+            size++;
+            return size;
+        }     
+};
     
     /*public boolean isValid() {
         boolean valid;
@@ -95,6 +110,9 @@ public class Patients extends javax.swing.JFrame {
     }*/
     
     public Person addPerson(Person p){
+        
+        String date = dFormat.format(CalendarFecha.getDate());
+        
         
         p.setID(Integer.parseInt(IDText.getText()));
         p.setName(NameText.getText());
@@ -169,7 +187,7 @@ public class Patients extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         CBSangre = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        CalendarFecha = new com.toedter.calendar.JCalendar();
+        CalendarFecha = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -291,11 +309,11 @@ public class Patients extends javax.swing.JFrame {
         jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 190, 30));
 
         jLabel17.setText("Fecha Nacimiento:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, 30));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, 30));
 
-        CalendarFecha.setMaxSelectableDate(new java.util.Date(1580367675000L));
-        CalendarFecha.setMinSelectableDate(new java.util.Date(-631126725000L));
-        jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 380, 160));
+        CalendarFecha.setMaxSelectableDate(new java.util.Date(1577862117000L));
+        CalendarFecha.setMinSelectableDate(new java.util.Date(-631126683000L));
+        jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 190, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -335,7 +353,7 @@ public class Patients extends javax.swing.JFrame {
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
         activate();
-  
+        IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -412,7 +430,7 @@ public class Patients extends javax.swing.JFrame {
     private javax.swing.JTextField APText;
     private javax.swing.JTextField BuscarText;
     private javax.swing.JComboBox<String> CBSangre;
-    private com.toedter.calendar.JCalendar CalendarFecha;
+    private com.toedter.calendar.JDateChooser CalendarFecha;
     private javax.swing.JComboBox<String> ComboBoxCITY;
     private javax.swing.JComboBox<String> ComboBoxESTADO;
     private javax.swing.JTextField IDText;

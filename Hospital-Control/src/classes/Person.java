@@ -24,6 +24,7 @@ public class Person {
     private String state = "";
     private String city = "";
     private String bloodType = "";
+    private String date = "";
     
     
     public void fakeOverload(Person p)
@@ -41,6 +42,7 @@ public class Person {
         this.setState(p.getState());
         this.setCity(p.getCity());
         this.setBlood(p.getBlood());
+        this.setDate(p.getDate());
     }
     
     public void setID(int value)
@@ -159,15 +161,22 @@ public class Person {
         return city;
     }
     
-    
-    
-    
+   
     public void setBlood(String value){
         bloodType = value; 
     }
     public String getBlood(){
         return bloodType;
     }
+    
+    public void setDate(String value){
+        date = value; 
+    }
+    public String getDate(){
+        return date;
+    }
+    
+
     
     
 }
