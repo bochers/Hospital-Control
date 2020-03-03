@@ -202,7 +202,6 @@ public class Users extends javax.swing.JFrame {
         }
     }
 
-
     private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextActionPerformed
@@ -210,7 +209,6 @@ public class Users extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
         User u;
-
         u = d.searchUser(usernameText.getText());
         displayUser(u);
     }//GEN-LAST:event_searchButtonActionPerformed
@@ -243,7 +241,6 @@ public class Users extends javax.swing.JFrame {
                 u.setEditPatients(true);
                 u.setEditUsers(false);
             }
-
             d.newUser(u);
             JOptionPane.showMessageDialog(null, "Guardado con éxito.");
             clearTxt();

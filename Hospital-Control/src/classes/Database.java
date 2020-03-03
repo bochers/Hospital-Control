@@ -48,6 +48,7 @@ public class Database {
         } catch (IOException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         loadDB();
     }
 
@@ -62,7 +63,10 @@ public class Database {
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
 
-            while (inputUsers.available()> 0) {
+            while (inputUsers.available() > 0) {
+
+                u = new User();
+
                 u.setUsername(inputUsers.readUTF());
                 u.setEmail(inputUsers.readUTF());
                 u.setPassword(inputUsers.readUTF());
@@ -71,9 +75,12 @@ public class Database {
                 u.setEditMedics(inputUsers.readBoolean());
 
                 users.add(u);
+
             }
 
             while (inputPatients.available() > 0) {
+
+                p = new Person();
 
                 p.setID(inputPatients.readInt());
                 p.setName(inputPatients.readUTF());
@@ -90,6 +97,8 @@ public class Database {
             }
 
             while (inputMedics.available() > 0) {
+
+                p = new Person();
 
                 p.setID(inputMedics.readInt());
                 p.setName(inputMedics.readUTF());
@@ -113,6 +122,7 @@ public class Database {
 
     public void updateUsers() {
         try {
+
             outputUsers = new DataOutputStream(new FileOutputStream("users.txt", true));
             FileOutputStream clearUsers = new FileOutputStream("users.txt");
 
@@ -123,7 +133,6 @@ public class Database {
                 outputUsers.writeBoolean(u.getEditUsers());
                 outputUsers.writeBoolean(u.getEditPatients());
                 outputUsers.writeBoolean(u.getEditMedics());
-
             }
 
         } catch (FileNotFoundException ex) {
@@ -139,7 +148,7 @@ public class Database {
             FileOutputStream clearPatients = new FileOutputStream("patients.txt");
 
             for (Person p : patients) {
-                
+
                 outputPatients.writeInt(p.getID());
                 outputPatients.writeUTF(p.getName());
                 outputPatients.writeUTF(p.getLast());
@@ -165,7 +174,7 @@ public class Database {
             FileOutputStream clearMedics = new FileOutputStream("medics.txt");
 
             for (Person p : medics) {
-                
+
                 outputMedics.writeInt(p.getID());
                 outputMedics.writeUTF(p.getName());
                 outputMedics.writeUTF(p.getSurname());
@@ -183,94 +192,88 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void newUser(User u)
-    {
-        
+
+    public void newUser(User u) {
         users.add(u);
         updateUsers();
     }
 
     public void newPatient(Person p) {
-
         patients.add(p);
         updatePatients();
     }
-    
-    public void newMedic(Person p) {
 
+    public void newMedic(Person p) {
         medics.add(p);
         updateMedics();
     }
-    
+
     public Person searchPatient(int id) {
-        
+
         Person notFound = new Person();
-        
+
         for (Person p : patients) {
-            
-            if (p.getID()==id) {
+
+            if (p.getID() == id) {
                 return p;
             }
         }
         return notFound;
     }
-    
+
     public Person searchMedic(int id) {
-        
+
         Person notFound = new Person();
-        
+
         for (Person p : medics) {
-            
-            if (p.getID()==id) {
+
+            if (p.getID() == id) {
                 return p;
             }
         }
         return notFound;
     }
-    
-    public User searchUser(String username)
-    {
+
+    public User searchUser(String username) {
         User notFound = new User();
-        
-        for(User u: users)
-        {
-            if(u.getUsername().equals(username))
-            {
+
+        for (User u : users) {
+            if (u.getUsername().equals(username)) {
                 return u;
             }
         }
+
         return notFound;
     }
 
     public void modifyPatient(Person pat) {
-       
+
         for (Person p : patients) {
-            
-            if (p.getID()== pat.getID()) {
+
+            if (p.getID() == pat.getID()) {
                 p.fakeOverload(pat);
                 break;
             }
         }
         updatePatients();
     }
-    
+
     public void modifyMedics(Person med) {
-       
+
         for (Person m : patients) {
-            
-            if (m.getID()== med.getID()) {
+
+            if (m.getID() == med.getID()) {
                 m.fakeOverload(med);
                 break;
             }
         }
         updateMedics();
     }
-    
+
     public void modifyUsers(User user) {
-       
+
         for (User u : users) {
-            
+
             if (u.getUsername().equals(user.getUsername())) {
                 u.fakeOverload(user);
                 break;
@@ -280,10 +283,10 @@ public class Database {
     }
 
     public void deletePatient(int id) {
-        
+
         int i = 0;
         for (Person p : patients) {
-            
+
             if (p.getID() == id) {
                 patients.remove(i);
                 break;
@@ -292,12 +295,12 @@ public class Database {
         }
         updatePatients();
     }
-    
+
     public void deleteMedic(int id) {
-        
+
         int i = 0;
         for (Person p : medics) {
-            
+
             if (p.getID() == id) {
                 medics.remove(i);
                 break;
@@ -306,12 +309,12 @@ public class Database {
         }
         updateMedics();
     }
-    
+
     public void deleteUser(String username) {
-        
+
         int i = 0;
         for (User u : users) {
-            
+
             if (u.getUsername().equals(username)) {
                 users.remove(i);
                 break;
@@ -322,48 +325,37 @@ public class Database {
     }
 
     public int validateUser(String username, String password) {
-        
-        for(User u: users)
-        {
-            if(u.getUsername().equals(username))
-            {
-                if(u.getPassword().equals(password))
-                {
+
+        for (User u : users) {
+            if (u.getUsername().equals(username)) {
+                if (u.getPassword().equals(password)) {
                     //ADMIN
-                    if(u.getEditMedics() && u.getEditPatients() && u.getEditUsers())
-                    {
+                    if (u.getEditMedics() && u.getEditPatients() && u.getEditUsers()) {
                         return 1;
-                    }
-                    //SUPERVISOR
-                    else if(u.getEditMedics() && u.getEditPatients())
-                    {
+                    } //SUPERVISOR
+                    else if (u.getEditMedics() && u.getEditPatients()) {
                         return 2;
-                    }
-                    //SECRETARY
-                    else if(u.getEditPatients())
-                    {
+                    } //SECRETARY
+                    else if (u.getEditPatients()) {
                         return 3;
                     }
-                    
+
                 }
             }
         }
         return 0;
     }
-    
-    public int patientsSize()
-    {
+
+    public int patientsSize() {
         return patients.size();
-        
+
     }
-    
-    public int medicsSize()
-    {
+
+    public int medicsSize() {
         return medics.size();
     }
-    
-    public int usersSize()
-    {
+
+    public int usersSize() {
         return users.size();
     }
 }
