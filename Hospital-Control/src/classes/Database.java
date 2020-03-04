@@ -71,7 +71,7 @@ public class Database {
             inputUsers = new DataInputStream(new FileInputStream("users.txt"));
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
-            inputAppointment = new DataInputStream(new FileInputStream("appointment.txt"));
+            inputAppointment = new DataInputStream(new FileInputStream("appointments.txt"));
 
             while (inputUsers.available() > 0) {
 
@@ -218,8 +218,8 @@ public class Database {
     
     public void updateAppointment() {
         try {
-            outputAppointment = new DataOutputStream(new FileOutputStream("appointment.txt", true));
-            FileOutputStream clearAppointment = new FileOutputStream("appointment.txt");
+            outputAppointment = new DataOutputStream(new FileOutputStream("appointments.txt", true));
+            FileOutputStream clearAppointment = new FileOutputStream("appointments.txt");
 
             for (Person p : appointment) {
 

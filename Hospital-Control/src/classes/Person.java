@@ -49,6 +49,7 @@ public class Person {
         this.setHour(p.getHour());
     }
     
+    
     public void setStateAppointment(String value)
     {
         stateAppointment = value;
@@ -58,6 +59,7 @@ public class Person {
     {
         return stateAppointment;
     }
+    
     public void setHour(String value)
     {
         hour = value;
