@@ -18,23 +18,23 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author isaac
  */
 public final class Employees extends javax.swing.JFrame {
+
     Database d;
+    String uType;
 
     /**
      * Creates new form Employees
      */
-    public Employees() {
+    public Employees(String userType) {
         initComponents();
         d = new Database();
         deactivate();
-        
-    
+        uType = userType;
         Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
@@ -44,10 +44,13 @@ public final class Employees extends javax.swing.JFrame {
         //ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/assets/newbutton.png"));
         //img1 = icon1.getImage();
         //btnNew.setIcon(new ImageIcon(img1.getScaledInstance(btnNew.getWidth(), btnNew.getHeight(), WIDTH)));
-         
     }
-    
-    public void deactivate(){
+
+    public Employees() {
+        initComponents();
+    }
+
+    public void deactivate() {
         IDText.setEnabled(false);
         btnSave.setEnabled(false);
         btnCancel.setEnabled(false);
@@ -63,8 +66,8 @@ public final class Employees extends javax.swing.JFrame {
         ComboBoxESTADO.setEnabled(false);
         CityText.setEnabled(false);
     }
-    
-    public void activate(){
+
+    public void activate() {
         //IDText.setEnabled(true);
         btnSave.setEnabled(true);
         btnCancel.setEnabled(true);
@@ -80,7 +83,7 @@ public final class Employees extends javax.swing.JFrame {
         ComboBoxESTADO.setEnabled(true);
         CityText.setEnabled(true);
     }
-    
+
     public void clearTxt() {
         IDText.setText("");
         NameText.setText("");
@@ -93,74 +96,91 @@ public final class Employees extends javax.swing.JFrame {
         ComboBoxESTADO.setSelectedIndex(-1);
         CityText.setText("");
     }
-    
-    public boolean isValidPatient(){
+
+    public boolean isValidPatient() {
         boolean valid = false;
-        
-           if(NameText.getText().length() > 0){
-                if(APText.getText().length() > 0){
-                    if(AMText.getText().length() > 0){
-                        if(DireccionText.getText().length() > 0){
-                            if(PhoneText.getText().length() > 0 && PhoneText.getText().length() == 10){
-                                if(EmailText.getText().length() > 0){
-                                    if(sexComboBox.getSelectedIndex() != -1){
-                                        if(ComboBoxESTADO.getSelectedIndex() != -1){
-                                            if(CityText.getText().length() > 0){
-                                                valid = true;
-                                            }else{ JOptionPane.showMessageDialog(null, "Error en Ciudad"); }
-                                        }else{ JOptionPane.showMessageDialog(null, "Error en Estado"); }
-                                    }else{ JOptionPane.showMessageDialog(null, "Error en Sexo"); }                
-                                }else{ JOptionPane.showMessageDialog(null, "Error en Email"); }   
-                            }else{ JOptionPane.showMessageDialog(null, "Error en Teléfono"); }  
-                        }else{ JOptionPane.showMessageDialog(null, "Error en Dirección"); }  
-                    }else{ JOptionPane.showMessageDialog(null, "Error en Apellido Materno"); }
-                }else{ JOptionPane.showMessageDialog(null, "Error en Apellido Paterno"); }
-            }else{ JOptionPane.showMessageDialog(null, "Error en Nombre"); }
-        
+
+        if (NameText.getText().length() > 0) {
+            if (APText.getText().length() > 0) {
+                if (AMText.getText().length() > 0) {
+                    if (DireccionText.getText().length() > 0) {
+                        if (PhoneText.getText().length() > 0 && PhoneText.getText().length() == 10) {
+                            if (EmailText.getText().length() > 0) {
+                                if (sexComboBox.getSelectedIndex() != -1) {
+                                    if (ComboBoxESTADO.getSelectedIndex() != -1) {
+                                        if (CityText.getText().length() > 0) {
+                                            valid = true;
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Error en Ciudad");
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Error en Estado");
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Error en Sexo");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error en Email");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error en Teléfono");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error en Dirección");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error en Apellido Materno");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error en Apellido Paterno");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error en Nombre");
+        }
+
         return valid;
     }
-    
-    public Person addPerson(Person p){
-            p.setID(Integer.parseInt(IDText.getText()));
-            p.setName(NameText.getText());
-            p.setLast(APText.getText());
-            p.setSLast(AMText.getText());
-            p.setAddress(DireccionText.getText());
-            p.setPhone(PhoneText.getText());  
-            p.setEmail(EmailText.getText());
-            p.setSex((String) sexComboBox.getSelectedItem());
-            p.setState((String) ComboBoxESTADO.getSelectedItem());
-            p.setCity(CityText.getText());
 
-            return p;
+    public Person addPerson(Person p) {
+        p.setID(Integer.parseInt(IDText.getText()));
+        p.setName(NameText.getText());
+        p.setLast(APText.getText());
+        p.setSLast(AMText.getText());
+        p.setAddress(DireccionText.getText());
+        p.setPhone(PhoneText.getText());
+        p.setEmail(EmailText.getText());
+        p.setSex((String) sexComboBox.getSelectedItem());
+        p.setState((String) ComboBoxESTADO.getSelectedItem());
+        p.setCity(CityText.getText());
+
+        return p;
     }
-    
+
     public void displayPerson(Person person) {
-        if(person.getID() != 0){
-                IDText.setText(String.valueOf(person.getID()));
-                NameText.setText(person.getName());
-                APText.setText(person.getLast());
-                AMText.setText(person.getSLast());
-                DireccionText.setText(person.getAddress());
-                PhoneText.setText(person.getPhone());
-                EmailText.setText(person.getEmail());
-                sexComboBox.setSelectedItem(person.getSex());
-                ComboBoxESTADO.setSelectedItem(person.getState());
-                CityText.setText(person.getCity());
+        if (person.getID() != 0) {
+            IDText.setText(String.valueOf(person.getID()));
+            NameText.setText(person.getName());
+            APText.setText(person.getLast());
+            AMText.setText(person.getSLast());
+            DireccionText.setText(person.getAddress());
+            PhoneText.setText(person.getPhone());
+            EmailText.setText(person.getEmail());
+            sexComboBox.setSelectedItem(person.getSex());
+            ComboBoxESTADO.setSelectedItem(person.getState());
+            CityText.setText(person.getCity());
+        } else {
+            JOptionPane.showMessageDialog(null, "Paciente no encontrado.");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Paciente no encontrado.");  
-        }
- 
+
     }
-    
-    
-       
-    public int ID(){
+
+    public int ID() {
         int size = d.medicsSize();
-            size++;
-            return size;   
-};
+        size++;
+        return size;
+    }
+
+    ;
     
   
     /**
@@ -345,19 +365,19 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        Person p;  
-        
+        Person p;
+
         p = d.searchMedic(Integer.parseInt(BuscarText.getText()));
-            displayPerson(p);
-            //BuscarText.setText("");
-        if(p.getID()!= 0){
+        displayPerson(p);
+        //BuscarText.setText("");
+        if (p.getID() != 0) {
             activate();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        if(isValidPatient()== true){
+        if (isValidPatient() == true) {
             Person p = new Person();
             d.modifyMedics(addPerson(p));
 
@@ -370,9 +390,9 @@ public final class Employees extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         Navigation navigationWindow;
-                navigationWindow = new Navigation();
-                navigationWindow.show();
-                this.dispose();
+        navigationWindow = new Navigation(uType);
+        navigationWindow.show();
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -383,7 +403,7 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(isValidPatient() == true){
+        if (isValidPatient() == true) {
             Person p = new Person();
             d.newMedic(addPerson(p));
             JOptionPane.showMessageDialog(null, "Guardado con éxito.");
@@ -430,9 +450,7 @@ public final class Employees extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Employees().setVisible(true);
-                 
 
-                
             }
         });
     }

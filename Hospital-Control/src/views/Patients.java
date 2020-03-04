@@ -5,7 +5,6 @@ import classes.Person;
 
 import java.awt.Image;
 import static java.awt.image.ImageObserver.WIDTH;
-import static java.lang.String.format;
 import java.text.ParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -28,24 +27,26 @@ public class Patients extends javax.swing.JFrame {
     
     Database d;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
-    
+    String uType;
 
     /**
      * Creates new form Patients
      */
-    public Patients() {
+    public Patients(String userType) {
         initComponents();
         d = new Database();
         deactivate();
-        
+        uType = userType;
         Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
-        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
-        
-
-        
+        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));        
     }
+    
+    public Patients() {
+        initComponents();
+    }
+    
     public void activate(){
         //IDText.setEnabled(true);
         btnSave.setEnabled(true);
@@ -383,7 +384,7 @@ public class Patients extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         Navigation navigationWindow;
-        navigationWindow = new Navigation();
+        navigationWindow = new Navigation(uType);
         navigationWindow.show();
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed

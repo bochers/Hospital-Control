@@ -2,8 +2,6 @@ package views;
 
 import classes.Database;
 import classes.User;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,19 +16,27 @@ import javax.swing.JOptionPane;
 public class Users extends javax.swing.JFrame {
 
     Database d;
+    String uType;
 
     /**
      * Creates new form Users
+     *
+     * @param userType
      */
-    public Users() {
+    public Users(String userType) {
         initComponents();
         d = new Database();
+        uType = userType;
         this.setLocationRelativeTo(null);
 
         /*Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
         img = icon.getImage();
         godButton.setIcon(new ImageIcon(img.getScaledInstance(godButton.getWidth(), godButton.getHeight(), WIDTH)));*/
+    }
+
+    public Users() {
+        initComponents();
     }
 
     /**
@@ -251,9 +257,9 @@ public class Users extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
-       
+
         User u = new User();
-        
+
         if (isValidUser()) {
 
             u.setUsername(usernameText.getText());
@@ -288,10 +294,9 @@ public class Users extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        Login LoginWindow;
-                LoginWindow = new Login();
-                LoginWindow.show();
-                this.dispose();
+        Navigation navigationWindow = new Navigation(uType);
+        navigationWindow.show();
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**

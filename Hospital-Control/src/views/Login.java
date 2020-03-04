@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        checkIn.setVisible(false);
     }
 
     /**
@@ -98,34 +99,36 @@ public class Login extends javax.swing.JFrame {
 
         switch (data.validateUser(userTxt.getText(), passwordText.getText())) {
 
-            case 1:
+            case 1: {
                 JOptionPane.showMessageDialog(null, "Bienvenido Administrador...");
                 Navigation NavigationWindow;
-                NavigationWindow = new Navigation();
+                NavigationWindow = new Navigation("Administrador");
                 NavigationWindow.show();
                 this.dispose();
                 break;
+            }
 
-            case 2:
+            case 2: {
                 JOptionPane.showMessageDialog(null, "Bienvenido Supervisor...");
-                Users employeeWindow;
-                employeeWindow = new Users();
-                employeeWindow.show();
+                Navigation NavigationWindow;
+                NavigationWindow = new Navigation("Supervisor");
+                NavigationWindow.show();
                 this.dispose();
                 break;
+            }
 
-            case 3:
+            case 3: {
                 JOptionPane.showMessageDialog(null, "Bienvenido Secretari@...");
-                Users secretaryWindow;
-                secretaryWindow = new Users();
-                secretaryWindow.show();
+                Navigation NavigationWindow;
+                NavigationWindow = new Navigation("Secretari@");
+                NavigationWindow.show();
                 this.dispose();
                 break;
+            }
 
             default:
                 JOptionPane.showMessageDialog(null, "Datos incorrectos");
                 break;
-
         }
     }//GEN-LAST:event_loginActionPerformed
 
@@ -135,12 +138,13 @@ public class Login extends javax.swing.JFrame {
 
     private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
 
-        //outputFile = new DataOutputStream(new FileOutputStream("data.txt", true));
-        //inputFile = new DataInputStream(new FileInputStream("data.txt"));
-        Users window = new Users();
+        /*
+        ACTIVAR SI SE NOS PIERDE LA CUENTA DE ADMIN *DAB*
+        
+        Users window = new Users(null);
         window.show();
         this.dispose();
-
+        */
     }//GEN-LAST:event_checkInActionPerformed
 
     /**
