@@ -19,29 +19,38 @@ public class Database {
     ArrayList<User> users;
     ArrayList<Person> medics;
     ArrayList<Person> patients;
+    ArrayList<Person> appointment;
 
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
+    
     DataInputStream inputMedics;
     DataOutputStream outputMedics;
+    
     DataInputStream inputUsers;
     DataOutputStream outputUsers;
+    
+    DataInputStream inputAppointment;
+    DataOutputStream outputAppointment;
 
     public Database() {
         
         users = new ArrayList<>();
         medics = new ArrayList<>();
         patients = new ArrayList<>();
+        appointment = new ArrayList<>();
 
         try {
 
             outputUsers = new DataOutputStream(new FileOutputStream("users.txt", true));
             outputPatients = new DataOutputStream(new FileOutputStream("patients.txt", true));
             outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
+            outputAppointment = new DataOutputStream(new FileOutputStream("appointments.txt", true));
 
             outputUsers.close();
             outputPatients.close();
             outputMedics.close();
+            outputAppointment.close();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +71,7 @@ public class Database {
             inputUsers = new DataInputStream(new FileInputStream("users.txt"));
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
+            inputAppointment = new DataInputStream(new FileInputStream("appointment.txt"));
 
             while (inputUsers.available() > 0) {
 
@@ -111,6 +121,19 @@ public class Database {
                 p.setState(inputMedics.readUTF());
 
                 medics.add(p);
+            }
+            
+            while (inputAppointment.available() > 0) {
+
+                p = new Person();
+                
+                p.setID(inputAppointment.readInt());
+                p.setName(inputAppointment.readUTF());
+                p.setHour(inputAppointment.readUTF());
+                p.setDate(inputAppointment.readUTF());
+                p.setStateAppointment(inputAppointment.readUTF());
+                
+                appointment.add(p);
             }
 
         } catch (FileNotFoundException ex) {
@@ -192,6 +215,27 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void updateAppointment() {
+        try {
+            outputAppointment = new DataOutputStream(new FileOutputStream("appointment.txt", true));
+            FileOutputStream clearAppointment = new FileOutputStream("appointment.txt");
+
+            for (Person p : appointment) {
+
+                outputAppointment.writeInt(p.getID());
+                outputAppointment.writeUTF(p.getName());
+                outputAppointment.writeUTF(p.getHour());
+                outputAppointment.writeUTF(p.getStateAppointment());
+               
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void newUser(User u) {
         users.add(u);
@@ -206,6 +250,24 @@ public class Database {
     public void newMedic(Person p) {
         medics.add(p);
         updateMedics();
+    }
+    
+    public void newAppointment(Person p)
+    {
+        appointment.add(p);
+        updateAppointment();
+    }
+    
+        public Person searchAppointement(String name) {
+        Person notFound = new Person();
+
+        for (Person p : appointment) {
+            if (p.getName().equals(name)){
+                return p;
+            }
+        }
+
+        return notFound;
     }
 
     public Person searchPatient(int id) {
@@ -245,6 +307,8 @@ public class Database {
 
         return notFound;
     }
+    
+
 
     public void modifyPatient(Person pat) {
 

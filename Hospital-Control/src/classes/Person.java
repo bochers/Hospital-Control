@@ -25,6 +25,8 @@ public class Person {
     private String city = "";
     private String bloodType = "";
     private String date = "";
+    private String stateAppointment = "";
+    private String hour = "";
     
     
     public void fakeOverload(Person p)
@@ -43,6 +45,27 @@ public class Person {
         this.setCity(p.getCity());
         this.setBlood(p.getBlood());
         this.setDate(p.getDate());
+        this.setStateAppointment(p.getStateAppointment());
+        this.setHour(p.getHour());
+    }
+    
+    public void setStateAppointment(String value)
+    {
+        stateAppointment = value;
+    }
+    
+    public String getStateAppointment()
+    {
+        return stateAppointment;
+    }
+    public void setHour(String value)
+    {
+        hour = value;
+    }
+    
+    public String getHour()
+    {
+        return hour;
     }
     
     public void setID(int value)
