@@ -112,13 +112,14 @@ public class Database {
 
                 p.setID(inputMedics.readInt());
                 p.setName(inputMedics.readUTF());
-                p.setSurname(inputMedics.readUTF());
-                p.setEmail(inputMedics.readUTF());
+                p.setLast(inputMedics.readUTF());
+                p.setSLast(inputMedics.readUTF());
                 p.setAddress(inputMedics.readUTF());
                 p.setPhone(inputMedics.readUTF());
-                p.setAge(inputMedics.readInt());
+                p.setEmail(inputMedics.readUTF());
                 p.setSex(inputMedics.readUTF());
                 p.setState(inputMedics.readUTF());
+                p.setCity(inputMedics.readUTF());
 
                 medics.add(p);
             }
@@ -200,13 +201,14 @@ public class Database {
 
                 outputMedics.writeInt(p.getID());
                 outputMedics.writeUTF(p.getName());
-                outputMedics.writeUTF(p.getSurname());
-                outputMedics.writeUTF(p.getEmail());
+                outputMedics.writeUTF(p.getLast());
+                outputMedics.writeUTF(p.getSLast());
                 outputMedics.writeUTF(p.getAddress());
                 outputMedics.writeUTF(p.getPhone());
-                outputMedics.writeInt(p.getAge());
+                outputMedics.writeUTF(p.getEmail());
                 outputMedics.writeUTF(p.getSex());
                 outputMedics.writeUTF(p.getState());
+                outputMedics.writeUTF(p.getCity());
             }
 
         } catch (FileNotFoundException ex) {

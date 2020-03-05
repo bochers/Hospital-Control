@@ -48,6 +48,7 @@ public final class Employees extends javax.swing.JFrame {
 
     public Employees() {
         initComponents();
+        deactivate();
     }
 
     public void deactivate() {
@@ -180,9 +181,6 @@ public final class Employees extends javax.swing.JFrame {
         return size;
     }
 
-    ;
-    
-  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -345,7 +343,7 @@ public final class Employees extends javax.swing.JFrame {
         jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doctor.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 380, 400));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 440, 450));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGreen.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
