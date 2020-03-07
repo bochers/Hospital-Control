@@ -2,6 +2,10 @@ package views;
 
 import classes.Person;
 import classes.Database;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -17,21 +21,44 @@ import javax.swing.table.DefaultTableModel;
 public class Appointments extends javax.swing.JFrame {
     Database d;
     DefaultTableModel tb;
+    SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
      
     /**
      * Creates new form Appointments
      */
+    @SuppressWarnings("empty-statement")
     public Appointments() {
         
         initComponents();
         
         d = new Database();
-        String header[] = {"Nombre", "Hora de cita", "Fecha de cita","Estado de cita", "ID"};
-        String data[][] = {};
-        tb = new DefaultTableModel(data,header);
+        Date date = new Date();
+        createColumns();
+        
+        /*tb = new DefaultTableModel();
+        tb.setColumnIdentifiers(columns);
         jTappointment.setModel(tb);
+        //idText.setEnabled(false);*/
+        
     }
-
+    
+    public void createColumns(){
+        
+        tb = (DefaultTableModel) jTappointment.getModel();
+        tb.addColumn("Nombre");
+        tb.addColumn("Hora de cita");
+        tb.addColumn("Fecha de cita");
+        tb.addColumn("Estado actual de cita");
+        tb.addColumn("Id");
+        
+    }
+    
+    public void fillRows(String name, String hour, /*SimpleDateFormat date*/ String state){
+        String[] rowData = {name, hour,  state};
+        tb.addRow(rowData);
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,12 +77,16 @@ public class Appointments extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         hourComboBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        patientNameTxt = new javax.swing.JTextField();
+        searchPatientNameTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         idText = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         stateComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        patientNameTxt = new javax.swing.JTextField();
+        btnCancel = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,20 +99,23 @@ public class Appointments extends javax.swing.JFrame {
         jLabel1.setText("ID:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
+        jTappointment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTappointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        jTappointment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTappointmentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTappointment);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 780, 90));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 780, 90));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/little_imms.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, 130));
@@ -91,7 +125,8 @@ public class Appointments extends javax.swing.JFrame {
         jLabel4.setText("Paciente: ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, 10));
 
-        hourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        hourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7:00-8:00 AM", "8:00-9:00 AM", "9:00-10:00 AM", "10:00-11:00 AM", "11:00-12:00 PM", "12:00-13:00 PM", "13:00-14:00 PM", "16:00-17:00 PM", "17:00-18:00 PM", " " }));
+        hourComboBox.setSelectedIndex(-1);
         hourComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hourComboBoxActionPerformed(evt);
@@ -103,12 +138,12 @@ public class Appointments extends javax.swing.JFrame {
         jLabel5.setText("Hora cita:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, 20));
 
-        patientNameTxt.addActionListener(new java.awt.event.ActionListener() {
+        searchPatientNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patientNameTxtActionPerformed(evt);
+                searchPatientNameTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(patientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
+        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 190, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Fecha:");
@@ -121,26 +156,48 @@ public class Appointments extends javax.swing.JFrame {
         });
         jPanel1.add(idText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 80, 30));
 
-        searchButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        searchButton.setText("Buscar");
-        searchButton.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSearch.setText("Buscar");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButtonActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 80, 30));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 80, 30));
 
-        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        stateComboBox.setSelectedIndex(-1);
         stateComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stateComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, 20));
+        jPanel1.add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 90, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Estado:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+
+        patientNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientNameTxtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(patientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
+
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCancel.setText("Cancelar");
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 30));
+
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setText("Guardar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, 30));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 290));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
@@ -150,14 +207,38 @@ public class Appointments extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public int ID(){
+        int size = d.patientsSize();
+            size++;
+            return size;   
+    }
+    
     public void clearTxt()
     {
         idText.setText("");
         patientNameTxt.setText("");
+        searchPatientNameTxt.setText("");
         hourComboBox.setSelectedIndex(-1);
         stateComboBox.setSelectedIndex(-1);
+        dateChooser.setDate(null);
+        idText.setText("");
                 
     }
+    
+    public Person createApointment(Person p)
+    {
+        p.setID(Integer.parseInt(idText.getText()));
+        p.setHour((String) hourComboBox.getSelectedItem());
+        p.setDate(dFormat.format(dateChooser.getDate()));
+        p.setName(patientNameTxt.getText());
+        p.setStateAppointment((String) stateComboBox.getSelectedItem());
+        
+        
+        return p;
+       
+    }
+    
+    
     
     private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
         // TODO add your handling code here:
@@ -167,18 +248,46 @@ public class Appointments extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_stateComboBoxActionPerformed
 
-    private void patientNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNameTxtActionPerformed
+    private void searchPatientNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatientNameTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_patientNameTxtActionPerformed
+    }//GEN-LAST:event_searchPatientNameTxtActionPerformed
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchButtonActionPerformed
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void hourComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hourComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hourComboBoxActionPerformed
 
+    private void patientNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientNameTxtActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Person p = new Person();
+        
+        //idText.setText(String.valueOf(ID()));
+        
+        fillRows(patientNameTxt.getText(), (String) hourComboBox.getSelectedItem(),(String) stateComboBox.getSelectedItem());
+        
+
+        JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+        d.newAppointment(createApointment(p));
+        clearTxt();
+            
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
+        // TODO add your handling code here:
+        patientNameTxt.setText(jTappointment.getValueAt(jTappointment.getSelectedRow(), 0).toString());
+        hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1).toString());
+        //dateChooser.setDate(jTappointment.getValueAt(jTappointment.getSelectedRow(),2).toString());
+        stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 3).toString());
+        
+    }//GEN-LAST:event_jTappointmentMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -215,6 +324,9 @@ public class Appointments extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JComboBox<String> hourComboBox;
     private javax.swing.JTextField idText;
@@ -226,10 +338,11 @@ public class Appointments extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTappointment;
     private javax.swing.JTextField patientNameTxt;
-    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchPatientNameTxt;
     private javax.swing.JComboBox<String> stateComboBox;
     // End of variables declaration//GEN-END:variables
 }

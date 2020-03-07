@@ -131,7 +131,6 @@ public class Database {
                 p.setID(inputAppointment.readInt());
                 p.setName(inputAppointment.readUTF());
                 p.setHour(inputAppointment.readUTF());
-                p.setDate(inputAppointment.readUTF());
                 p.setStateAppointment(inputAppointment.readUTF());
                 
                 appointment.add(p);

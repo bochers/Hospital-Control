@@ -186,10 +186,10 @@ public class Navigation extends javax.swing.JFrame {
     }//GEN-LAST:event_bttonPatientsActionPerformed
 
     private void bttonAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttonAppointmentsActionPerformed
-        /*Appointment appointmentWindow;
-                appointmentWindow = new Patients();
+        Appointments appointmentWindow;
+                appointmentWindow = new Appointments();
                 appointmentWindow.show();
-                this.dispose();*/
+                this.dispose();
     }//GEN-LAST:event_bttonAppointmentsActionPerformed
 
     private void bttnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnServicesActionPerformed
