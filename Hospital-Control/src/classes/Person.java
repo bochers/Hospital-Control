@@ -35,7 +35,6 @@ public class Person {
         this.setName(p.getName());
         this.setLast(p.getLast());
         this.setSLast(p.getSLast());
-        this.setSurname(p.getSurname());
         this.setAddress(p.getAddress());
         this.setPhone(p.getPhone());
         this.setEmail(p.getEmail());

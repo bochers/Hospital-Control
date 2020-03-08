@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -113,35 +115,54 @@ public final class Employees extends javax.swing.JFrame {
                                             valid = true;
                                         } else {
                                             JOptionPane.showMessageDialog(null, "Error en Ciudad");
+                                            CityText.requestFocusInWindow();
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Error en Estado");
+                                        ComboBoxESTADO.requestFocusInWindow();
                                     }
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Error en Sexo");
+                                    sexComboBox.requestFocusInWindow();
                                 }
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error en Email");
+                                EmailText.requestFocusInWindow();
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "Error en Teléfono");
+                            PhoneText.requestFocusInWindow();
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Error en Dirección");
+                        DireccionText.requestFocusInWindow();
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Error en Apellido Materno");
+                    AMText.requestFocusInWindow();
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Error en Apellido Paterno");
+                APText.requestFocusInWindow();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Error en Nombre");
+            NameText.requestFocusInWindow();
         }
 
         return valid;
     }
-
+    
+    public static boolean validEmail(String input){
+        //String input = EmailText.getText();
+        String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.find();
+    }
+    
     public Person addPerson(Person p) {
         p.setID(Integer.parseInt(IDText.getText()));
         p.setName(NameText.getText());
@@ -358,6 +379,8 @@ public final class Employees extends javax.swing.JFrame {
         // TODO add your handling code here:
         activate();
         clearTxt();
+        btnEdit.setEnabled(false);
+        btnDelete.setEnabled(false);
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -376,12 +399,16 @@ public final class Employees extends javax.swing.JFrame {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         if (isValidPatient() == true) {
-            Person p = new Person();
-            d.modifyMedics(addPerson(p));
-
-            JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-            clearTxt();
-            deactivate();
+            if(validEmail(EmailText.getText()) == true){
+                Person m = new Person();
+                d.modifyMedics(addPerson(m));
+                JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+                clearTxt();
+                deactivate();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Correo inválido.");
+            }
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -402,11 +429,16 @@ public final class Employees extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         if (isValidPatient() == true) {
+            if(validEmail(EmailText.getText()) == true){
             Person p = new Person();
             d.newMedic(addPerson(p));
             JOptionPane.showMessageDialog(null, "Guardado con éxito.");
             clearTxt();
             deactivate();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Correo inválido.");
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

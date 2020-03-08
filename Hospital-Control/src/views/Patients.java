@@ -115,15 +115,24 @@ public class Patients extends javax.swing.JFrame {
                                         if(CBSangre.getSelectedIndex() != -1){
                                             if(CalendarFecha.getDate() != null){
                                                 valid = true;
-                                            }else{ JOptionPane.showMessageDialog(null, "Error en Fecha"); }
-                                        }else{ JOptionPane.showMessageDialog(null, "Error en Sangre"); }
-                                    }else{ JOptionPane.showMessageDialog(null, "Error en Ciudad"); }
-                                }else{ JOptionPane.showMessageDialog(null, "Error en Estado"); }
-                            }else{ JOptionPane.showMessageDialog(null, "Error en Sexo"); }  
-                        }else{ JOptionPane.showMessageDialog(null, "Error en Teléfono"); }
-                    }else{ JOptionPane.showMessageDialog(null, "Error en Apellido Materno"); }
-                }else{ JOptionPane.showMessageDialog(null, "Error en Apellido Paterno"); }
-            }else{ JOptionPane.showMessageDialog(null, "Error en Nombre"); }
+                                            }else{ JOptionPane.showMessageDialog(null, "Error en Fecha");
+                                                   CalendarFecha.requestFocusInWindow();}
+                                        }else{ JOptionPane.showMessageDialog(null, "Error en Sangre");
+                                               CBSangre.requestFocusInWindow();}
+                                    }else{ JOptionPane.showMessageDialog(null, "Error en Ciudad");
+                                           CityText.requestFocusInWindow();}
+                                }else{  JOptionPane.showMessageDialog(null, "Error en Estado");
+                                        ComboBoxESTADO.requestFocusInWindow();}
+                            }else{  JOptionPane.showMessageDialog(null, "Error en Sexo");
+                                    sexComboBox.requestFocusInWindow();}  
+                        }else{  JOptionPane.showMessageDialog(null, "Error en Teléfono");
+                                PhoneText.requestFocusInWindow();}
+                    }else{  JOptionPane.showMessageDialog(null, "Error en Apellido Materno");
+                            AMText.requestFocusInWindow();}
+                }else{  JOptionPane.showMessageDialog(null, "Error en Apellido Paterno");
+                        APText.requestFocusInWindow();}
+            }else{  JOptionPane.showMessageDialog(null, "Error en Nombre"); 
+                    NameText.requestFocusInWindow();}
         
         return valid;
     }
@@ -378,6 +387,8 @@ public class Patients extends javax.swing.JFrame {
         // TODO add your handling code here:
         activate();
         clearTxt();
+        btnEdit.setEnabled(false);
+        btnDelete.setEnabled(false);
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 

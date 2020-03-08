@@ -325,7 +325,7 @@ public class Database {
 
     public void modifyMedics(Person med) {
 
-        for (Person m : patients) {
+        for (Person m : medics) {
 
             if (m.getID() == med.getID()) {
                 m.fakeOverload(med);
