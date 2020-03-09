@@ -34,6 +34,7 @@ public class Appointments extends javax.swing.JFrame {
         d = new Database();
         Date date = new Date();
         createColumns();
+        displayId();
         
         /*tb = new DefaultTableModel();
         tb.setColumnIdentifiers(columns);
@@ -53,8 +54,8 @@ public class Appointments extends javax.swing.JFrame {
         
     }
     
-    public void fillRows(String name, String hour, /*SimpleDateFormat date*/ String state){
-        String[] rowData = {name, hour,  state};
+    public void fillRows(String name, String hour, int id, String state){
+        String[] rowData = {name, hour, Integer.toString(ID()),  state};
         tb.addRow(rowData);
         
         
@@ -83,10 +84,11 @@ public class Appointments extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         stateComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
         patientNameTxt = new javax.swing.JTextField();
-        btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        btnCancel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -178,16 +180,21 @@ public class Appointments extends javax.swing.JFrame {
         jLabel7.setText("Estado:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, 30));
+
         patientNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patientNameTxtActionPerformed(evt);
             }
         });
         jPanel1.add(patientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
-
-        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCancel.setText("Cancelar");
-        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 30));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Guardar");
@@ -198,6 +205,15 @@ public class Appointments extends javax.swing.JFrame {
         });
         jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, 30));
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 290));
+
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCancel.setText("Cancelar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
@@ -211,6 +227,12 @@ public class Appointments extends javax.swing.JFrame {
         int size = d.patientsSize();
             size++;
             return size;   
+    }
+    ///
+    public void displayId()
+    {
+        idText.setEnabled(false);
+        idText.setText(String.valueOf(ID()));
     }
     
     public void clearTxt()
@@ -227,9 +249,9 @@ public class Appointments extends javax.swing.JFrame {
     
     public Person createApointment(Person p)
     {
+        
         p.setID(Integer.parseInt(idText.getText()));
         p.setHour((String) hourComboBox.getSelectedItem());
-        p.setDate(dFormat.format(dateChooser.getDate()));
         p.setName(patientNameTxt.getText());
         p.setStateAppointment((String) stateComboBox.getSelectedItem());
         
@@ -237,6 +259,7 @@ public class Appointments extends javax.swing.JFrame {
         return p;
        
     }
+    
     
     
     
@@ -266,27 +289,47 @@ public class Appointments extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Person p = new Person();
-        
+        //Person p = new Person();
         //idText.setText(String.valueOf(ID()));
-        
-        fillRows(patientNameTxt.getText(), (String) hourComboBox.getSelectedItem(),(String) stateComboBox.getSelectedItem());
-        
-
+        fillRows(patientNameTxt.getText(), (String) hourComboBox.getSelectedItem(),ID() , (String) stateComboBox.getSelectedItem());
         JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-        d.newAppointment(createApointment(p));
+        //d.newAppointment(createApointment(p));
         clearTxt();
             
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    ///Mostrar en pantalla la tabla
     private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
         // TODO add your handling code here:
+        
         patientNameTxt.setText(jTappointment.getValueAt(jTappointment.getSelectedRow(), 0).toString());
         hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1).toString());
-        //dateChooser.setDate(jTappointment.getValueAt(jTappointment.getSelectedRow(),2).toString());
-        stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 3).toString());
+        
+    //dateChooser.setDate(jTappointment.getValueAt(jTappointment.getSelectedRow(),2).toString());
+        stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2).toString());
+        idText.setText(jTappointment.getValueAt(jTappointment.getSelectedRow(), 3).toString());
         
     }//GEN-LAST:event_jTappointmentMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+       tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
+       tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);
+       tb.setValueAt(stateComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 2);
+       JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+       clearTxt();
+//dateChooser.setDate(jTappointment.getValueAt(jTappointment.getSelectedRow(),2).toString());
+       //idText.setText(jTappointment.getValueAt(jTappointment.getSelectedRow(), 3).toString());
+       
+       
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        
+        tb.removeRow(jTappointment.getSelectedRow());
+        clearTxt();
+
+    }//GEN-LAST:event_btnCancelActionPerformed
     
     /**
      * @param args the command line arguments
@@ -327,6 +370,7 @@ public class Appointments extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JComboBox<String> hourComboBox;
     private javax.swing.JTextField idText;
