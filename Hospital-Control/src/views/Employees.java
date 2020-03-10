@@ -251,7 +251,7 @@ public final class Employees extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 65, 130, 30));
+        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 65, 260, 30));
 
         jLabel1.setText("ID:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 80, -1, 20));
@@ -388,11 +388,12 @@ public final class Employees extends javax.swing.JFrame {
         // TODO add your handling code here:
         Person p;
 
-        p = d.searchMedic(Integer.parseInt(BuscarText.getText()));
+        p = d.searchMedic(BuscarText.getText());
         displayPerson(p);
         //BuscarText.setText("");
         if (p.getID() != 0) {
             activate();
+            btnSave.setEnabled(false);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 

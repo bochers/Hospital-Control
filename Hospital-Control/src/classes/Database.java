@@ -271,26 +271,25 @@ public class Database {
         return notFound;
     }
 
-    public Person searchPatient(int id) {
+    public Person searchPatient(String find) {
 
         Person notFound = new Person();
 
         for (Person p : patients) {
-
-            if (p.getID() == id) {
+            String isThere = p.getName() + " " + p.getLast() + " " + p.getSLast();
+            if (isThere.equals(find)) {
                 return p;
             }
         }
         return notFound;
     }
 
-    public Person searchMedic(int id) {
-
+    public Person searchMedic(String find) {
         Person notFound = new Person();
 
         for (Person p : medics) {
-
-            if (p.getID() == id) {
+            String isThere = p.getName() + " " + p.getLast() + " " + p.getSLast();
+            if (isThere.equals(find)) {
                 return p;
             }
         }

@@ -228,7 +228,7 @@ public class Patients extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 130, 30));
+        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 65, 260, 30));
 
         jLabel1.setText("ID:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 95, -1, 20));
@@ -238,7 +238,7 @@ public class Patients extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 60, 60));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 60, 60));
         jPanel1.add(IDText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 190, 30));
 
         jLabel3.setText("Nombre:");
@@ -361,11 +361,12 @@ public class Patients extends javax.swing.JFrame {
         
         Person p;  
         
-        p = d.searchPatient(Integer.parseInt(BuscarText.getText()));
+        p = d.searchPatient(BuscarText.getText());
             displayPerson(p);
             //BuscarText.setText("");
         if(p.getID()!= 0){
             activate();
+            btnSave.setEnabled(false);
         }
         
     }//GEN-LAST:event_btnBuscarActionPerformed
