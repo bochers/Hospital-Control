@@ -437,15 +437,20 @@ public final class Employees extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(checkNum() == true){
             if (isValidPatient() == true) {
-                if(validEmail(EmailText.getText()) == true){
-                    Person m = new Person();
-                    d.modifyMedics(addPerson(m));
-                    JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-                    clearTxt();
-                    deactivate();
+                if(validateAddress(DireccionText.getText()) == true){
+                    if(validEmail(EmailText.getText()) == true){
+                        Person m = new Person();
+                        d.modifyMedics(addPerson(m));
+                        JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+                        clearTxt();
+                        deactivate();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Correo inválido.");
+                    }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Correo inválido.");
+                    JOptionPane.showMessageDialog(null, "Direccion inválida."); 
                 }
             }
         }
