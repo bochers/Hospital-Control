@@ -390,6 +390,8 @@ public class Patients extends javax.swing.JFrame {
         clearTxt();
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        BuscarText.setEnabled(false);
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
