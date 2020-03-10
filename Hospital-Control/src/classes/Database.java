@@ -366,6 +366,23 @@ public class Database {
         }
         updateAppointment();
     }
+     
+           public boolean modifyAppointment(String date, String hour, int id){
+        for(Person p: appointment){
+           if(p.getDate().equals(date) && p.getHour().equals(hour)){
+               if(p.getID() == id)
+               {
+                    
+               }else
+               {
+                   return false;
+               }
+                   
+           }
+           
+       }
+    return true;        
+    }
 
     public void modifyUsers(User user) {
 

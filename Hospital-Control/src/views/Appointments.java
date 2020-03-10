@@ -437,24 +437,22 @@ public class Appointments extends javax.swing.JFrame {
         String dateFromDateChooser = dFormat.format(dateChooser.getDate());
         String aux = dateFromDateChooser;
         String hours = (String) hourComboBox.getSelectedItem();
+        String.valueOf(idText.getText());
+        int auxId = Integer.valueOf(idText.getText());
 
-        if (jTappointment.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(null, "Datos insuficientes para actualizar.");
+        //JOptionPane.showMessageDialog(null, "Datos insuficientes para actualizar.");
+        if (isValidAppointment() == true && d.modifyAppointment(aux, hours, auxId) == true) {
+            Person p = new Person();
+            tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
+            tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);
+            tb.setValueAt(stateComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 2);
+            tb.setValueAt(dFormat.format(dateChooser.getDate()), jTappointment.getSelectedRow(), 3);
+            d.modifyAppointment(createApointment(p));
+
+            JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+            clearTxt();
         } else {
-            if (d.verifyAppointment(dateFromDateChooser, hours) == true && isValidAppointment() == true) {
-                Person p = new Person();
-                tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
-                tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);
-                tb.setValueAt(stateComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 3);
-                tb.setValueAt(dFormat.format(dateChooser.getDate()), jTappointment.getSelectedRow(), 2);
-                d.modifyPatient(createApointment(p));
-
-                JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-                clearTxt();
-            } else {
-                JOptionPane.showMessageDialog(null, "Imposible actualizar, revisar hora de la cita.");
-            }
-
+            JOptionPane.showMessageDialog(null, "Imposible actualizar, revisar hora de la cita.");
         }
 //dateChooser.setDate(jTappointment.getValueAt(jTappointment.getSelectedRow(),2).toString());
         //idText.setText(jTappointment.getValueAt(jTappointment.getSelectedRow(), 3).toString());
