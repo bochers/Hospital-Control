@@ -283,16 +283,18 @@ public class Appointments extends javax.swing.JFrame {
         
     }
     
+    
+    
     public void displayAppointment(Person person) {
    
         if(person.getID() != 0){
-            try {
+            try{
                 idText.setText(String.valueOf(person.getID()));
                 patientNameTxt.setText(person.getName());
                 hourComboBox.setSelectedItem(person.getHour());
                 stateComboBox.setSelectedItem(person.getStateAppointment());
                 Date date = dFormat.parse(person.getDate());
-                    
+                
             } catch (ParseException ex) {
                 Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -432,12 +434,14 @@ public class Appointments extends javax.swing.JFrame {
        
         if (jTappointment.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "Datos insuficientes para actualizar.");
-        }else {
-        if(d.verifyAppointment(dateFromDateChooser, hours) == true ){
-            tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
-            tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);
-            tb.setValueAt(stateComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 3);
-            tb.setValueAt(dFormat.format(dateChooser.getDate()), jTappointment.getSelectedRow(),2);
+        }else{
+            if(d.verifyAppointment(dateFromDateChooser, hours) == true && isValidAppointment() == true){
+                Person p = new Person();
+                tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
+                tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);
+                tb.setValueAt(stateComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 3);
+                tb.setValueAt(dFormat.format(dateChooser.getDate()), jTappointment.getSelectedRow(),2);
+                d.modifyPatient(createApointment(p));
 
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
             clearTxt();

@@ -350,6 +350,18 @@ public class Database {
         }
         updateMedics();
     }
+    
+     public void modifyAppointment(Person app)
+    {
+        for(Person p : appointment){
+            if(p.getName().equals(app.getName()))
+            {
+                p.fakeOverload(app);
+                break;
+            }
+        }
+        updateAppointment();
+    }
 
     public void modifyUsers(User user) {
 
