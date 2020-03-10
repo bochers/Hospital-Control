@@ -315,6 +315,10 @@ public class Database {
         return notFound;
     }
     
+    public ArrayList<Person> getAppointments(){
+        return appointment;       
+    }
+    
     public boolean verifyAppointment(String date, String hour){
         for(Person p: appointment){
            if(p.getDate().equals(date) && p.getHour().equals(hour)){
