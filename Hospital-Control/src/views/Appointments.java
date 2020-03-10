@@ -26,11 +26,12 @@ public class Appointments extends javax.swing.JFrame {
     Database d;
     DefaultTableModel tb;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+    //String uType;
      
     /**
      * Creates new form Appointments
      */
-    @SuppressWarnings("empty-statement")
+    @SuppressWarnings("unchecked")
     public Appointments() {
         
         initComponents();
@@ -40,6 +41,7 @@ public class Appointments extends javax.swing.JFrame {
         createColumns();
         idText.setEnabled(false);
         this.setLocationRelativeTo(null);
+        //uType = userType;
         /*tb = new DefaultTableModel();
         tb.setColumnIdentifiers(columns);
         jTappointment.setModel(tb);
@@ -78,6 +80,7 @@ public class Appointments extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,7 +112,7 @@ public class Appointments extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 780, 90));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/little_imms.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 0, 110, 130));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 110, 130));
         jPanel1.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 160, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -204,13 +207,24 @@ public class Appointments extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 30));
 
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBack.setText("Regresar al menú");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 130, 40));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
+        jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     //
@@ -424,6 +438,14 @@ public class Appointments extends javax.swing.JFrame {
     private void searchPatientNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatientNameTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchPatientNameTxtActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        //Navigation navigationWindow;
+        //navigationWindow = new Navigation();
+        //navigationWindow.show();
+        //this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
     
     /**
      * @param args the command line arguments
@@ -461,6 +483,7 @@ public class Appointments extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
