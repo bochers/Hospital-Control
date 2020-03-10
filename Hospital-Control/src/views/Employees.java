@@ -163,6 +163,12 @@ public final class Employees extends javax.swing.JFrame {
         return matcher.find();
     }
     
+    public static boolean validateAddress( String address )
+   {
+      return address.matches( 
+         "\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
+   } // end method validateAddress
+    
     public Person addPerson(Person p) {
         p.setID(Integer.parseInt(IDText.getText()));
         p.setName(NameText.getText());
@@ -196,6 +202,34 @@ public final class Employees extends javax.swing.JFrame {
 
     }
 
+    public static boolean isNumeric(String strNum) {
+    if (strNum == null) {
+        return false;
+    }
+    try {
+        double d = Double.parseDouble(strNum);
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+    return true;
+}
+    
+    public boolean checkNum(){
+        if(isNumeric(NameText.getText())){
+            JOptionPane.showMessageDialog(null, "No se adminten numeros.");
+            return false;
+        }
+        if(isNumeric(APText.getText())){
+            JOptionPane.showMessageDialog(null, "No se adminten numeros.");
+            return false;
+        }
+        if(isNumeric(AMText.getText())){
+            JOptionPane.showMessageDialog(null, "No se adminten numeros.");
+            return false;
+        }
+        return true;
+    }
+    
     public int ID() {
         int size = d.medicsSize();
         size++;
@@ -364,7 +398,7 @@ public final class Employees extends javax.swing.JFrame {
         jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 190, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/doctor.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 440, 450));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 440, 450));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGreen.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -381,8 +415,8 @@ public final class Employees extends javax.swing.JFrame {
         clearTxt();
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
-        btnBuscar.setEnabled(false);
-        BuscarText.setEnabled(false);
+        //btnBuscar.setEnabled(false);
+        //BuscarText.setEnabled(false);
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -401,16 +435,23 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        if (isValidPatient() == true) {
-            if(validEmail(EmailText.getText()) == true){
-                Person m = new Person();
-                d.modifyMedics(addPerson(m));
-                JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-                clearTxt();
-                deactivate();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Correo inválido.");
+        if(checkNum() == true){
+            if (isValidPatient() == true) {
+                if(validateAddress(DireccionText.getText()) == true){
+                    if(validEmail(EmailText.getText()) == true){
+                        Person m = new Person();
+                        d.modifyMedics(addPerson(m));
+                        JOptionPane.showMessageDialog(null, "Modificado con éxito.");
+                        clearTxt();
+                        deactivate();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Correo inválido.");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Direccion inválida."); 
+                }
             }
         }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -431,16 +472,23 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if (isValidPatient() == true) {
-            if(validEmail(EmailText.getText()) == true){
-            Person p = new Person();
-            d.newMedic(addPerson(p));
-            JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-            clearTxt();
-            deactivate();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Correo inválido.");
+        if(checkNum() == true){
+            if (isValidPatient() == true) {
+                if(validateAddress(DireccionText.getText()) == true){
+                    if(validEmail(EmailText.getText()) == true){
+                        Person p = new Person();
+                        d.newMedic(addPerson(p));
+                        JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+                        clearTxt();
+                        deactivate();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Correo inválido.");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Direccion inválida.");
+                }
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
