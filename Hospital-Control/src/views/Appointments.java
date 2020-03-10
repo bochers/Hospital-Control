@@ -35,11 +35,22 @@ public class Appointments extends javax.swing.JFrame {
     public Appointments() {
         
         initComponents();
+        btnSave.setEnabled(false);
+        btnCancel.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnSearch.setEnabled(false);
+        searchPatientNameTxt.setEnabled(false);
+        btnClose.setEnabled(false);
+        dateChooser.setEnabled(false);
+        idText.setEnabled(false);
+        hourComboBox.setEnabled(false);
+        patientNameTxt.setEnabled(false);
+        stateComboBox.setEnabled(false);
+       
         
         d = new Database();
         Date date = new Date();
         createColumns();
-        idText.setEnabled(false);
         this.setLocationRelativeTo(null);
         //uType = userType;
         /*tb = new DefaultTableModel();
@@ -81,6 +92,8 @@ public class Appointments extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -137,7 +150,7 @@ public class Appointments extends javax.swing.JFrame {
                 searchPatientNameTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 190, 30));
+        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Fecha:");
@@ -179,14 +192,14 @@ public class Appointments extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, 30));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, 30));
 
         patientNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patientNameTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(patientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
+        jPanel1.add(patientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 270, 30));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Guardar");
@@ -195,17 +208,17 @@ public class Appointments extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, 30));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, 30));
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 290));
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCancel.setText("Cancelar");
+        btnCancel.setText("Eliminar");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 30));
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, 30));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBack.setText("Regresar al menú");
@@ -215,6 +228,24 @@ public class Appointments extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 130, 40));
+
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 180, 100, -1));
+
+        btnClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnClose.setText("Cancelar");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
@@ -433,6 +464,14 @@ public class Appointments extends javax.swing.JFrame {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        Person p;
+        
+        p = d.searchPatient(searchPatientNameTxt.getText());
+            searchPatientNameTxt.setText(p.getName()); 
+        if(p.getID()!= 0){
+            patientNameTxt.setText(p.getName() + " " + p.getLast() + " " + p.getSLast());
+            searchPatientNameTxt.setText(" ");
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void searchPatientNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatientNameTxtActionPerformed
@@ -446,6 +485,43 @@ public class Appointments extends javax.swing.JFrame {
         //navigationWindow.show();
         //this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+        btnSave.setEnabled(true);
+        btnCancel.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnSearch.setEnabled(true);
+        searchPatientNameTxt.setEnabled(true);
+        dateChooser.setEnabled(true);
+        hourComboBox.setEnabled(true);
+        stateComboBox.setEnabled(true);
+        btnClose.setEnabled(true);
+        idText.setText(String.valueOf(autoId()));
+
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        btnSave.setEnabled(false);
+        btnCancel.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnSearch.setEnabled(false);
+        searchPatientNameTxt.setEnabled(false);
+        searchPatientNameTxt.setText(" ");
+        dateChooser.setDate(null);
+        idText.setText(" ");
+        hourComboBox.setSelectedIndex(-1);
+        stateComboBox.setSelectedIndex(-1);
+        searchPatientNameTxt.setText(" ");
+        dateChooser.setEnabled(false);
+        idText.setEnabled(false);
+        hourComboBox.setEnabled(false);
+        patientNameTxt.setEnabled(false);
+        stateComboBox.setEnabled(false);
+        btnClose.setEnabled(false);
+        
+    }//GEN-LAST:event_btnCloseActionPerformed
     
     /**
      * @param args the command line arguments
@@ -485,6 +561,8 @@ public class Appointments extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;

@@ -20,6 +20,7 @@ public class Database {
     ArrayList<Person> medics;
     ArrayList<Person> patients;
     ArrayList<Person> appointment;
+    ArrayList<Person> patientToApp;
 
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
@@ -38,6 +39,7 @@ public class Database {
         users = new ArrayList<>();
         medics = new ArrayList<>();
         patients = new ArrayList<>();
+        patientToApp = new ArrayList<>();
         appointment = new ArrayList<>();
 
         try {
@@ -104,6 +106,7 @@ public class Database {
                 p.setDate(inputPatients.readUTF());
 
                 patients.add(p);
+                patientToApp.add(p);
             }
 
             while (inputMedics.available() > 0) {
@@ -261,17 +264,19 @@ public class Database {
         updateAppointment();
     }
     
-        public Person searchAppointement(String name) {
+    public Person searchAppointement(String find) {
         Person notFound = new Person();
 
-        for (Person p : appointment) {
-            if (p.getName().equals(name)){
+        for (Person p : patientToApp) {
+            String isThere = p.getName() + " " + p.getLast() + " " + p.getSLast();
+            if (isThere.equals(find)){
                 return p;
             }
         }
 
         return notFound;
     }
+    
 
     public Person searchPatient(String find) {
 
