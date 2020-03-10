@@ -54,8 +54,9 @@ public class Appointments extends javax.swing.JFrame {
         d = new Database();
         apt = d.getAppointments();
 
-        for(Person a : apt){
+        for (Person a : apt) {
             System.out.println(a.getName());
+            fillRow(a);
         }
 
         //uType = userType;
@@ -63,7 +64,6 @@ public class Appointments extends javax.swing.JFrame {
         tb.setColumnIdentifiers(columns);
         jTappointment.setModel(tb);
         //idText.setEnabled(false);*/
-        
     }
 
     /**
@@ -264,29 +264,44 @@ public class Appointments extends javax.swing.JFrame {
 
     //
     public void createColumns() {
-        
+
         tb = (DefaultTableModel) jTappointment.getModel();
         tb.addColumn("Nombre");
         tb.addColumn("Hora de cita");
         tb.addColumn("Estado actual de cita");
         tb.addColumn("Fecha de cita");
         tb.addColumn("Id");
-        
+
     }
-    
+
     public void fillRows(String name, String hour, String state, String auxdate, int id) {
-        
+
         String dateFromDateChooser = dFormat.format(dateChooser.getDate());
         dateFromDateChooser = auxdate;
-        
+
         String[] rowData = {name, hour, state, auxdate, String.valueOf(id)};
-        
+
         tb.addRow(rowData);
-        
+
     }
-    
+
+    public void fillRow(Person p) {
+        String name = p.getName();
+        String hour = p.getHour();
+        String state = p.getState();
+        String auxdate = p.getDate();
+        int id = p.getID();
+//        String dateFromDateChooser = dFormat.format(dateChooser.getDate());
+//        dateFromDateChooser = auxdate;
+
+        String[] rowData = {name, hour, state, auxdate, String.valueOf(id)};
+
+        tb.addRow(rowData);
+
+    }
+
     public void displayAppointment(Person person) {
-        
+
         if (person.getID() != 0) {
             try {
                 idText.setText(String.valueOf(person.getID()));
@@ -294,42 +309,42 @@ public class Appointments extends javax.swing.JFrame {
                 hourComboBox.setSelectedItem(person.getHour());
                 stateComboBox.setSelectedItem(person.getStateAppointment());
                 Date date = dFormat.parse(person.getDate());
-                
+
             } catch (ParseException ex) {
                 Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Error");            
+            JOptionPane.showMessageDialog(null, "Error");
         }
     }
-    
+
     public int autoId() {
         int size = d.appointmentSize();
         size++;
-        return size;        
+        return size;
     }
-    
+
     public void clearTxt() {
         patientNameTxt.setText("");
         searchPatientNameTxt.setText("");
         hourComboBox.setSelectedIndex(-1);
         stateComboBox.setSelectedIndex(-1);
         dateChooser.setDate(null);
-        
+
     }
-    
+
     public Person createApointment(Person p) {
-        
+
         p.setID(Integer.parseInt(idText.getText()));
         p.setHour((String) hourComboBox.getSelectedItem());
         p.setName(patientNameTxt.getText());
         p.setStateAppointment((String) stateComboBox.getSelectedItem());
         p.setDate(dFormat.format(dateChooser.getDate()));
-        
+
         return p;
-        
+
     }
-    
+
     public boolean isValidAppointment() {
         boolean valid = false;
         if (patientNameTxt.getText().length() > 0) {
@@ -337,27 +352,27 @@ public class Appointments extends javax.swing.JFrame {
                 if (stateComboBox.getSelectedIndex() != -1) {
                     if (dateChooser.getDate() != null) {
                         valid = true;
-                        
+
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error en Fecha de cita");                        
+                        JOptionPane.showMessageDialog(null, "Error en Fecha de cita");
                         dateChooser.requestFocusInWindow();
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error en Estado de cita");                    
+                    JOptionPane.showMessageDialog(null, "Error en Estado de cita");
                     stateComboBox.requestFocusInWindow();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error en Hora");                
+                JOptionPane.showMessageDialog(null, "Error en Hora");
                 hourComboBox.requestFocusInWindow();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Error en Nombre del paciente");            
+            JOptionPane.showMessageDialog(null, "Error en Nombre del paciente");
             patientNameTxt.requestFocusInWindow();
         }
-        
+
         return valid;
     }
-    
+
 
     private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
         // TODO add your handling code here:
@@ -380,10 +395,10 @@ public class Appointments extends javax.swing.JFrame {
         String dateFromDateChooser = dFormat.format(dateChooser.getDate());
         String aux = dateFromDateChooser;
         String hours = (String) hourComboBox.getSelectedItem();
-        
+
         String auxId = String.valueOf(autoId());
         idText.setText(auxId);
-        
+
         if (isValidAppointment()) {
             if (d.verifyAppointment(dateFromDateChooser, hours) == true) {
                 Person p = new Person();
@@ -392,18 +407,18 @@ public class Appointments extends javax.swing.JFrame {
                         (String) stateComboBox.getSelectedItem(),
                         dFormat.format(dateChooser.getDate()),
                         Integer.parseInt(idText.getText()));
-                
+
                 JOptionPane.showMessageDialog(null, "Guardado con éxito.");
                 d.newAppointment(createApointment(p));
                 clearTxt();
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Imposible realizar cita, por favor verifique su horario");
                 stateComboBox.setSelectedItem("Inactivo");
-                
+
             }
-            
-        }        
+
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
     ///Mostrar en pantalla la tabla
     private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
@@ -413,16 +428,16 @@ public class Appointments extends javax.swing.JFrame {
         stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2));
         //dateChooser.setDate((Date) jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
         idText.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 4));
-        
+
     }//GEN-LAST:event_jTappointmentMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        
+
         String dateFromDateChooser = dFormat.format(dateChooser.getDate());
         String aux = dateFromDateChooser;
         String hours = (String) hourComboBox.getSelectedItem();
-        
+
         if (jTappointment.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "Datos insuficientes para actualizar.");
         } else {
@@ -433,17 +448,17 @@ public class Appointments extends javax.swing.JFrame {
                 tb.setValueAt(stateComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 3);
                 tb.setValueAt(dFormat.format(dateChooser.getDate()), jTappointment.getSelectedRow(), 2);
                 d.modifyPatient(createApointment(p));
-                
+
                 JOptionPane.showMessageDialog(null, "Modificado con éxito.");
                 clearTxt();
             } else {
                 JOptionPane.showMessageDialog(null, "Imposible actualizar, revisar hora de la cita.");
             }
-            
+
         }
 //dateChooser.setDate(jTappointment.getValueAt(jTappointment.getSelectedRow(),2).toString());
         //idText.setText(jTappointment.getValueAt(jTappointment.getSelectedRow(), 3).toString());
-        
+
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -460,9 +475,9 @@ public class Appointments extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         Person p;
-        
+
         p = d.searchPatient(searchPatientNameTxt.getText());
-        searchPatientNameTxt.setText(p.getName());        
+        searchPatientNameTxt.setText(p.getName());
         if (p.getID() != 0) {
             patientNameTxt.setText(p.getName() + " " + p.getLast() + " " + p.getSLast());
             searchPatientNameTxt.setText(" ");
@@ -515,7 +530,7 @@ public class Appointments extends javax.swing.JFrame {
         patientNameTxt.setEnabled(false);
         stateComboBox.setEnabled(false);
         btnClose.setEnabled(false);
-        
+
     }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
