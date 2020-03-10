@@ -129,7 +129,6 @@ public class Database {
                 p = new Person();
                 
                 p.setID(inputAppointment.readInt());
-                
                 p.setName(inputAppointment.readUTF());
                 p.setHour(inputAppointment.readUTF());
                 p.setStateAppointment(inputAppointment.readUTF());
@@ -311,14 +310,13 @@ public class Database {
         return notFound;
     }
     
-    public Person verifyAppointment(String date){
-       Person notAvalivable = new Person();
+    public boolean verifyAppointment(String date, String hour){
         for(Person p: appointment){
-           if(p.getDate()!=(date)){
-               return p;
+           if(p.getDate().equals(date) && p.getHour().equals(hour)){
+               return false;
            }
        }
-        return notAvalivable;
+        return true;
         
     }
     
