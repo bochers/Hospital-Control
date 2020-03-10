@@ -129,9 +129,11 @@ public class Database {
                 p = new Person();
                 
                 p.setID(inputAppointment.readInt());
+                
                 p.setName(inputAppointment.readUTF());
                 p.setHour(inputAppointment.readUTF());
                 p.setStateAppointment(inputAppointment.readUTF());
+                p.setDate(inputAppointment.readUTF());
                 
                 appointment.add(p);
             }
@@ -228,6 +230,7 @@ public class Database {
                 outputAppointment.writeUTF(p.getName());
                 outputAppointment.writeUTF(p.getHour());
                 outputAppointment.writeUTF(p.getStateAppointment());
+                outputAppointment.writeUTF(p.getDate());
                
             }
 
@@ -306,6 +309,17 @@ public class Database {
         }
 
         return notFound;
+    }
+    
+    public Person verifyAppointment(String date){
+       Person notAvalivable = new Person();
+        for(Person p: appointment){
+           if(p.getDate()!=(date)){
+               return p;
+           }
+       }
+        return notAvalivable;
+        
     }
     
 
@@ -421,5 +435,9 @@ public class Database {
 
     public int usersSize() {
         return users.size();
+    }
+    
+    public int appointmentSize(){
+        return appointment.size();
     }
 }
