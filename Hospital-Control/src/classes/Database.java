@@ -437,6 +437,20 @@ public class Database {
         }
         updateUsers();
     }
+    
+    public void deleteAppointment(int id) {
+
+        int i = 0;
+        for (Person p : appointment) {
+
+            if (p.getID() == id) {
+                appointment.remove(i);
+                break;
+            }
+            ++i;
+        }
+        updateUsers();
+    }
 
     public int validateUser(String username, String password) {
 
@@ -445,7 +459,7 @@ public class Database {
                 if (u.getPassword().equals(password)) {
                     //ADMIN
                     if (u.getEditMedics() && u.getEditPatients() && u.getEditUsers()) {
-                        return 1;
+//                        return 1;
                     } //SUPERVISOR
                     else if (u.getEditMedics() && u.getEditPatients()) {
                         return 2;

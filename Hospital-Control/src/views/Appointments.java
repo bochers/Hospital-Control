@@ -38,7 +38,7 @@ public class Appointments extends javax.swing.JFrame {
 
         initComponents();
         btnSave.setEnabled(false);
-        btnCancel.setEnabled(false);
+      
         btnUpdate.setEnabled(false);
         btnSearch.setEnabled(false);
         searchPatientNameTxt.setEnabled(false);
@@ -55,7 +55,7 @@ public class Appointments extends javax.swing.JFrame {
         apt = d.getAppointments();
 
         for (Person a : apt) {
-            System.out.println(a.getName());
+           
             fillRow(a);
         }
 
@@ -126,7 +126,7 @@ public class Appointments extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTappointment);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 780, 90));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 280));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/little_imms.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 110, 130));
@@ -154,7 +154,7 @@ public class Appointments extends javax.swing.JFrame {
                 searchPatientNameTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 230, 30));
+        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Fecha:");
@@ -174,7 +174,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 80, 30));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 80, 30));
 
         stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         stateComboBox.setSelectedIndex(-1);
@@ -231,7 +231,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 130, 40));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 170, 40));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setText("Nuevo");
@@ -240,7 +240,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 180, 100, -1));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 100, 30));
 
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnClose.setText("Cancelar");
@@ -249,7 +249,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 100, -1));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 100, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
@@ -288,12 +288,9 @@ public class Appointments extends javax.swing.JFrame {
     public void fillRow(Person p) {
         String name = p.getName();
         String hour = p.getHour();
-        String state = p.getState();
+        String state = p.getStateAppointment();
         String auxdate = p.getDate();
         int id = p.getID();
-//        String dateFromDateChooser = dFormat.format(dateChooser.getDate());
-//        dateFromDateChooser = auxdate;
-
         String[] rowData = {name, hour, state, auxdate, String.valueOf(id)};
 
         tb.addRow(rowData);
@@ -422,11 +419,13 @@ public class Appointments extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
     ///Mostrar en pantalla la tabla
     private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
-        // TODO add your handling code here:    
+        // TODO add your handling code here:
+        
+        
         patientNameTxt.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 0));
         hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1));
         stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2));
-        //dateChooser.setDate((Date) jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
+        //dateChooser.setDateFormatString((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
         idText.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 4));
 
     }//GEN-LAST:event_jTappointmentMouseClicked
@@ -466,6 +465,8 @@ public class Appointments extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Datos insuficientes para cancelar.");
         } else {
             tb.removeRow(jTappointment.getSelectedRow());
+            d.deleteAppointment((Integer.parseInt(idText.getText())));
+            
         }
         clearTxt();
     }//GEN-LAST:event_btnCancelActionPerformed
@@ -476,7 +477,7 @@ public class Appointments extends javax.swing.JFrame {
 
         p = d.searchPatient(searchPatientNameTxt.getText());
         searchPatientNameTxt.setText(p.getName());
-        if (p.getID() != 0) {
+        if (p.getID() != 0){
             patientNameTxt.setText(p.getName() + " " + p.getLast() + " " + p.getSLast());
             searchPatientNameTxt.setText(" ");
         }
@@ -488,10 +489,10 @@ public class Appointments extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        //Navigation navigationWindow;
-        //navigationWindow = new Navigation();
-        //navigationWindow.show();
-        //this.dispose();
+        Navigation navigationWindow;
+        navigationWindow = new Navigation();
+        navigationWindow.show();
+        this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
