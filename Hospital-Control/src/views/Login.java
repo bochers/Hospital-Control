@@ -16,16 +16,13 @@ import javax.swing.JOptionPane;
  * @author isaac
  */
 public class Login extends javax.swing.JFrame {
-
-    String name, id, surname, address, username, phone;
-    int age = 0;
-    String pass = "";
+    
     Database data = new Database();
 
     public Login() {
+        
         initComponents();
         this.setLocationRelativeTo(null);
-        checkIn.setVisible(false);
     }
 
     /**
@@ -43,7 +40,6 @@ public class Login extends javax.swing.JFrame {
         passwordText = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         login = new javax.swing.JButton();
-        checkIn = new javax.swing.JButton();
         jLabelFondoLoggin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,15 +73,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 170, 40));
-
-        checkIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        checkIn.setText("Registrarse");
-        checkIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkInActionPerformed(evt);
-            }
-        });
-        getContentPane().add(checkIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 40));
 
         jLabelFondoLoggin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/halo.jpg"))); // NOI18N
         getContentPane().add(jLabelFondoLoggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -136,17 +123,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userTxtActionPerformed
 
-    private void checkInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInActionPerformed
-
-        /*
-        ACTIVAR SI SE NOS PIERDE LA CUENTA DE ADMIN *DAB*
-        
-        Users window = new Users(null);
-        window.show();
-        this.dispose();
-        */
-    }//GEN-LAST:event_checkInActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -177,14 +153,12 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
                 new Login().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton checkIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

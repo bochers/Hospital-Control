@@ -6,7 +6,6 @@
 package hospital.control;
 import views.Login;
 
-
 /**
  *
  * @author isaac

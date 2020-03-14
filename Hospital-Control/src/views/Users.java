@@ -17,7 +17,6 @@ public class Users extends javax.swing.JFrame {
 
     Database d;
     String uType;
-
     /**
      * Creates new form Users
      *
@@ -28,11 +27,6 @@ public class Users extends javax.swing.JFrame {
         d = new Database();
         uType = userType;
         this.setLocationRelativeTo(null);
-
-        /*Image img;
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/chayanne2.png"));
-        img = icon.getImage();
-        godButton.setIcon(new ImageIcon(img.getScaledInstance(godButton.getWidth(), godButton.getHeight(), WIDTH)));*/
     }
 
     public Users() {

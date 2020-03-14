@@ -185,6 +185,7 @@ public final class Employees extends javax.swing.JFrame {
     }
 
     public void displayPerson(Person person) {
+        
         if (person.getID() != 0) {
             IDText.setText(String.valueOf(person.getID()));
             NameText.setText(person.getName());
