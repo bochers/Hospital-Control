@@ -32,6 +32,7 @@ public class Users extends javax.swing.JFrame {
     public Users() {
         d = new Database();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -60,6 +61,7 @@ public class Users extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         usernameText = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
+        newButton = new javax.swing.JButton();
         bgd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,12 +72,12 @@ public class Users extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         usersLabel.setFont(new java.awt.Font("DFMincho-UB", 1, 36)); // NOI18N
-        usersLabel.setText("Users");
-        jPanel1.add(usersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 140, 60));
+        usersLabel.setText("Usuarios");
+        jPanel1.add(usersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 180, 60));
 
         godLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (2).png"))); // NOI18N
-        jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 410, 480));
+        jPanel1.add(godLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 400, 470));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 740, 4));
@@ -98,7 +100,7 @@ public class Users extends javax.swing.JFrame {
                 searchButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 90, -1));
+        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 110, 40));
 
         profileComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Supervisor", "Secretari@" }));
         profileComboBox.setSelectedIndex(-1);
@@ -115,7 +117,7 @@ public class Users extends javax.swing.JFrame {
                 modifyButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 110, 40));
+        jPanel1.add(modifyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 110, 40));
 
         deleteButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteButton.setText("Eliminar");
@@ -124,7 +126,7 @@ public class Users extends javax.swing.JFrame {
                 deleteButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 110, 40));
+        jPanel1.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 110, 40));
 
         saveButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         saveButton.setText("Guardar");
@@ -133,11 +135,11 @@ public class Users extends javax.swing.JFrame {
                 saveButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 110, 40));
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 110, 40));
 
         passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        passwordLabel.setText("Password:");
-        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        passwordLabel.setText("Contraseña:");
+        jPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         passwordText.setPreferredSize(new java.awt.Dimension(230, 30));
         jPanel1.add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
@@ -161,6 +163,15 @@ public class Users extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 110, 40));
+
+        newButton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        newButton.setText("Nuevo");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(newButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 110, 40));
 
         bgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/UsersBGD.jpg"))); // NOI18N
         jPanel1.add(bgd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -294,6 +305,10 @@ public class Users extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,6 +353,7 @@ public class Users extends javax.swing.JFrame {
     private javax.swing.JLabel godLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton modifyButton;
+    private javax.swing.JButton newButton;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPasswordField passwordText;
     private javax.swing.JComboBox<String> profileComboBox;
