@@ -38,7 +38,7 @@ public class Appointments extends javax.swing.JFrame {
 
         initComponents();
         btnSave.setEnabled(false);
-      
+
         btnUpdate.setEnabled(false);
         btnSearch.setEnabled(false);
         searchPatientNameTxt.setEnabled(false);
@@ -55,7 +55,7 @@ public class Appointments extends javax.swing.JFrame {
         apt = d.getAppointments();
 
         for (Person a : apt) {
-           
+
             fillRow(a);
         }
 
@@ -420,8 +420,7 @@ public class Appointments extends javax.swing.JFrame {
     ///Mostrar en pantalla la tabla
     private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
         // TODO add your handling code here:
-        
-        
+
         patientNameTxt.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 0));
         hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1));
         stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2));
@@ -466,7 +465,7 @@ public class Appointments extends javax.swing.JFrame {
         } else {
             tb.removeRow(jTappointment.getSelectedRow());
             d.deleteAppointment((Integer.parseInt(idText.getText())));
-            
+
         }
         clearTxt();
     }//GEN-LAST:event_btnCancelActionPerformed
@@ -477,7 +476,7 @@ public class Appointments extends javax.swing.JFrame {
 
         p = d.searchPatient(searchPatientNameTxt.getText());
         searchPatientNameTxt.setText(p.getName());
-        if (p.getID() != 0){
+        if (p.getID() != 0) {
             patientNameTxt.setText(p.getName() + " " + p.getLast() + " " + p.getSLast());
             searchPatientNameTxt.setText(" ");
         }

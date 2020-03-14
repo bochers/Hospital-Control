@@ -24,12 +24,12 @@ public class Navigation extends javax.swing.JFrame {
 
         if (userType.equals("Supervisor")) {
             bttnUsers.setEnabled(false);
-            bttnStock.setEnabled(false);
+            // bttnStock.setEnabled(false);
         } else if (userType.equals("Secretari@")) {
             bttnMedics.setEnabled(false);
             bttnMedicalH.setEnabled(false);
             bttnUsers.setEnabled(false);
-            bttnStock.setEnabled(false);
+            //bttnStock.setEnabled(false);
             bttnServices.setEnabled(false);
         }
 
@@ -198,6 +198,10 @@ public class Navigation extends javax.swing.JFrame {
 
     private void bttnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnStockActionPerformed
         // TODO add your handling code here:
+        Stock stockWindow;
+        stockWindow = new Stock();
+        stockWindow.show();
+        this.dispose();
     }//GEN-LAST:event_bttnStockActionPerformed
 
     private void bttnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnLogoutActionPerformed

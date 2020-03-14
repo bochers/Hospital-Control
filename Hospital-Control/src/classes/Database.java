@@ -21,26 +21,31 @@ public class Database {
     ArrayList<Person> patients;
     ArrayList<Person> appointment;
     ArrayList<Person> patientToApp;
+    ArrayList<Item> stockItems;
 
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
-    
+
     DataInputStream inputMedics;
     DataOutputStream outputMedics;
-    
+
     DataInputStream inputUsers;
     DataOutputStream outputUsers;
-    
+
     DataInputStream inputAppointment;
     DataOutputStream outputAppointment;
 
+    DataInputStream inputStock;
+    DataOutputStream outputStock;
+
     public Database() {
-        
+
         users = new ArrayList<>();
         medics = new ArrayList<>();
         patients = new ArrayList<>();
         patientToApp = new ArrayList<>();
         appointment = new ArrayList<>();
+        stockItems = new ArrayList<>();
 
         try {
 
@@ -48,11 +53,13 @@ public class Database {
             outputPatients = new DataOutputStream(new FileOutputStream("patients.txt", true));
             outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
             outputAppointment = new DataOutputStream(new FileOutputStream("appointments.txt", true));
+            outputStock = new DataOutputStream(new FileOutputStream("stock.txt", true));
 
             outputUsers.close();
             outputPatients.close();
             outputMedics.close();
             outputAppointment.close();
+            outputStock.close();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,6 +74,7 @@ public class Database {
 
         User u = new User();
         Person p = new Person();
+        Item item = new Item();
 
         try {
 
@@ -74,6 +82,7 @@ public class Database {
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
             inputAppointment = new DataInputStream(new FileInputStream("appointments.txt"));
+            inputStock = new DataInputStream(new FileInputStream("stock.txt"));
 
             while (inputUsers.available() > 0) {
 
@@ -126,18 +135,31 @@ public class Database {
 
                 medics.add(p);
             }
-            
+
             while (inputAppointment.available() > 0) {
 
                 p = new Person();
-                
+
                 p.setID(inputAppointment.readInt());
                 p.setName(inputAppointment.readUTF());
                 p.setHour(inputAppointment.readUTF());
                 p.setStateAppointment(inputAppointment.readUTF());
                 p.setDate(inputAppointment.readUTF());
-                
                 appointment.add(p);
+            }
+
+            while (inputStock.available() > 0) {
+
+                item = new Item();
+
+                item.setId(inputStock.readInt());
+                item.setName(inputStock.readUTF());
+                item.setType(inputStock.readUTF());
+                item.setPrice(inputStock.readInt());
+                item.setAmount(inputStock.readInt());
+                item.setExpiration(inputStock.readUTF());
+
+                stockItems.add(item);
             }
 
         } catch (FileNotFoundException ex) {
@@ -220,7 +242,7 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void updateAppointment() {
         try {
             outputAppointment = new DataOutputStream(new FileOutputStream("appointments.txt", true));
@@ -233,7 +255,30 @@ public class Database {
                 outputAppointment.writeUTF(p.getHour());
                 outputAppointment.writeUTF(p.getStateAppointment());
                 outputAppointment.writeUTF(p.getDate());
-               
+
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateStock() {
+        try {
+            outputStock = new DataOutputStream(new FileOutputStream("stock.txt", true));
+            FileOutputStream clearStock = new FileOutputStream("stock.txt");
+
+            for (Item item : stockItems) {
+                System.out.println(item.getType());
+                System.out.println(item.getId());
+                outputStock.writeInt(item.getId());
+                outputStock.writeUTF(item.getName());
+                outputStock.writeUTF(item.getType());
+                outputStock.writeInt(item.getPrice());
+                outputStock.writeInt(item.getAmount());
+                outputStock.writeUTF(item.getExpiration());
             }
 
         } catch (FileNotFoundException ex) {
@@ -257,26 +302,29 @@ public class Database {
         medics.add(p);
         updateMedics();
     }
-    
-    public void newAppointment(Person p)
-    {
+
+    public void newAppointment(Person p) {
         appointment.add(p);
         updateAppointment();
     }
-    
+
+    public void newStockItem(Item item) {
+        stockItems.add(item);
+        updateStock();
+    }
+
     public Person searchAppointement(String find) {
         Person notFound = new Person();
 
         for (Person p : patientToApp) {
             String isThere = p.getName() + " " + p.getLast() + " " + p.getSLast();
-            if (isThere.equals(find)){
+            if (isThere.equals(find)) {
                 return p;
             }
         }
 
         return notFound;
     }
-    
 
     public Person searchPatient(String find) {
 
@@ -314,22 +362,35 @@ public class Database {
 
         return notFound;
     }
-    
-    public ArrayList<Person> getAppointments(){
-        return appointment;       
-    }
-    
-    public boolean verifyAppointment(String date, String hour){
-        for(Person p: appointment){
-           if(p.getDate().equals(date) && p.getHour().equals(hour)){
-               return false;
-           }
-       }
-        return true;
-        
-    }
-    
 
+    public Item searchStockItem(int id) {
+        Item found = new Item();
+        for (Item item : stockItems) {
+            if (item.getId() == id) {
+                found = item;
+                break;
+            }
+        }
+        return found;
+    }
+
+    public ArrayList<Person> getAppointments() {
+        return appointment;
+    }
+
+    public ArrayList<Item> getStock() {
+        return stockItems;
+    }
+
+    public boolean verifyAppointment(String date, String hour) {
+        for (Person p : appointment) {
+            if (p.getDate().equals(date) && p.getHour().equals(hour)) {
+                return false;
+            }
+        }
+        return true;
+
+    }
 
     public void modifyPatient(Person pat) {
 
@@ -354,34 +415,30 @@ public class Database {
         }
         updateMedics();
     }
-    
-     public void modifyAppointment(Person app)
-    {
-        for(Person p : appointment){
-            if(p.getName().equals(app.getName()))
-            {
+
+    public void modifyAppointment(Person app) {
+        for (Person p : appointment) {
+            if (p.getName().equals(app.getName())) {
                 p.fakeOverload(app);
                 break;
             }
         }
         updateAppointment();
     }
-     
-           public boolean modifyAppointment(String date, String hour, int id){
-        for(Person p: appointment){
-           if(p.getDate().equals(date) && p.getHour().equals(hour)){
-               if(p.getID() == id)
-               {
-                    
-               }else
-               {
-                   return false;
-               }
-                   
-           }
-           
-       }
-    return true;        
+
+    public boolean modifyAppointment(String date, String hour, int id) {
+        for (Person p : appointment) {
+            if (p.getDate().equals(date) && p.getHour().equals(hour)) {
+                if (p.getID() == id) {
+
+                } else {
+                    return false;
+                }
+
+            }
+
+        }
+        return true;
     }
 
     public void modifyUsers(User user) {
@@ -394,6 +451,16 @@ public class Database {
             }
         }
         updateUsers();
+    }
+
+    public void modifyStockItem(Item item) {
+        for (Item i : stockItems) {
+            if (item.getId() == i.getId()) {
+                i.set(item);
+                break;
+            }
+        }
+        updateStock();
     }
 
     public void deletePatient(int id) {
@@ -437,7 +504,7 @@ public class Database {
         }
         updateUsers();
     }
-    
+
     public void deleteAppointment(int id) {
 
         int i = 0;
@@ -449,7 +516,17 @@ public class Database {
             }
             ++i;
         }
-        updateUsers();
+        updateAppointment();
+    }
+
+    public void deleteStockItem(int id) {
+        for (int i = 0; i < stockItems.size(); i++) {
+            if (stockItems.get(i).getId() == id) {
+                stockItems.remove(i);
+                break;
+            }
+        }
+        updateStock();
     }
 
     public int validateUser(String username, String password) {
@@ -466,7 +543,6 @@ public class Database {
                     else if (u.getEditPatients()) {
                         return 3;
                     }
-
                 }
             }
         }
@@ -485,8 +561,8 @@ public class Database {
     public int usersSize() {
         return users.size();
     }
-    
-    public int appointmentSize(){
+
+    public int appointmentSize() {
         return appointment.size();
     }
 }
