@@ -457,9 +457,8 @@ public class Database {
         for (User u : users) {
             if (u.getUsername().equals(username)) {
                 if (u.getPassword().equals(password)) {
-                    //ADMIN
                     if (u.getEditMedics() && u.getEditPatients() && u.getEditUsers()) {
-//                        return 1;
+                        return 1;
                     } //SUPERVISOR
                     else if (u.getEditMedics() && u.getEditPatients()) {
                         return 2;

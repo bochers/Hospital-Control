@@ -17,11 +17,12 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
-    Database data = new Database();
+    Database data;
 
     public Login() {
         
         initComponents();
+        data = new Database();
         this.setLocationRelativeTo(null);
     }
 
@@ -83,7 +84,7 @@ public class Login extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
         //String aux = new String (pass);
-
+        System.out.println(userTxt.getText());
         switch (data.validateUser(userTxt.getText(), passwordText.getText())) {
 
             case 1: {

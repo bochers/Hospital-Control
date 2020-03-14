@@ -30,6 +30,7 @@ public class Users extends javax.swing.JFrame {
     }
 
     public Users() {
+        d = new Database();
         initComponents();
     }
 
