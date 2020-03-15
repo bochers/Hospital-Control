@@ -232,7 +232,7 @@ public final class Employees extends javax.swing.JFrame {
     }
     
     public int ID() {
-        int size = d.medicsSize();
+        int size = d.lastMedicID();
         size++;
         return size;
     }

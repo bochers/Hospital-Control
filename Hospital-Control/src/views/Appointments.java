@@ -316,7 +316,7 @@ public class Appointments extends javax.swing.JFrame {
     }
 
     public int autoId() {
-        int size = d.appointmentSize();
+        int size = d.lastAppointmenID();
         size++;
         return size;
     }

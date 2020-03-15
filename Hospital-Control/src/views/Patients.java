@@ -38,13 +38,20 @@ public class Patients extends javax.swing.JFrame {
         deactivate();
         uType = userType;
         Image img;
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("../assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));        
     }
     
     public Patients() {
         initComponents();
+        d = new Database();
+        deactivate();
+        uType = "";
+        Image img;
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("../assets/Zoom-icon.png"));
+        img = icon.getImage();
+        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
     }
     
     public void activate(){
@@ -93,10 +100,11 @@ public class Patients extends javax.swing.JFrame {
         CityText.setText("");
         CBSangre.setSelectedIndex(-1);
         CalendarFecha.setDate(null);
+        btnBuscar.setEnabled(true);
     }
     
     public int ID(){
-        int size = d.patientsSize();
+        int size = d.lastPatientID();
             size++;
             return size;   
 };
@@ -228,8 +236,10 @@ public class Patients extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 65, 260, 30));
+        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 260, 30));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ID:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 95, -1, 20));
 
@@ -238,25 +248,35 @@ public class Patients extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 60, 60));
-        jPanel1.add(IDText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 190, 30));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 60, 60));
+        jPanel1.add(IDText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 220, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 130, -1, -1));
-        jPanel1.add(AMText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 190, 30));
-        jPanel1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 190, 30));
+        jPanel1.add(AMText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 220, 30));
+        jPanel1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 220, 30));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("A. Paterno:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 158, -1, -1));
-        jPanel1.add(APText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 190, 30));
+        jPanel1.add(APText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 220, 30));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("A. Materno:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 188, 80, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 188, 90, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Teléfono:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 217, 70, -1));
-        jPanel1.add(PhoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 190, 30));
+        jPanel1.add(PhoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 220, 30));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Estado:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 275, -1, -1));
 
@@ -266,7 +286,7 @@ public class Patients extends javax.swing.JFrame {
                 btnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 80, 50));
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 100, 40));
 
         btnDelete.setText("DELETE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +294,7 @@ public class Patients extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 80, 50));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 100, 40));
 
         btnCancel.setText("CANCEL");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -282,7 +302,7 @@ public class Patients extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 80, 50));
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 100, 40));
 
         btnSave.setText("SAVE");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -290,7 +310,7 @@ public class Patients extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 80, 50));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 100, 40));
 
         btnNew.setText("NEW");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -298,28 +318,33 @@ public class Patients extends javax.swing.JFrame {
                 btnNewActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 80, 50));
+        jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 100, 40));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Ciudad:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 305, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Sexo:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 238, -1, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 40, 30));
 
         ComboBoxESTADO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
         ComboBoxESTADO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 193, 30));
+        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 220, 30));
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
         sexComboBox.setSelectedIndex(-1);
-        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 193, 30));
+        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 220, 30));
 
-        jLabel14.setFont(new java.awt.Font("Phosphate", 1, 36)); // NOI18N
-        jLabel14.setText("PACIENTES");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 290, 40));
+        jLabel14.setFont(new java.awt.Font("DFMincho-UB", 1, 36)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Pacientes");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 180, 40));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
-        jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 800, 4));
+        jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 750, 4));
 
         btnBack.setText("BACK TO MENU");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -327,27 +352,31 @@ public class Patients extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 12, -1, -1));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 12, -1, 30));
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Sangre:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 329, -1, 30));
 
         CBSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-", " " }));
         CBSangre.setSelectedIndex(-1);
-        jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 193, 30));
+        jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 220, 30));
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Fecha Nacimiento:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, 30));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 130, 30));
 
         CalendarFecha.setMaxSelectableDate(new java.util.Date(1577862117000L));
         CalendarFecha.setMinSelectableDate(new java.util.Date(-631126683000L));
-        jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 190, 30));
+        jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 180, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga_.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 400, 240));
-        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 190, 30));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 490, 390));
+        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 220, 30));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/purple (1).png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -414,6 +443,7 @@ public class Patients extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearTxt();
         deactivate();
+        btnBuscar.setEnabled(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

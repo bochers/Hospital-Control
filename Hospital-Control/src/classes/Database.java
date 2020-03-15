@@ -561,20 +561,18 @@ public class Database {
     }
     
 
-    public int patientsSize() {
-        return patients.size();
-
+    public int lastPatientID() {
+        
+        return patients.get(patients.size() - 1).getID();
     }
 
-    public int medicsSize() {
-        return medics.size();
+    public int lastMedicID() {
+        
+        return medics.get(medics.size() - 1).getID();
     }
 
-    public int usersSize() {
-        return users.size();
-    }
-
-    public int appointmentSize() {
-        return appointments.size();
+    public int lastAppointmenID() {
+        
+        return appointments.get(appointments.size() - 1).getID();
     }
 }
