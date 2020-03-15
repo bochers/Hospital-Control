@@ -420,11 +420,11 @@ public class Appointments extends javax.swing.JFrame {
     ///Mostrar en pantalla la tabla
     private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
         // TODO add your handling code here:
-
+        btnUpdate.setEnabled(true);
         patientNameTxt.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 0));
         hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1));
         stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2));
-        //dateChooser.setDateFormatString((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
+        //dateChooser.setDateFormatString((String)jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
         idText.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 4));
 
     }//GEN-LAST:event_jTappointmentMouseClicked

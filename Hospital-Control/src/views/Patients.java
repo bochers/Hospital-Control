@@ -408,8 +408,8 @@ public class Patients extends javax.swing.JFrame {
             d.modifyPatient(addPerson(p));
 
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-            clearTxt();
             deactivate();
+            clearTxt();
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -437,13 +437,13 @@ public class Patients extends javax.swing.JFrame {
         d.deletePatient(Integer.parseInt(IDText.getText()));
         deactivate();
         clearTxt();
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-        clearTxt();
         deactivate();
-        btnBuscar.setEnabled(true);
+        clearTxt();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -453,11 +453,9 @@ public class Patients extends javax.swing.JFrame {
             d.newPatient(addPerson(p));
 
             JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-            clearTxt();
             deactivate();
+            clearTxt();
         }
- 
-        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**

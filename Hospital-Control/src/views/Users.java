@@ -1,4 +1,5 @@
 package views;
+
 import classes.Database;
 import classes.User;
 import java.util.regex.Matcher;
@@ -188,7 +189,6 @@ public class Users extends javax.swing.JFrame {
 
     public void disableWidgets() {
         usernameText.setEnabled(true);
-
         passwordText.setEnabled(false);
         emailText.setEnabled(false);
         profileComboBox.setEnabled(false);
@@ -242,8 +242,30 @@ public class Users extends javax.swing.JFrame {
         }
         return valid;
     }
-    
-    public boolean validEmail(String input)
+
+    public boolean validateModification() {
+        boolean valid = false;
+
+        if (emailText.getText().length() > 0 && validEmail(emailText.getText())) {
+            if (passwordText.getText().length() > 0) {
+                if (profileComboBox.getSelectedIndex() != -1) {
+                    valid = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Selecciona un perfil");
+                    profileComboBox.requestFocusInWindow();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Escribe una contraseña");
+                passwordText.requestFocusInWindow();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error en email");
+            emailText.requestFocusInWindow();
+        }
+        return valid;
+}
+
+public boolean validEmail(String input)
     {
         String regex = "(\\w+)(\\.\\w+)*@(\\w+)(\\.\\w+)+";
         Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
@@ -334,7 +356,7 @@ public class Users extends javax.swing.JFrame {
 
         User u = new User();
 
-        if (validateUser()) {
+        if (validateModification()) {
 
             u.setUsername(usernameText.getText());
             u.setEmail(emailText.getText());
@@ -392,16 +414,31 @@ public class Users extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Users.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Users.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Users.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Users.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
