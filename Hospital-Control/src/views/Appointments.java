@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class Appointments extends javax.swing.JFrame {
 
     Database d;
+    String uType;
     DefaultTableModel tb;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
     ArrayList<Person> apt;
@@ -34,6 +35,32 @@ public class Appointments extends javax.swing.JFrame {
      * Creates new form Appointments
      */
     @SuppressWarnings("unchecked")
+    public Appointments(String userType) {
+
+        initComponents();
+        uType = userType;
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnSearch.setEnabled(false);
+        searchPatientNameTxt.setEnabled(false);
+        btnClose.setEnabled(false);
+        dateChooser.setEnabled(false);
+        idText.setEnabled(false);
+        hourComboBox.setEnabled(false);
+        patientNameTxt.setEnabled(false);
+        stateComboBox.setEnabled(false);
+        Date date = new Date();
+        createColumns();
+        this.setLocationRelativeTo(null);
+        d = new Database();
+        apt = d.getAppointments();
+
+        for (Person a : apt) {
+
+            fillRow(a);
+        }
+    }
+    
     public Appointments() {
 
         initComponents();
@@ -489,7 +516,7 @@ public class Appointments extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         Navigation navigationWindow;
-        navigationWindow = new Navigation();
+        navigationWindow = new Navigation(uType);
         navigationWindow.show();
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed

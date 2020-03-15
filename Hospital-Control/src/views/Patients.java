@@ -100,6 +100,7 @@ public class Patients extends javax.swing.JFrame {
         CityText.setText("");
         CBSangre.setSelectedIndex(-1);
         CalendarFecha.setDate(null);
+        BuscarText.setEnabled(true);
         btnBuscar.setEnabled(true);
     }
     

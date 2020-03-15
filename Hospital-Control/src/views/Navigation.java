@@ -39,6 +39,7 @@ public class Navigation extends javax.swing.JFrame {
     public Navigation() {
 
         initComponents();
+        uType = "";
     }
 
     /**
@@ -187,7 +188,7 @@ public class Navigation extends javax.swing.JFrame {
 
     private void bttonAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttonAppointmentsActionPerformed
         Appointments appointmentWindow;
-                appointmentWindow = new Appointments();
+                appointmentWindow = new Appointments(uType);
                 appointmentWindow.show();
                 this.dispose();
     }//GEN-LAST:event_bttonAppointmentsActionPerformed
