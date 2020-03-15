@@ -1,7 +1,8 @@
 package views;
-
 import classes.Database;
 import classes.User;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /*
@@ -17,6 +18,7 @@ public class Users extends javax.swing.JFrame {
 
     Database d;
     String uType;
+
     /**
      * Creates new form Users
      *
@@ -27,12 +29,15 @@ public class Users extends javax.swing.JFrame {
         d = new Database();
         uType = userType;
         this.setLocationRelativeTo(null);
+        disableWidgets();
     }
 
     public Users() {
-        d = new Database();
         initComponents();
+        d = new Database();
+        uType = "";
         this.setLocationRelativeTo(null);
+        disableWidgets();
     }
 
     /**
@@ -181,23 +186,71 @@ public class Users extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void clearTxt() {
+    public void disableWidgets() {
+        usernameText.setEnabled(true);
+
+        passwordText.setEnabled(false);
+        emailText.setEnabled(false);
+        profileComboBox.setEnabled(false);
+        saveButton.setEnabled(false);
+        modifyButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+    }
+
+    public void enableWidgets() {
+        usernameText.setEnabled(true);
+        passwordText.setEnabled(true);
+        emailText.setEnabled(true);
+        profileComboBox.setEnabled(true);
+        saveButton.setEnabled(true);
+        modifyButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+    }
+
+    public void clearText() {
 
         usernameText.setText("");
         emailText.setText("");
         passwordText.setText("");
         profileComboBox.setSelectedIndex(-1);
+        disableWidgets();
     }
 
-    public boolean isValidUser() {
-        boolean valid;
+    public boolean validateUser() {
+        boolean valid = false;
 
-        valid = usernameText.getText().length() > 0 && emailText.getText().length() > 0
-                && passwordText.getText().length() > 0 && profileComboBox.getSelectedIndex() != -1;
-
+        if (usernameText.getText().length() > 0 && d.availableUsername(usernameText.getText())) {
+            if (emailText.getText().length() > 0 && validEmail(emailText.getText())) {
+                if (passwordText.getText().length() > 0) {
+                    if (profileComboBox.getSelectedIndex() != -1) {
+                        valid = true;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Selecciona un perfil");
+                        profileComboBox.requestFocusInWindow();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Escribe una contraseña");
+                    passwordText.requestFocusInWindow();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error en email");
+                emailText.requestFocusInWindow();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error en nombre de usuario");
+            usernameText.requestFocusInWindow();
+        }
         return valid;
     }
-
+    
+    public boolean validEmail(String input)
+    {
+        String regex = "(\\w+)(\\.\\w+)*@(\\w+)(\\.\\w+)+";
+        Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.find();
+    }
+    
     public void displayUser(User user) {
 
         usernameText.setText(user.getUsername());
@@ -220,21 +273,39 @@ public class Users extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
+
+        disableWidgets();
         User u;
-        u = d.searchUser(usernameText.getText());
-        displayUser(u);
+
+        if (usernameText.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Escribe un nombre de usuario");
+            usernameText.requestFocusInWindow();
+        } else {
+            
+            u = d.searchUser(usernameText.getText());
+            
+            if (u.getUsername().length() > 0) {
+                displayUser(u);
+                enableWidgets();
+                saveButton.setEnabled(false);
+                usernameText.setEnabled(false);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            }
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         d.deleteUser(usernameText.getText());
-        clearTxt();
+        clearText();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 
         User u = new User();
 
-        if (isValidUser()) {
+        if (validateUser()) {
 
             u.setUsername(usernameText.getText());
             u.setEmail(emailText.getText());
@@ -255,10 +326,7 @@ public class Users extends javax.swing.JFrame {
             }
             d.newUser(u);
             JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-            clearTxt();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos incompletos.");
+            clearText();
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
@@ -266,7 +334,7 @@ public class Users extends javax.swing.JFrame {
 
         User u = new User();
 
-        if (isValidUser()) {
+        if (validateUser()) {
 
             u.setUsername(usernameText.getText());
             u.setEmail(emailText.getText());
@@ -285,13 +353,10 @@ public class Users extends javax.swing.JFrame {
                 u.setEditPatients(true);
                 u.setEditUsers(false);
             }
-
             d.modifyUsers(u);
             JOptionPane.showMessageDialog(null, "Modificado con éxito.");
-            clearTxt();
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos incompletos.");
-        }
+            clearText();
+        } 
     }//GEN-LAST:event_modifyButtonActionPerformed
 
     private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
@@ -306,7 +371,11 @@ public class Users extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        // TODO add your handling code here:
+
+        clearText();
+        enableWidgets();
+        modifyButton.setEnabled(false);
+        deleteButton.setEnabled(false);
     }//GEN-LAST:event_newButtonActionPerformed
 
     /**

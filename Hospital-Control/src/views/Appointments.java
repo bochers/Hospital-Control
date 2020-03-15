@@ -439,7 +439,7 @@ public class Appointments extends javax.swing.JFrame {
         int auxId = Integer.valueOf(idText.getText());
 
         //JOptionPane.showMessageDialog(null, "Datos insuficientes para actualizar.");
-        if (isValidAppointment() == true && d.modifyAppointment(aux, hours, auxId) == true) {
+        if (isValidAppointment() == true && d.availableModification(aux, hours, auxId) == true) {
             Person p = new Person();
             tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
             tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);

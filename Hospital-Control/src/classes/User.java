@@ -23,6 +23,9 @@ public class User {
         editPatients = false;
         editMedics = false;
         editUsers = false;
+        username = "";
+        password = "";
+        email = "";
     }
     
       public void fakeOverload(User user) {

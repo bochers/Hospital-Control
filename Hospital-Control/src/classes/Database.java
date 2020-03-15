@@ -19,7 +19,7 @@ public class Database {
     ArrayList<User> users;
     ArrayList<Person> medics;
     ArrayList<Person> patients;
-    ArrayList<Person> appointment;
+    ArrayList<Person> appointments;
     ArrayList<Person> patientToApp;
     ArrayList<Item> stockItems;
 
@@ -32,8 +32,8 @@ public class Database {
     DataInputStream inputUsers;
     DataOutputStream outputUsers;
 
-    DataInputStream inputAppointment;
-    DataOutputStream outputAppointment;
+    DataInputStream inputAppointments;
+    DataOutputStream outputAppointments;
 
     DataInputStream inputStock;
     DataOutputStream outputStock;
@@ -44,7 +44,7 @@ public class Database {
         medics = new ArrayList<>();
         patients = new ArrayList<>();
         patientToApp = new ArrayList<>();
-        appointment = new ArrayList<>();
+        appointments = new ArrayList<>();
         stockItems = new ArrayList<>();
 
         try {
@@ -52,13 +52,13 @@ public class Database {
             outputUsers = new DataOutputStream(new FileOutputStream("users.txt", true));
             outputPatients = new DataOutputStream(new FileOutputStream("patients.txt", true));
             outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
-            outputAppointment = new DataOutputStream(new FileOutputStream("appointments.txt", true));
+            outputAppointments = new DataOutputStream(new FileOutputStream("appointments.txt", true));
             outputStock = new DataOutputStream(new FileOutputStream("stock.txt", true));
 
             outputUsers.close();
             outputPatients.close();
             outputMedics.close();
-            outputAppointment.close();
+            outputAppointments.close();
             outputStock.close();
 
         } catch (FileNotFoundException ex) {
@@ -81,7 +81,7 @@ public class Database {
             inputUsers = new DataInputStream(new FileInputStream("users.txt"));
             inputPatients = new DataInputStream(new FileInputStream("patients.txt"));
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
-            inputAppointment = new DataInputStream(new FileInputStream("appointments.txt"));
+            inputAppointments = new DataInputStream(new FileInputStream("appointments.txt"));
             inputStock = new DataInputStream(new FileInputStream("stock.txt"));
 
             while (inputUsers.available() > 0) {
@@ -136,16 +136,16 @@ public class Database {
                 medics.add(p);
             }
 
-            while (inputAppointment.available() > 0) {
+            while (inputAppointments.available() > 0) {
 
                 p = new Person();
 
-                p.setID(inputAppointment.readInt());
-                p.setName(inputAppointment.readUTF());
-                p.setHour(inputAppointment.readUTF());
-                p.setStateAppointment(inputAppointment.readUTF());
-                p.setDate(inputAppointment.readUTF());
-                appointment.add(p);
+                p.setID(inputAppointments.readInt());
+                p.setName(inputAppointments.readUTF());
+                p.setHour(inputAppointments.readUTF());
+                p.setStateAppointment(inputAppointments.readUTF());
+                p.setDate(inputAppointments.readUTF());
+                appointments.add(p);
             }
 
             while (inputStock.available() > 0) {
@@ -243,18 +243,18 @@ public class Database {
         }
     }
 
-    public void updateAppointment() {
+    public void updateAppointments() {
         try {
-            outputAppointment = new DataOutputStream(new FileOutputStream("appointments.txt", true));
+            outputAppointments = new DataOutputStream(new FileOutputStream("appointments.txt", true));
             FileOutputStream clearAppointment = new FileOutputStream("appointments.txt");
 
-            for (Person p : appointment) {
+            for (Person p : appointments) {
 
-                outputAppointment.writeInt(p.getID());
-                outputAppointment.writeUTF(p.getName());
-                outputAppointment.writeUTF(p.getHour());
-                outputAppointment.writeUTF(p.getStateAppointment());
-                outputAppointment.writeUTF(p.getDate());
+                outputAppointments.writeInt(p.getID());
+                outputAppointments.writeUTF(p.getName());
+                outputAppointments.writeUTF(p.getHour());
+                outputAppointments.writeUTF(p.getStateAppointment());
+                outputAppointments.writeUTF(p.getDate());
 
             }
 
@@ -304,8 +304,8 @@ public class Database {
     }
 
     public void newAppointment(Person p) {
-        appointment.add(p);
-        updateAppointment();
+        appointments.add(p);
+        updateAppointments();
     }
 
     public void newStockItem(Item item) {
@@ -375,7 +375,7 @@ public class Database {
     }
 
     public ArrayList<Person> getAppointments() {
-        return appointment;
+        return appointments;
     }
 
     public ArrayList<Item> getStock() {
@@ -383,13 +383,12 @@ public class Database {
     }
 
     public boolean verifyAppointment(String date, String hour) {
-        for (Person p : appointment) {
+        for (Person p : appointments) {
             if (p.getDate().equals(date) && p.getHour().equals(hour)) {
                 return false;
             }
         }
         return true;
-
     }
 
     public void modifyPatient(Person pat) {
@@ -417,32 +416,29 @@ public class Database {
     }
 
     public void modifyAppointment(Person app) {
-        for (Person p : appointment) {
+        for (Person p : appointments) {
             if (p.getName().equals(app.getName())) {
                 p.fakeOverload(app);
                 break;
             }
         }
-        updateAppointment();
+        updateAppointments();
     }
 
-    public boolean modifyAppointment(String date, String hour, int id) {
-        for (Person p : appointment) {
+    public boolean availableModification(String date, String hour, int id) {
+        for (Person p : appointments) {
             if (p.getDate().equals(date) && p.getHour().equals(hour)) {
                 if (p.getID() == id) {
 
                 } else {
                     return false;
                 }
-
             }
-
         }
         return true;
     }
 
     public void modifyUsers(User user) {
-
         for (User u : users) {
 
             if (u.getUsername().equals(user.getUsername())) {
@@ -508,15 +504,15 @@ public class Database {
     public void deleteAppointment(int id) {
 
         int i = 0;
-        for (Person p : appointment) {
+        for (Person p : appointments) {
 
             if (p.getID() == id) {
-                appointment.remove(i);
+                appointments.remove(i);
                 break;
             }
             ++i;
         }
-        updateAppointment();
+        updateAppointments();
     }
 
     public void deleteStockItem(int id) {
@@ -548,6 +544,22 @@ public class Database {
         }
         return 0;
     }
+    
+    public boolean availableUsername(String un)
+    {
+        boolean available = true;
+        
+        for(User u: users)
+        {
+            if(u.getUsername().equals(un))
+            {
+                available = false;
+                break;
+            }
+        }
+        return available;
+    }
+    
 
     public int patientsSize() {
         return patients.size();
@@ -563,6 +575,6 @@ public class Database {
     }
 
     public int appointmentSize() {
-        return appointment.size();
+        return appointments.size();
     }
 }
