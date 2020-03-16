@@ -453,7 +453,7 @@ public class Appointments extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, "Ingresa una fecha valida", "Error.", JOptionPane.ERROR_MESSAGE);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Datos son incorrectos.");
+            JOptionPane.showMessageDialog(null, "Datos incorrectos.");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
     ///Mostrar en pantalla la tabla
@@ -484,14 +484,16 @@ public class Appointments extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
 
-        String dateFromDateChooser = dFormat.format(dateChooser.getDate());
-        String aux = dateFromDateChooser;
-        String hours = (String) hourComboBox.getSelectedItem();
+      
         String.valueOf(idText.getText());
         int auxId = Integer.valueOf(idText.getText());
         try{
         //JOptionPane.showMessageDialog(null, "Datos insuficientes para actualizar.");
-            if (isValidAppointment() == true && d.availableModification(aux, hours, auxId) == true) {
+            if (isValidAppointment() == true){
+                String dateFromDateChooser = dFormat.format(dateChooser.getDate());
+                String aux = dateFromDateChooser;
+                String hours = (String) hourComboBox.getSelectedItem();
+                if(d.availableModification(aux, hours, auxId) == true) {
                 Person p = new Person();
                 tb.setValueAt(patientNameTxt.getText(), jTappointment.getSelectedRow(), 0);
                 tb.setValueAt(hourComboBox.getSelectedItem(), jTappointment.getSelectedRow(), 1);
@@ -501,8 +503,9 @@ public class Appointments extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Modificado con éxito.");
                 clearTxt();
-            } else {
+            } else{
                 JOptionPane.showMessageDialog(null, "Imposible actualizar, revisar hora de la cita.");
+        }
         }
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Debe haber una fecha para la cita.");
@@ -525,17 +528,18 @@ public class Appointments extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         Person p;
-
+        
         p = d.searchPatient(searchPatientNameTxt.getText());
         searchPatientNameTxt.setText(p.getName());
-        try{
+        
         if (p.getID() != 0) {
             patientNameTxt.setText(p.getName() + " " + p.getLast() + " " + p.getSLast());
             searchPatientNameTxt.setText(" ");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontró el paciente.");
         }
-        }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, "Debe haber una fecha para la cita.");
-        }
+        
+        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void searchPatientNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchPatientNameTxtActionPerformed
