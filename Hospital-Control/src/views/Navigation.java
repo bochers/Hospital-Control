@@ -106,6 +106,11 @@ public class Navigation extends javax.swing.JFrame {
 
         bttnMedicalH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bttnMedicalH.setText("Historial Médico");
+        bttnMedicalH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttnMedicalHActionPerformed(evt);
+            }
+        });
         getContentPane().add(bttnMedicalH, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 250, 50));
 
         bttnQuit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -197,7 +202,7 @@ public class Navigation extends javax.swing.JFrame {
     private void bttnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnServicesActionPerformed
         // TODO add your handling code here:
         Services servicesWindow;
-        servicesWindow = new Services();
+        servicesWindow = new Services(uType);
         servicesWindow.show();
         this.dispose();
     }//GEN-LAST:event_bttnServicesActionPerformed
@@ -205,7 +210,7 @@ public class Navigation extends javax.swing.JFrame {
     private void bttnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnStockActionPerformed
         // TODO add your handling code here:
         Stock stockWindow;
-        stockWindow = new Stock();
+        stockWindow = new Stock(uType);
         stockWindow.show();
         this.dispose();
     }//GEN-LAST:event_bttnStockActionPerformed
@@ -216,6 +221,12 @@ public class Navigation extends javax.swing.JFrame {
         loginWindow.show();
         this.dispose();
     }//GEN-LAST:event_bttnLogoutActionPerformed
+
+    private void bttnMedicalHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnMedicalHActionPerformed
+        MedicalHistory mhWindow = new MedicalHistory(uType);
+        mhWindow.show();
+        this.dispose();
+    }//GEN-LAST:event_bttnMedicalHActionPerformed
 
     /**
      * @param args the command line arguments

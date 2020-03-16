@@ -1,11 +1,15 @@
 package views;
 
+import classes.Database;
+import classes.Service;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author isaac
@@ -15,8 +19,56 @@ public class MedicalHistory extends javax.swing.JFrame {
     /**
      * Creates new form MedicalHistory
      */
+    String uType;
+    Database d;
+    DefaultTableModel tb;
+    ArrayList<Service> services;
+
+    public MedicalHistory(String userType) {
+        initComponents();
+        uType = userType;
+        d = new Database();
+        String header[] = {"ID", "Tipo", "Cliente", "Precio", "Descripción"};
+        String data[][] = {};
+        tb = new DefaultTableModel(data, header);
+        servicesTable.setModel(tb);
+        this.setLocationRelativeTo(null);
+        services = d.getServices();
+        displayServices();
+        hideSearch();
+    }
+
     public MedicalHistory() {
         initComponents();
+        uType = "";
+        d = new Database();
+        d = new Database();
+        String header[] = {"ID", "Tipo", "Cliente", "Precio", "Descripción"};
+        String data[][] = {};
+        tb = new DefaultTableModel(data, header);
+        servicesTable.setModel(tb);
+        this.setLocationRelativeTo(null);
+        services = d.getServices();
+        displayServices();
+    }
+
+    public void fillRow(Service s) {
+        int id = s.getId();
+        int price = s.getPrice();
+        String type = s.getType();
+        String client = s.getClientName();
+        String description = s.getDescription();
+        String data[] = {String.valueOf(id), type,
+            client, String.valueOf(price), description};
+
+        tb.addRow(data);
+    }
+
+    public void displayServices() {
+        tb.setRowCount(0);
+        for (Service s : services) {
+            fillRow(s);
+        }
     }
 
     /**
@@ -29,48 +81,142 @@ public class MedicalHistory extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        MHLabel = new javax.swing.JLabel();
         separator = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        servicesSP = new javax.swing.JScrollPane();
+        servicesTable = new javax.swing.JTable();
+        displayComboBox = new javax.swing.JComboBox<>();
+        searchText = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        bgdLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("DFMincho-SU", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("MEDICAL HISTORY");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 40));
+        MHLabel.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        MHLabel.setForeground(new java.awt.Color(255, 255, 255));
+        MHLabel.setText("Historial Médico");
+        jPanel1.add(MHLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 200, 40));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 4));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        servicesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", " Servicio", "Cliente", "Precio", "Descripción"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 750, 90));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        servicesSP.setViewportView(servicesTable);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/shrek (1).jpg"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(800, 500));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+        jPanel1.add(servicesSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 750, 330));
+
+        displayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General", "Búsqueda Personalizada" }));
+        displayComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(displayComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
+        jPanel1.add(searchText, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 280, 30));
+
+        searchButton.setText("Buscar");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 80, 30));
+
+        backButton.setText("Regresar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 30, 90, 30));
+
+        bgdLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/shrek (1).jpg"))); // NOI18N
+        bgdLabel.setPreferredSize(new java.awt.Dimension(800, 500));
+        jPanel1.add(bgdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/*
+    private void displayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayComboBoxActionPerformed
+    }//GEN-LAST:event_displayComboBoxActionPerformed
+*/
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+
+        Navigation nav = new Navigation(uType);
+        nav.show();
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        tb.setRowCount(0);
+        for (Service s : services) {
+            if (s.getClientName().equals(searchText.getText())) {
+                fillRow(s);
+            }
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void displayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
+
+        System.out.print("hola");
+
+        if (displayComboBox.getSelectedItem().equals("General")) {
+            hideSearch();
+            displayServices();
+        } else if (displayComboBox.getSelectedItem().equals("Búsqueda Personalizada")) {
+            showSearch();
+        }
+    }
+
+    public void hideSearch() {
+        searchText.setVisible(false);
+        searchButton.setVisible(false);
+    }
+
+    public void showSearch() {
+        searchText.setVisible(true);
+        searchButton.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -108,11 +254,15 @@ public class MedicalHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel MHLabel;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel bgdLabel;
+    private javax.swing.JComboBox<String> displayComboBox;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchText;
     private javax.swing.JSeparator separator;
+    private javax.swing.JScrollPane servicesSP;
+    private javax.swing.JTable servicesTable;
     // End of variables declaration//GEN-END:variables
 }

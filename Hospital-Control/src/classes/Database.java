@@ -625,4 +625,8 @@ public class Database {
 
         return appointments.get(appointments.size() - 1).getID();
     }
+            
+    
+    
+    
 }

@@ -24,13 +24,32 @@ public class Stock extends javax.swing.JFrame {
      * Creates new form Stock
      */
     Database db;
+    String uType;
     DefaultTableModel tb;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
     ArrayList<Item> stockItems;
     boolean isUpdating;
+    
+    
+    public Stock(String userType) {
+        initComponents();
+        uType = userType;
+        String header[] = {"Id", "Nombre", "Cantidad", "Precio", "Caducidad"};
+        String data[][] = {};
+        tb = new DefaultTableModel(data, header);
+        jTStock.setModel(tb);
+        clearTxt();
+        isUpdating = false;
+        this.setLocationRelativeTo(null);
+        db = new Database();
+        stockItems = db.getStock();
+        updateRows();
+    }
+    
 
     public Stock() {
         initComponents();
+        uType = "";
         String header[] = {"Id", "Nombre", "Cantidad", "Precio", "Caducidad"};
         String data[][] = {};
         tb = new DefaultTableModel(data, header);
@@ -307,7 +326,7 @@ public class Stock extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Navigation navigationWindow;
-        navigationWindow = new Navigation();
+        navigationWindow = new Navigation(uType);
         navigationWindow.show();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

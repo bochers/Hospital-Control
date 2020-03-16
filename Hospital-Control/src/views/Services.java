@@ -23,8 +23,18 @@ public class Services extends javax.swing.JFrame {
      * Creates new form Services
      */
     Database db;
+    String uType;
+    
+    public Services(String userType) {
+        uType = userType;
+        initComponents();
+        db = new Database();
+        this.setLocationRelativeTo(null);
+        clearTxt();
+    }
 
     public Services() {
+        uType = "";
         initComponents();
         db = new Database();
         this.setLocationRelativeTo(null);
@@ -172,7 +182,7 @@ public class Services extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         Navigation navigationWindow;
-        navigationWindow = new Navigation();
+        navigationWindow = new Navigation(uType);
         navigationWindow.show();
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
