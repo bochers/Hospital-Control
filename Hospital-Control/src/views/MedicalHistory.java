@@ -167,7 +167,7 @@ public class MedicalHistory extends javax.swing.JFrame {
         });
         jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 30, 90, 30));
 
-        bgdLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/shrek (1).jpg"))); // NOI18N
+        bgdLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
         bgdLabel.setPreferredSize(new java.awt.Dimension(800, 500));
         jPanel1.add(bgdLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 

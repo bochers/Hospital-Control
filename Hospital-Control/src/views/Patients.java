@@ -242,8 +242,9 @@ public class Patients extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ID:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 95, -1, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, 30));
 
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,36 +252,41 @@ public class Patients extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 60, 60));
-        jPanel1.add(IDText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 220, 30));
+        jPanel1.add(IDText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 220, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Nombre:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 130, -1, -1));
-        jPanel1.add(AMText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 220, 30));
-        jPanel1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 220, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 100, 30));
+        jPanel1.add(AMText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 220, 30));
+        jPanel1.add(NameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 220, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("A. Paterno:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 158, -1, -1));
-        jPanel1.add(APText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 220, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 100, 30));
+        jPanel1.add(APText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 220, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("A. Materno:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 188, 90, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Teléfono:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 217, 70, -1));
-        jPanel1.add(PhoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 220, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 100, 30));
+        jPanel1.add(PhoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 220, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Estado:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 275, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 100, 30));
 
         btnEdit.setText("EDIT");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -324,21 +330,23 @@ public class Patients extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Ciudad:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 305, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 100, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Sexo:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 40, 30));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 100, 30));
 
         ComboBoxESTADO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Coahuila", "Colima", "Distrito Federal", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
         ComboBoxESTADO.setSelectedIndex(-1);
-        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 220, 30));
+        jPanel1.add(ComboBoxESTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 220, 30));
 
         sexComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
         sexComboBox.setSelectedIndex(-1);
-        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 220, 30));
+        jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 220, 30));
 
         jLabel14.setFont(new java.awt.Font("DFMincho-UB", 1, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,12 +366,13 @@ public class Patients extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Sangre:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 329, -1, 30));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 100, 30));
 
         CBSangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-", " " }));
         CBSangre.setSelectedIndex(-1);
-        jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 220, 30));
+        jPanel1.add(CBSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 220, 30));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -375,8 +384,8 @@ public class Patients extends javax.swing.JFrame {
         jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 180, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 490, 390));
-        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 220, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 470, 390));
+        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 220, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/purple (1).png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));

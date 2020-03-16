@@ -24,14 +24,10 @@ public class Navigation extends javax.swing.JFrame {
 
         if (userType.equals("Supervisor")) {
             bttnUsers.setEnabled(false);
-            // bttnStock.setEnabled(false);
         } else if (userType.equals("Secretari@")) {
             bttnMedics.setEnabled(false);
-            bttnMedicalH.setEnabled(false);
             bttnUsers.setEnabled(false);
-            //bttnStock.setEnabled(false);
-            //bttnServices.setEnabled(false);
-
+            bttnStock.setEnabled(false);
         }
 
         uType = userType;
@@ -75,7 +71,7 @@ public class Navigation extends javax.swing.JFrame {
                 bttnMedicsActionPerformed(evt);
             }
         });
-        getContentPane().add(bttnMedics, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 250, 50));
+        getContentPane().add(bttnMedics, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 250, 50));
 
         bttnUsers.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bttnUsers.setText("Usuarios");
@@ -137,7 +133,7 @@ public class Navigation extends javax.swing.JFrame {
                 bttnServicesActionPerformed(evt);
             }
         });
-        getContentPane().add(bttnServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 250, 50));
+        getContentPane().add(bttnServices, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 250, 50));
 
         bttnStock.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bttnStock.setText("Stock");
