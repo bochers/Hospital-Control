@@ -361,7 +361,8 @@ public class Stock extends javax.swing.JFrame {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Los objetos deben tener una fecha de expiración.");
         } catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Los datos son incorrectos.");
+            JOptionPane.showMessageDialog(null, "Los "
+                    + "datos son incorrectos.");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
