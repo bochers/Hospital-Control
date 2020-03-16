@@ -1,10 +1,18 @@
 package views;
+
+import classes.Database;
+import classes.Item;
+import classes.Service;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author isaac
@@ -14,8 +22,54 @@ public class Services extends javax.swing.JFrame {
     /**
      * Creates new form Services
      */
+    Database db;
+
     public Services() {
         initComponents();
+        db = new Database();
+        this.setLocationRelativeTo(null);
+        clearTxt();
+    }
+
+    public void clearTxt() {
+        textId.setText(Integer.toString(autoId()));
+        textPrice.setText("");
+        textClient.setText("");
+        textDescription.setText("");
+        comboBox.setSelectedIndex(-1);
+    }
+
+    public int autoId() {
+        int size = db.getServices().size();
+        return size + 1;
+    }
+
+    public Service createService(Service service) {
+        int price;
+        try {
+            price = Integer.parseInt(textPrice.getText());
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Price must be a number");
+        }
+        if (comboBox.getSelectedIndex() == -1) {
+            throw new RuntimeException("Combobox must have a value");
+        }
+        service.setId(Integer.parseInt(textId.getText()));
+        service.setClientName(textClient.getText());
+        service.setType((String) comboBox.getSelectedItem());
+        service.setPrice(price);
+        service.setDescription(textDescription.getText().equals("") ? "none" : textDescription.getText());
+        if (service.getClientName().equals("")) {
+            throw new RuntimeException("Name cannot be null");
+        }
+        if (service.getType().equals("")) {
+            throw new RuntimeException("Type cannot be null");
+        }
+        if (price < 0) {
+            throw new RuntimeException("Price cannot be negative");
+        }
+
+        return service;
     }
 
     /**
@@ -27,62 +81,87 @@ public class Services extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        comboBox = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        textPrice = new javax.swing.JTextField();
+        textClient = new javax.swing.JTextField();
+        textDescription = new javax.swing.JTextField();
+        textId = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Numero de servicio");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 780, 90));
+        comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consulta", "Abulancia", "Operacion", "Examenes" }));
+        getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
-        jLabel1.setText("Servicio");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Tipo de servicio");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 80, -1));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Cliente");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Descripcion");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Precio");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        textPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 160, -1));
+
+        textClient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 400, -1));
+
+        textDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 620, 150));
+
+        textId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(textId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 50, -1));
+
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBack.setText("Regresar");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, -1));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, -1, -1));
 
-        jButton2.setText("jButton1");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
-
-        jButton3.setText("jButton1");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
-
-        jButton4.setText("jButton1");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSave.setText("Guardar");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, -1, -1));
+
+        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancel.setText("Cancelar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -90,13 +169,32 @@ public class Services extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Navigation navigationWindow;
+        navigationWindow = new Navigation();
+        navigationWindow.show();
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        try {
+            Service service = new Service();
+            service = createService(service);
+            db.newService(service);
+            clearTxt();
+            JOptionPane.showMessageDialog(null, "Service saved succesfully");
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        clearTxt();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,14 +232,19 @@ public class Services extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField textClient;
+    private javax.swing.JTextField textDescription;
+    private javax.swing.JTextField textId;
+    private javax.swing.JTextField textPrice;
     // End of variables declaration//GEN-END:variables
 }

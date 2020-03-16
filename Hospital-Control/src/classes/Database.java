@@ -22,6 +22,7 @@ public class Database {
     ArrayList<Person> appointments;
     ArrayList<Person> patientToApp;
     ArrayList<Item> stockItems;
+    ArrayList<Service> services;
 
     DataInputStream inputPatients;
     DataOutputStream outputPatients;
@@ -38,6 +39,9 @@ public class Database {
     DataInputStream inputStock;
     DataOutputStream outputStock;
 
+    DataInputStream inputServices;
+    DataOutputStream outputServices;
+
     public Database() {
 
         users = new ArrayList<>();
@@ -46,6 +50,7 @@ public class Database {
         patientToApp = new ArrayList<>();
         appointments = new ArrayList<>();
         stockItems = new ArrayList<>();
+        services = new ArrayList<>();
 
         try {
 
@@ -54,12 +59,14 @@ public class Database {
             outputMedics = new DataOutputStream(new FileOutputStream("medics.txt", true));
             outputAppointments = new DataOutputStream(new FileOutputStream("appointments.txt", true));
             outputStock = new DataOutputStream(new FileOutputStream("stock.txt", true));
+            outputServices = new DataOutputStream(new FileOutputStream("services.txt", true));
 
             outputUsers.close();
             outputPatients.close();
             outputMedics.close();
             outputAppointments.close();
             outputStock.close();
+            outputServices.close();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,6 +82,7 @@ public class Database {
         User u = new User();
         Person p = new Person();
         Item item = new Item();
+        Service service = new Service();
 
         try {
 
@@ -83,6 +91,7 @@ public class Database {
             inputMedics = new DataInputStream(new FileInputStream("medics.txt"));
             inputAppointments = new DataInputStream(new FileInputStream("appointments.txt"));
             inputStock = new DataInputStream(new FileInputStream("stock.txt"));
+            inputServices = new DataInputStream(new FileInputStream("services.txt"));
 
             while (inputUsers.available() > 0) {
 
@@ -160,6 +169,18 @@ public class Database {
                 item.setExpiration(inputStock.readUTF());
 
                 stockItems.add(item);
+            }
+
+            while (inputServices.available() > 0) {
+
+                service = new Service();
+
+                service.setId(inputServices.readInt());
+                service.setType(inputServices.readUTF());
+                service.setPrice(inputServices.readInt());
+                service.setClientName(inputServices.readUTF());
+                service.setDescription(inputServices.readUTF());
+                services.add(service);
             }
 
         } catch (FileNotFoundException ex) {
@@ -271,14 +292,32 @@ public class Database {
             FileOutputStream clearStock = new FileOutputStream("stock.txt");
 
             for (Item item : stockItems) {
-                System.out.println(item.getType());
-                System.out.println(item.getId());
                 outputStock.writeInt(item.getId());
                 outputStock.writeUTF(item.getName());
                 outputStock.writeUTF(item.getType());
                 outputStock.writeInt(item.getPrice());
                 outputStock.writeInt(item.getAmount());
                 outputStock.writeUTF(item.getExpiration());
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateServices() {
+        try {
+            outputServices = new DataOutputStream(new FileOutputStream("services.txt", true));
+            FileOutputStream clearServices = new FileOutputStream("services.txt");
+
+            for (Service service : services) {
+                outputServices.writeInt(service.getId());
+                outputServices.writeUTF(service.getType());
+                outputServices.writeInt(service.getPrice());
+                outputServices.writeUTF(service.getClientName());
+                outputServices.writeUTF(service.getDescription());
             }
 
         } catch (FileNotFoundException ex) {
@@ -311,6 +350,11 @@ public class Database {
     public void newStockItem(Item item) {
         stockItems.add(item);
         updateStock();
+    }
+
+    public void newService(Service service) {
+        services.add(service);
+        updateServices();
     }
 
     public Person searchAppointement(String find) {
@@ -380,6 +424,10 @@ public class Database {
 
     public ArrayList<Item> getStock() {
         return stockItems;
+    }
+
+    public ArrayList<Service> getServices() {
+        return services;
     }
 
     public boolean verifyAppointment(String date, String hour) {
@@ -544,35 +592,37 @@ public class Database {
         }
         return 0;
     }
-    
-    public boolean availableUsername(String un)
-    {
+
+    public Boolean clientExists(String name) {
+        /// ehhh pense que teniamos un arraylist con el nombre de todos los clientes xD
+        //dejare esto por si algun dia se implementa
+        return true;
+    }
+
+    public boolean availableUsername(String un) {
         boolean available = true;
-        
-        for(User u: users)
-        {
-            if(u.getUsername().equals(un))
-            {
+
+        for (User u : users) {
+            if (u.getUsername().equals(un)) {
                 available = false;
                 break;
             }
         }
         return available;
     }
-    
 
     public int lastPatientID() {
-        
+
         return patients.get(patients.size() - 1).getID();
     }
 
     public int lastMedicID() {
-        
+
         return medics.get(medics.size() - 1).getID();
     }
 
     public int lastAppointmenID() {
-        
+
         return appointments.get(appointments.size() - 1).getID();
     }
 }

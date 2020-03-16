@@ -30,8 +30,8 @@ public class Navigation extends javax.swing.JFrame {
             bttnMedicalH.setEnabled(false);
             bttnUsers.setEnabled(false);
             //bttnStock.setEnabled(false);
-            bttnServices.setEnabled(false);
-            
+            //bttnServices.setEnabled(false);
+
         }
 
         uType = userType;
@@ -189,13 +189,17 @@ public class Navigation extends javax.swing.JFrame {
 
     private void bttonAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttonAppointmentsActionPerformed
         Appointments appointmentWindow;
-                appointmentWindow = new Appointments(uType);
-                appointmentWindow.show();
-                this.dispose();
+        appointmentWindow = new Appointments(uType);
+        appointmentWindow.show();
+        this.dispose();
     }//GEN-LAST:event_bttonAppointmentsActionPerformed
 
     private void bttnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnServicesActionPerformed
         // TODO add your handling code here:
+        Services servicesWindow;
+        servicesWindow = new Services();
+        servicesWindow.show();
+        this.dispose();
     }//GEN-LAST:event_bttnServicesActionPerformed
 
     private void bttnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttnStockActionPerformed

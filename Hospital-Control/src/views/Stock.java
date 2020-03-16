@@ -97,7 +97,6 @@ public class Stock extends javax.swing.JFrame {
         item.setAmount(amount);
         item.setType("undefined");
         item.setExpiration(date);
-
         return item;
     }
 
