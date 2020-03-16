@@ -31,6 +31,7 @@ public class Navigation extends javax.swing.JFrame {
             bttnUsers.setEnabled(false);
             //bttnStock.setEnabled(false);
             bttnServices.setEnabled(false);
+            
         }
 
         uType = userType;

@@ -448,11 +448,24 @@ public class Appointments extends javax.swing.JFrame {
     private void jTappointmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTappointmentMouseClicked
         // TODO add your handling code here:
         btnUpdate.setEnabled(true);
-        patientNameTxt.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 0));
-        hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1));
-        stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2));
-        //dateChooser.setDateFormatString((String)jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
-        idText.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 4));
+        btnSave.setEnabled(false);
+        if(patientNameTxt.getText()!= "")
+        {
+            dateChooser.setEnabled(true);
+            hourComboBox.setEnabled(true);
+            patientNameTxt.setEnabled(true);
+            stateComboBox.setEnabled(true);
+            patientNameTxt.setEnabled(false);
+            searchPatientNameTxt.setEnabled(false);
+            
+            patientNameTxt.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 0));
+            hourComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 1));
+            stateComboBox.setSelectedItem(jTappointment.getValueAt(jTappointment.getSelectedRow(), 2));
+            //dateChooser.setDateFormatString((String)jTappointment.getValueAt(jTappointment.getSelectedRow(), 3));
+            idText.setText((String) jTappointment.getValueAt(jTappointment.getSelectedRow(), 4));
+        }
+        
+        
 
     }//GEN-LAST:event_jTappointmentMouseClicked
 
@@ -487,6 +500,7 @@ public class Appointments extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        
         if (jTappointment.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(null, "Datos insuficientes para cancelar.");
         } else {
@@ -525,13 +539,14 @@ public class Appointments extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnSave.setEnabled(true);
         btnCancel.setEnabled(true);
-        btnUpdate.setEnabled(true);
+        btnUpdate.setEnabled(false);
         btnSearch.setEnabled(true);
         searchPatientNameTxt.setEnabled(true);
         dateChooser.setEnabled(true);
         hourComboBox.setEnabled(true);
         stateComboBox.setEnabled(true);
         btnClose.setEnabled(true);
+        clearTxt();
         idText.setText(String.valueOf(autoId()));
 
     }//GEN-LAST:event_btnNuevoActionPerformed
