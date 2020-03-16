@@ -27,7 +27,8 @@ public class Stock extends javax.swing.JFrame {
     DefaultTableModel tb;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
     ArrayList<Item> stockItems;
-    
+    boolean isUpdating;
+
     public Stock() {
         initComponents();
         String header[] = {"Id", "Nombre", "Cantidad", "Precio", "Caducidad"};
@@ -35,13 +36,13 @@ public class Stock extends javax.swing.JFrame {
         tb = new DefaultTableModel(data, header);
         jTStock.setModel(tb);
         clearTxt();
-        
+        isUpdating = false;
         this.setLocationRelativeTo(null);
         db = new Database();
         stockItems = db.getStock();
         updateRows();
     }
-    
+
     public void fillRow(Item item) {
         String id = String.valueOf(item.getId());
         String name = item.getName();
@@ -49,22 +50,23 @@ public class Stock extends javax.swing.JFrame {
         String price = String.valueOf(item.getPrice());
         String expiration = item.getExpiration();
         String[] rowData = {id, name, amount, price, expiration};
-        
+
         tb.addRow(rowData);
     }
-    
+
     public void updateRows() {
         tb.setRowCount(0);
+        stockItems = db.getStock();
         stockItems.forEach((item) -> {
             fillRow(item);
         });
     }
-    
+
     public int autoId() {
         int size = db.getStock().size();
         return size + 1;
     }
-    
+
     public void clearTxt() {
         dateChooser.setDate(null);
         priceText.setText("");
@@ -72,6 +74,7 @@ public class Stock extends javax.swing.JFrame {
         amountText.setText("");
         priceText.setText("");
         idText.setText("");
+        btnNew.setEnabled(true);
         btnSave.setEnabled(false);
         btnUpdate.setEnabled(false);
         idText.setEnabled(false);
@@ -80,15 +83,21 @@ public class Stock extends javax.swing.JFrame {
         priceText.setEnabled(false);
         dateChooser.setEnabled(false);
         btnDelete.setEnabled(false);
+        btnCancel.setEnabled(false);
     }
-    
+
     public Item createItem(Item item) {
+        String name = nameText.getText();
+        int price = Integer.parseInt(priceText.getText());
+        int amount = Integer.parseInt(amountText.getText());
+        String date = dFormat.format(dateChooser.getDate());
         item.setId(Integer.parseInt(idText.getText()));
-        item.setName(nameText.getText());
-        item.setPrice(Integer.parseInt(priceText.getText()));
-        item.setAmount(Integer.parseInt(amountText.getText()));
+        item.setName(name);
+        item.setPrice(price);
+        item.setAmount(amount);
         item.setType("undefined");
-        item.setExpiration(dFormat.format(dateChooser.getDate()));
+        item.setExpiration(date);
+
         return item;
     }
 
@@ -120,6 +129,7 @@ public class Stock extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         amountText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        btnCancel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -219,7 +229,12 @@ public class Stock extends javax.swing.JFrame {
 
         btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnUpdate.setText("Actualizar");
-        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 270, -1, -1));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, -1, -1));
 
         btnDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDelete.setText("Eliminar");
@@ -228,7 +243,7 @@ public class Stock extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, -1, -1));
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, -1));
 
         btnNew.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNew.setText("Nuevo");
@@ -237,7 +252,7 @@ public class Stock extends javax.swing.JFrame {
                 btnNewActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, -1, -1));
+        getContentPane().add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSave.setText("Guardar");
@@ -246,7 +261,7 @@ public class Stock extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, -1));
 
         amountText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,6 +273,15 @@ public class Stock extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cantidad");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+
+        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancel.setText("Cancelar");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 270, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -292,12 +316,17 @@ public class Stock extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         Item item;
-        
+
         item = db.searchStockItem(Integer.parseInt(searchItemText.getText()));
         searchItemText.setText(item.getName());
         if (item.getId() != 0) {
+            idText.setText(Integer.toString(item.getId()));
             nameText.setText(item.getName());
+            priceText.setText(Integer.toString(item.getPrice()));
+            amountText.setText(Integer.toString(item.getAmount()));
             searchItemText.setText(" ");
+            btnDelete.setEnabled(true);
+            btnUpdate.setEnabled(true);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -311,25 +340,29 @@ public class Stock extends javax.swing.JFrame {
         searchItemText.setEnabled(true);
         dateChooser.setEnabled(true);
         idText.setText(String.valueOf(autoId()));
+        btnCancel.setEnabled(true);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        String dateFromDateChooser = dFormat.format(dateChooser.getDate());
-        String aux = dateFromDateChooser;
-        
-        String auxId = String.valueOf(autoId());
-        idText.setText(auxId);
-        
         Item item = new Item();
-        db.newStockItem(createItem(item));
-        JOptionPane.showMessageDialog(null, "Guardado con éxito.");
-        
-        stockItems = db.getStock();
-        
-        updateRows();
-        
-        clearTxt();
+        try {
+            if (isUpdating) {
+                db.modifyStockItem(createItem(item));
+                isUpdating = false;
+            } else {
+                db.newStockItem(createItem(item));
+                String auxId = String.valueOf(autoId());
+                idText.setText(auxId);
+            }
+            JOptionPane.showMessageDialog(null, "Guardado con éxito.");
+            updateRows();
+            clearTxt();
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Los objetos deben tener una fecha de expiración.");
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Los datos son incorrectos.");
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void amountTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTextActionPerformed
@@ -338,6 +371,13 @@ public class Stock extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        if (jTStock.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(null, "Datos insuficientes para cancelar.");
+        } else {
+            db.deleteStockItem((Integer.parseInt(idText.getText())));
+            updateRows();
+        }
+        clearTxt();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jTStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTStockMouseClicked
@@ -349,8 +389,28 @@ public class Stock extends javax.swing.JFrame {
         nameText.setText((String) jTStock.getValueAt(jTStock.getSelectedRow(), 1));
         amountText.setText((String) jTStock.getValueAt(jTStock.getSelectedRow(), 2));
         priceText.setText((String) jTStock.getValueAt(jTStock.getSelectedRow(), 3));
-        amountText.setText((String) jTStock.getValueAt(jTStock.getSelectedRow(), 4));
     }//GEN-LAST:event_jTStockMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        nameText.setEnabled(true);
+        amountText.setEnabled(true);
+        priceText.setEnabled(true);
+        searchItemText.setEnabled(true);
+        dateChooser.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnNew.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDelete.setEnabled(false);
+        btnCancel.setEnabled(true);
+        isUpdating = true;
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        clearTxt();
+        isUpdating = false;
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,16 +426,21 @@ public class Stock extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Stock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stock.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Stock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stock.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Stock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stock.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Stock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Stock.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -389,6 +454,7 @@ public class Stock extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountText;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNew;
     private javax.swing.JButton btnSave;
