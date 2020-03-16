@@ -33,6 +33,7 @@ public class Appointments extends javax.swing.JFrame {
 
     /**
      * Creates new form Appointments
+     * @param userType
      */
     @SuppressWarnings("unchecked")
     public Appointments(String userType) {

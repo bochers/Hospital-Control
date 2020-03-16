@@ -612,17 +612,25 @@ public class Database {
     }
 
     public int lastPatientID() {
+        
+        
+        if(patients.size() == 0)
+            return 0;
 
         return patients.get(patients.size() - 1).getID();
     }
 
     public int lastMedicID() {
-
+        
+        if(medics.size() == 0)
+            return 0;
         return medics.get(medics.size() - 1).getID();
     }
 
     public int lastAppointmenID() {
-
+        if(appointments.size() == 0)
+            return 0;
+        
         return appointments.get(appointments.size() - 1).getID();
     }
             

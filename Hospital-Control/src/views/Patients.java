@@ -31,6 +31,7 @@ public class Patients extends javax.swing.JFrame {
 
     /**
      * Creates new form Patients
+     * @param userType
      */
     public Patients(String userType) {
         initComponents();
@@ -38,7 +39,7 @@ public class Patients extends javax.swing.JFrame {
         deactivate();
         uType = userType;
         Image img;
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("../assets/Zoom-icon.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));        
     }
@@ -49,7 +50,7 @@ public class Patients extends javax.swing.JFrame {
         deactivate();
         uType = "";
         Image img;
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("../assets/Zoom-icon.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
     }
