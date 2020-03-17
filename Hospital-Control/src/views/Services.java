@@ -111,7 +111,7 @@ public class Services extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Numero de servicio");
+        jLabel3.setText("Número de servicio:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
         comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -119,19 +119,19 @@ public class Services extends javax.swing.JFrame {
         getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Tipo de servicio");
+        jLabel4.setText("Tipo de servicio:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Cliente");
+        jLabel5.setText("Cliente:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Descripcion");
+        jLabel6.setText("Descripción:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Precio");
+        jLabel7.setText("Precio:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         textPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -146,7 +146,7 @@ public class Services extends javax.swing.JFrame {
         textId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(textId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 50, -1));
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBack.setText("Regresar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +155,7 @@ public class Services extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, -1, -1));
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +164,7 @@ public class Services extends javax.swing.JFrame {
         });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, -1, -1));
 
-        btnCancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancel.setText("Cancelar");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
