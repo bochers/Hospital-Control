@@ -308,11 +308,12 @@ public class Stock extends javax.swing.JFrame {
         });
         getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 100, 30));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel14.setText("Stock");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, 40));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 40));
 
+        separator.setBackground(new java.awt.Color(0, 0, 0));
+        separator.setForeground(new java.awt.Color(0, 0, 0));
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 750, 4));
 

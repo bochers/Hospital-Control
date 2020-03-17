@@ -423,10 +423,10 @@ public final class Employees extends javax.swing.JFrame {
         sexComboBox.setSelectedIndex(-1);
         jPanel1.add(sexComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 220, 30));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Médicos");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, 40));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, 40));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 750, 4));
@@ -437,7 +437,7 @@ public final class Employees extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 100, 40));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 100, 30));
         jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 220, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/hello-removebg-preview (2).png"))); // NOI18N

@@ -77,9 +77,9 @@ public class Users extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        usersLabel.setFont(new java.awt.Font("DFMincho-UB", 1, 36)); // NOI18N
+        usersLabel.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         usersLabel.setText("Usuarios");
-        jPanel1.add(usersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 180, 60));
+        jPanel1.add(usersLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 60));
 
         godLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         godLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/chayanne (2).png"))); // NOI18N
