@@ -104,6 +104,8 @@ public class Services extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        separator = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,40 +113,45 @@ public class Services extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Número de servicio:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
 
         comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consulta", "Abulancia", "Operacion", "Examenes" }));
-        getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+        getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tipo de servicio:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Cliente:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Descripción:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         textPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 160, -1));
+        getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 130, 30));
 
         textClient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 400, -1));
+        getContentPane().add(textClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 400, 30));
 
         textDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 620, 150));
+        getContentPane().add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 620, 150));
 
         textId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 50, -1));
+        getContentPane().add(textId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 60, 30));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBack.setText("Regresar");
@@ -153,7 +160,7 @@ public class Services extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, -1, -1));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, 30));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Guardar");
@@ -162,7 +169,7 @@ public class Services extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, -1, -1));
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancel.setText("Cancelar");
@@ -171,9 +178,17 @@ public class Services extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Servicios");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
+        getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 4));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/blue.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
@@ -246,12 +261,14 @@ public class Services extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JSeparator separator;
     private javax.swing.JTextField textClient;
     private javax.swing.JTextField textDescription;
     private javax.swing.JTextField textId;
