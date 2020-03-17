@@ -121,7 +121,6 @@ public class Appointments extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         patientNameTxt = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -135,8 +134,10 @@ public class Appointments extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ID:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 80, 30));
 
         jTappointment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTappointment.setModel(new javax.swing.table.DefaultTableModel(
@@ -154,15 +155,17 @@ public class Appointments extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTappointment);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 790, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 760, 230));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/little_imms.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 110, 130));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, -1, 130));
         jPanel1.add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 160, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Paciente: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 60, 10));
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 80, 30));
 
         hourComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7:00-8:00 AM", "8:00-9:00 AM", "9:00-10:00 AM", "10:00-11:00 AM", "11:00-12:00 PM", "12:00-13:00 PM", "13:00-14:00 PM", "16:00-17:00 PM", "17:00-18:00 PM", " " }));
         hourComboBox.setSelectedIndex(-1);
@@ -171,22 +174,26 @@ public class Appointments extends javax.swing.JFrame {
                 hourComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(hourComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 120, 20));
+        jPanel1.add(hourComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 120, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Hora cita:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 60, 20));
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 80, 30));
 
         searchPatientNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchPatientNameTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 230, 30));
+        jPanel1.add(searchPatientNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Fecha:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 80, 30));
 
         idText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +209,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 80, 30));
+        jPanel1.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 80, 30));
 
         stateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         stateComboBox.setSelectedIndex(-1);
@@ -224,7 +231,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, 30));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, 100, 30));
 
         patientNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,8 +247,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, 30));
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 290));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 100, 30));
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancel.setText("Eliminar");
@@ -250,16 +256,16 @@ public class Appointments extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, -1, 30));
+        jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, 100, 30));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnBack.setText("Regresar al menú");
+        btnBack.setText("Regresar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 170, 40));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, 30));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setText("Nuevo");
@@ -268,7 +274,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 100, 30));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 100, 30));
 
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnClose.setText("Cancelar");
@@ -277,7 +283,7 @@ public class Appointments extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 100, 30));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 100, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fondoGris.jpg"))); // NOI18N
@@ -646,7 +652,6 @@ public class Appointments extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTappointment;
     private javax.swing.JTextField patientNameTxt;
