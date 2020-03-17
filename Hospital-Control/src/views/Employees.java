@@ -356,7 +356,8 @@ public final class Employees extends javax.swing.JFrame {
         jLabel8.setText("Estado:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 100, 30));
 
-        btnEdit.setText("MODIFICAR");
+        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEdit.setText("Modificar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -364,7 +365,8 @@ public final class Employees extends javax.swing.JFrame {
         });
         jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 100, 40));
 
-        btnCancel.setText("CANCELAR");
+        btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCancel.setText("Cancelar");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -372,7 +374,8 @@ public final class Employees extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 100, 40));
 
-        btnDelete.setText("ELIMINAR");
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDelete.setText("Eliminar");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -380,7 +383,8 @@ public final class Employees extends javax.swing.JFrame {
         });
         jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 100, 40));
 
-        btnNew.setText("NUEVO");
+        btnNew.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
@@ -388,7 +392,8 @@ public final class Employees extends javax.swing.JFrame {
         });
         jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 100, 40));
 
-        btnSave.setText("GUARDAR");
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
