@@ -310,7 +310,7 @@ public class Stock extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel14.setText("Stock");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 80, 40));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 40));
 
         separator.setBackground(new java.awt.Color(0, 0, 0));
         separator.setForeground(new java.awt.Color(0, 0, 0));

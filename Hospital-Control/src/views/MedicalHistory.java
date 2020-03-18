@@ -99,7 +99,7 @@ public class MedicalHistory extends javax.swing.JFrame {
         MHLabel.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         MHLabel.setForeground(new java.awt.Color(255, 255, 255));
         MHLabel.setText("Historial Médico");
-        jPanel1.add(MHLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 200, 40));
+        jPanel1.add(MHLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 320, 40));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 4));
