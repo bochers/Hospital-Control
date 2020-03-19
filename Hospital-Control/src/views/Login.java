@@ -115,8 +115,18 @@ public class Login extends javax.swing.JFrame {
             }
 
             default:
-                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                if(userTxt.getText().equals("Administrador") && passwordText.getText().equals("12345")){
+                    JOptionPane.showMessageDialog(null, "Bienvenido Administrador...");
+                    Navigation NavigationWindow;
+                    NavigationWindow = new Navigation("Administrador");
+                    NavigationWindow.show();
+                    this.dispose();
                 break;
+                }else{
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                }
+                break;
+                
         }
     }//GEN-LAST:event_loginActionPerformed
 
