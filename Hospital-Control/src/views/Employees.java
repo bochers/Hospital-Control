@@ -7,6 +7,7 @@ import java.awt.Image;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +42,7 @@ public final class Employees extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
+        fillComboBox();
     }
 
     public Employees() {
@@ -51,7 +53,17 @@ public final class Employees extends javax.swing.JFrame {
         Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
-        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));initComponents();
+        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
+        fillComboBox();
+    }
+
+    public void fillComboBox() {
+        ArrayList<Person> medics = d.getMedics();
+        searchComboBox.removeAllItems();
+        medics.forEach((m) -> {
+            searchComboBox.addItem(m.getName() + " " + m.getLast() + " " + m.getSLast());
+        });
+        searchComboBox.setSelectedIndex(-1);
     }
 
     public void deactivate() {
@@ -98,8 +110,9 @@ public final class Employees extends javax.swing.JFrame {
         EmailText.setText("");
         sexComboBox.setSelectedIndex(-1);
         ComboBoxESTADO.setSelectedIndex(-1);
+        searchComboBox.setSelectedIndex(-1);
         CityText.setText("");
-        BuscarText.setEnabled(true);
+        searchComboBox.setEnabled(true);
         btnBuscar.setEnabled(true);
     }
 
@@ -143,7 +156,7 @@ public final class Employees extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Error en Apellido Materno");
                     AMText.requestFocusInWindow();
-                    
+
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Error en Apellido Paterno");
@@ -156,22 +169,20 @@ public final class Employees extends javax.swing.JFrame {
 
         return valid;
     }
-    
-    public static boolean validEmail(String input){
+
+    public static boolean validEmail(String input) {
         //String input = EmailText.getText();
         String regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(input);
         return matcher.find();
     }
-    
-    public static boolean validateAddress( String address )
-   {
-      return address.matches( 
-         "\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
-   } // end method validateAddress
-    
+
+  public static boolean validateAddress(String address) {
+        return true;
+    } // end method validateAddress*/
+
     public Person addPerson(Person p) {
         p.setID(Integer.parseInt(IDText.getText()));
         p.setName(NameText.getText());
@@ -188,7 +199,7 @@ public final class Employees extends javax.swing.JFrame {
     }
 
     public void displayPerson(Person person) {
-        
+
         if (person.getID() != 0) {
             IDText.setText(String.valueOf(person.getID()));
             NameText.setText(person.getName());
@@ -207,33 +218,33 @@ public final class Employees extends javax.swing.JFrame {
     }
 
     public static boolean isNumeric(String strNum) {
-    if (strNum == null) {
-        return false;
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
-    try {
-        double d = Double.parseDouble(strNum);
-    } catch (NumberFormatException nfe) {
-        return false;
-    }
-    return true;
-}
-    
-    public boolean checkNum(){
-        if(isNumeric(NameText.getText())){
+
+    public boolean checkNum() {
+        if (isNumeric(NameText.getText())) {
             JOptionPane.showMessageDialog(null, "No se adminten numeros.");
             return false;
         }
-        if(isNumeric(APText.getText())){
+        if (isNumeric(APText.getText())) {
             JOptionPane.showMessageDialog(null, "No se adminten numeros.");
             return false;
         }
-        if(isNumeric(AMText.getText())){
+        if (isNumeric(AMText.getText())) {
             JOptionPane.showMessageDialog(null, "No se adminten numeros.");
             return false;
         }
         return true;
     }
-    
+
     public int ID() {
         int size = d.lastMedicID();
         size++;
@@ -250,7 +261,6 @@ public final class Employees extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        BuscarText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         IDText = new javax.swing.JTextField();
@@ -281,6 +291,7 @@ public final class Employees extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         CityText = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        searchComboBox = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,7 +300,6 @@ public final class Employees extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 260, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,7 +312,7 @@ public final class Employees extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 60, 60));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 60, 60));
 
         IDText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         IDText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -443,6 +453,13 @@ public final class Employees extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/hello-removebg-preview (2).png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 370, -1));
 
+        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 260, 30));
+
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employeesbgd.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
@@ -459,7 +476,7 @@ public final class Employees extends javax.swing.JFrame {
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
         btnBuscar.setEnabled(false);
-        BuscarText.setEnabled(false);
+        searchComboBox.setEnabled(false);
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -467,9 +484,8 @@ public final class Employees extends javax.swing.JFrame {
         // TODO add your handling code here:
         Person p;
 
-        p = d.searchMedic(BuscarText.getText());
+        p = d.searchMedic((String) searchComboBox.getSelectedItem());
         displayPerson(p);
-        //BuscarText.setText("");
         if (p.getID() != 0) {
             activate();
             btnSave.setEnabled(false);
@@ -478,23 +494,21 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        if(checkNum() == true){
+        if (checkNum() == true) {
             if (isValidPatient() == true) {
-                if(validateAddress(DireccionText.getText()) == true){
-                    if(validEmail(EmailText.getText()) == true){
+                if (validateAddress(DireccionText.getText()) == true) {
+                    if (validEmail(EmailText.getText()) == true) {
                         Person m = new Person();
                         d.modifyMedics(addPerson(m));
                         JOptionPane.showMessageDialog(null, "Modificado con éxito.");
                         deactivate();
                         clearTxt();
 
-                    }
-                    else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Correo inválido.");
                     }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Direccion inválida."); 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Direccion inválida.");
                 }
             }
         }
@@ -516,21 +530,20 @@ public final class Employees extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(checkNum() == true){
+        if (checkNum() == true) {
             if (isValidPatient() == true) {
-                if(validateAddress(DireccionText.getText()) == true){
-                    if(validEmail(EmailText.getText()) == true){
+                if (validateAddress(DireccionText.getText()) == true) {
+                    if (validEmail(EmailText.getText()) == true) {
                         Person p = new Person();
                         d.newMedic(addPerson(p));
                         JOptionPane.showMessageDialog(null, "Guardado con éxito.");
                         clearTxt();
                         deactivate();
-                    }
-                    else{
+                        fillComboBox();
+                    } else {
                         JOptionPane.showMessageDialog(null, "Correo inválido.");
                     }
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Direccion inválida.");
                 }
             }
@@ -542,7 +555,12 @@ public final class Employees extends javax.swing.JFrame {
         d.deleteMedic(Integer.parseInt(IDText.getText()));
         deactivate();
         clearTxt();
+        fillComboBox();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -583,7 +601,6 @@ public final class Employees extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AMText;
     private javax.swing.JTextField APText;
-    private javax.swing.JTextField BuscarText;
     private javax.swing.JTextField CityText;
     private javax.swing.JComboBox<String> ComboBoxESTADO;
     private javax.swing.JTextField DireccionText;
@@ -612,6 +629,7 @@ public final class Employees extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JSeparator separator;
     private javax.swing.JComboBox<String> sexComboBox;
     // End of variables declaration//GEN-END:variables

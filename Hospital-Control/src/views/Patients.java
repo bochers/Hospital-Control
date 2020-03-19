@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,19 +19,19 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author isaac
  */
 public class Patients extends javax.swing.JFrame {
-    
+
     Database d;
     SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
     String uType;
 
     /**
      * Creates new form Patients
+     *
      * @param userType
      */
     public Patients(String userType) {
@@ -41,9 +42,10 @@ public class Patients extends javax.swing.JFrame {
         Image img;
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
-        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));        
+        btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
+        fillComboBox();
     }
-    
+
     public Patients() {
         initComponents();
         d = new Database();
@@ -53,9 +55,19 @@ public class Patients extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/assets/Zoom-icon.png"));
         img = icon.getImage();
         btnBuscar.setIcon(new ImageIcon(img.getScaledInstance(btnBuscar.getWidth(), btnBuscar.getHeight(), WIDTH)));
+        fillComboBox();
     }
-    
-    public void activate(){
+
+    public void fillComboBox() {
+        ArrayList<Person> patients = d.getPatients();
+        searchComboBox.removeAllItems();
+        patients.forEach((p) -> {
+            searchComboBox.addItem(p.getName() + " " + p.getLast() + " " + p.getSLast());
+        });
+        searchComboBox.setSelectedIndex(-1);
+    }
+
+    public void activate() {
         //IDText.setEnabled(true);
         btnSave.setEnabled(true);
         btnCancel.setEnabled(true);
@@ -71,8 +83,8 @@ public class Patients extends javax.swing.JFrame {
         CalendarFecha.setEnabled(true);
         CBSangre.setEnabled(true);
     }
-    
-    public void deactivate(){
+
+    public void deactivate() {
         IDText.setEnabled(false);
         btnSave.setEnabled(false);
         btnCancel.setEnabled(false);
@@ -87,84 +99,104 @@ public class Patients extends javax.swing.JFrame {
         CityText.setEnabled(false);
         CalendarFecha.setEnabled(false);
         CBSangre.setEnabled(false);
-}
-    
+    }
+
     public void clearTxt() {
         IDText.setText("");
         NameText.setText("");
         APText.setText("");
         AMText.setText("");
         PhoneText.setText("");
-        BuscarText.setText("");
+        searchComboBox.setSelectedIndex(-1);
         sexComboBox.setSelectedIndex(-1);
         ComboBoxESTADO.setSelectedIndex(-1);
         CityText.setText("");
         CBSangre.setSelectedIndex(-1);
         CalendarFecha.setDate(null);
-        BuscarText.setEnabled(true);
+        searchComboBox.setEnabled(true);
         btnBuscar.setEnabled(true);
     }
-    
-    public int ID(){
+
+    public int ID() {
         int size = d.lastPatientID();
-            size++;
-            return size;   
-};
+        size++;
+        return size;
+    }
+
+    ;
     
   
-    public boolean isValidPatient(){
+    public boolean isValidPatient() {
         boolean valid = false;
-        
-           if(NameText.getText().length() > 0){
-                if(APText.getText().length() > 0){
-                    if(AMText.getText().length() > 0){
-                        if(PhoneText.getText().length() > 0 && PhoneText.getText().length() == 10){
-                            if(sexComboBox.getSelectedIndex() != -1){
-                                if(ComboBoxESTADO.getSelectedIndex() != -1){
-                                    if(CityText.getText().length() > 0){
-                                        if(CBSangre.getSelectedIndex() != -1){
-                                            if(CalendarFecha.getDate() != null){
-                                                valid = true;
-                                            }else{ JOptionPane.showMessageDialog(null, "Error en Fecha");
-                                                   CalendarFecha.requestFocusInWindow();}
-                                        }else{ JOptionPane.showMessageDialog(null, "Error en Sangre");
-                                               CBSangre.requestFocusInWindow();}
-                                    }else{ JOptionPane.showMessageDialog(null, "Error en Ciudad");
-                                           CityText.requestFocusInWindow();}
-                                }else{  JOptionPane.showMessageDialog(null, "Error en Estado");
-                                        ComboBoxESTADO.requestFocusInWindow();}
-                            }else{  JOptionPane.showMessageDialog(null, "Error en Sexo");
-                                    sexComboBox.requestFocusInWindow();}  
-                        }else{  JOptionPane.showMessageDialog(null, "Error en Teléfono");
-                                PhoneText.requestFocusInWindow();}
-                    }else{  JOptionPane.showMessageDialog(null, "Error en Apellido Materno");
-                            AMText.requestFocusInWindow();}
-                }else{  JOptionPane.showMessageDialog(null, "Error en Apellido Paterno");
-                        APText.requestFocusInWindow();}
-            }else{  JOptionPane.showMessageDialog(null, "Error en Nombre"); 
-                    NameText.requestFocusInWindow();}
-        
+
+        if (NameText.getText().length() > 0) {
+            if (APText.getText().length() > 0) {
+                if (AMText.getText().length() > 0) {
+                    if (PhoneText.getText().length() > 0 && PhoneText.getText().length() == 10) {
+                        if (sexComboBox.getSelectedIndex() != -1) {
+                            if (ComboBoxESTADO.getSelectedIndex() != -1) {
+                                if (CityText.getText().length() > 0) {
+                                    if (CBSangre.getSelectedIndex() != -1) {
+                                        if (CalendarFecha.getDate() != null) {
+                                            valid = true;
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Error en Fecha");
+                                            CalendarFecha.requestFocusInWindow();
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Error en Sangre");
+                                        CBSangre.requestFocusInWindow();
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Error en Ciudad");
+                                    CityText.requestFocusInWindow();
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error en Estado");
+                                ComboBoxESTADO.requestFocusInWindow();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error en Sexo");
+                            sexComboBox.requestFocusInWindow();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error en Teléfono");
+                        PhoneText.requestFocusInWindow();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error en Apellido Materno");
+                    AMText.requestFocusInWindow();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error en Apellido Paterno");
+                APText.requestFocusInWindow();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error en Nombre");
+            NameText.requestFocusInWindow();
+        }
+
         return valid;
     }
-    
-    public Person addPerson(Person p){
-            p.setID(Integer.parseInt(IDText.getText()));
-            p.setName(NameText.getText());
-            p.setLast(APText.getText());
-            p.setSLast(AMText.getText());
-            p.setPhone(PhoneText.getText());    
-            p.setSex((String) sexComboBox.getSelectedItem());
-            p.setState((String) ComboBoxESTADO.getSelectedItem());
-            p.setCity(CityText.getText());
-            p.setBlood((String) CBSangre.getSelectedItem());
-            p.setDate(dFormat.format(CalendarFecha.getDate()));
 
-            return p;
+    public Person addPerson(Person p) {
+        p.setID(Integer.parseInt(IDText.getText()));
+        p.setName(NameText.getText());
+        p.setLast(APText.getText());
+        p.setSLast(AMText.getText());
+        p.setPhone(PhoneText.getText());
+        p.setSex((String) sexComboBox.getSelectedItem());
+        p.setState((String) ComboBoxESTADO.getSelectedItem());
+        p.setCity(CityText.getText());
+        p.setBlood((String) CBSangre.getSelectedItem());
+        p.setDate(dFormat.format(CalendarFecha.getDate()));
+
+        return p;
     }
-    
+
     public void displayPerson(Person person) {
-   
-        if(person.getID() != 0){
+
+        if (person.getID() != 0) {
             try {
                 IDText.setText(String.valueOf(person.getID()));
                 NameText.setText(person.getName());
@@ -180,13 +212,11 @@ public class Patients extends javax.swing.JFrame {
             } catch (ParseException ex) {
                 Logger.getLogger(Patients.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Paciente no encontrado.");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Paciente no encontrado.");  
-        }
- 
+
     }
 
     /**
@@ -199,7 +229,6 @@ public class Patients extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        BuscarText = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         IDText = new javax.swing.JTextField();
@@ -228,8 +257,9 @@ public class Patients extends javax.swing.JFrame {
         CBSangre = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
         CalendarFecha = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
         CityText = new javax.swing.JTextField();
+        searchComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -238,7 +268,6 @@ public class Patients extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(BuscarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 260, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -387,10 +416,17 @@ public class Patients extends javax.swing.JFrame {
         CalendarFecha.setMaxSelectableDate(new java.util.Date(1577862117000L));
         CalendarFecha.setMinSelectableDate(new java.util.Date(-631126683000L));
         jPanel1.add(CalendarFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 180, 30));
+        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 220, 30));
+
+        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 260, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/juanga.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 470, 390));
-        jPanel1.add(CityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 220, 30));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/purple (1).png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -403,23 +439,22 @@ public class Patients extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        
-        Person p;  
-        
-        p = d.searchPatient(BuscarText.getText());
-            displayPerson(p);
-            //BuscarText.setText("");
-        if(p.getID()!= 0){
+
+        Person p;
+
+        p = d.searchPatient((String) searchComboBox.getSelectedItem());
+        displayPerson(p);
+        //BuscarText.setText("");
+        if (p.getID() != 0) {
             activate();
             btnSave.setEnabled(false);
         }
-        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    
+
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        if(isValidPatient()== true){
+        if (isValidPatient() == true) {
             Person p = new Person();
             d.modifyPatient(addPerson(p));
 
@@ -436,7 +471,7 @@ public class Patients extends javax.swing.JFrame {
         btnEdit.setEnabled(false);
         btnDelete.setEnabled(false);
         btnBuscar.setEnabled(false);
-        BuscarText.setEnabled(false);
+        searchComboBox.setEnabled(false);
         IDText.setText(String.valueOf(ID()));
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -453,7 +488,8 @@ public class Patients extends javax.swing.JFrame {
         d.deletePatient(Integer.parseInt(IDText.getText()));
         deactivate();
         clearTxt();
-        
+        fillComboBox();
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -464,7 +500,7 @@ public class Patients extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(isValidPatient() == true){
+        if (isValidPatient() == true) {
             Person p = new Person();
             d.newPatient(addPerson(p));
 
@@ -472,7 +508,12 @@ public class Patients extends javax.swing.JFrame {
             deactivate();
             clearTxt();
         }
+        fillComboBox();
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -512,7 +553,6 @@ public class Patients extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AMText;
     private javax.swing.JTextField APText;
-    private javax.swing.JTextField BuscarText;
     private javax.swing.JComboBox<String> CBSangre;
     private com.toedter.calendar.JDateChooser CalendarFecha;
     private javax.swing.JTextField CityText;
@@ -541,6 +581,7 @@ public class Patients extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JSeparator separator;
     private javax.swing.JComboBox<String> sexComboBox;
     // End of variables declaration//GEN-END:variables

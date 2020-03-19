@@ -1,6 +1,7 @@
 package views;
 
 import classes.Database;
+import classes.Person;
 import classes.Service;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +36,9 @@ public class MedicalHistory extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         services = d.getServices();
         displayServices();
+        fillComboBox();
         hideSearch();
+
     }
 
     public MedicalHistory() {
@@ -50,6 +53,8 @@ public class MedicalHistory extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         services = d.getServices();
         displayServices();
+        hideSearch();
+        fillComboBox();
     }
 
     public void fillRow(Service s) {
@@ -70,6 +75,15 @@ public class MedicalHistory extends javax.swing.JFrame {
             fillRow(s);
         }
     }
+    
+    public void fillComboBox() {
+        ArrayList<Person> patients = d.getPatients();
+        searchComboBox.removeAllItems();
+        patients.forEach((m) -> {
+            searchComboBox.addItem(m.getName() + " " + m.getLast() + " " + m.getSLast());
+        });
+        searchComboBox.setSelectedIndex(-1);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,9 +100,9 @@ public class MedicalHistory extends javax.swing.JFrame {
         servicesSP = new javax.swing.JScrollPane();
         servicesTable = new javax.swing.JTable();
         displayComboBox = new javax.swing.JComboBox<>();
-        searchText = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        searchComboBox = new javax.swing.JComboBox<>();
         bgdLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,7 +163,6 @@ public class MedicalHistory extends javax.swing.JFrame {
             }
         });
         jPanel1.add(displayComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
-        jPanel1.add(searchText, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 280, 30));
 
         searchButton.setText("Buscar");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +170,7 @@ public class MedicalHistory extends javax.swing.JFrame {
                 searchButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 80, 30));
+        jPanel1.add(searchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 90, 30));
 
         backButton.setText("Regresar");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +178,14 @@ public class MedicalHistory extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 30, 90, 30));
+        jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 90, 30));
+
+        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchComboBoxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(searchComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 260, 30));
 
         bgdLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/employees_background.jpg"))); // NOI18N
         bgdLabel.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -190,11 +210,15 @@ public class MedicalHistory extends javax.swing.JFrame {
 
         tb.setRowCount(0);
         for (Service s : services) {
-            if (s.getClientName().equals(searchText.getText())) {
+            if (s.getClientName().equals((String) searchComboBox.getSelectedItem())) {
                 fillRow(s);
             }
         }
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchComboBoxActionPerformed
 
     private void displayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -209,12 +233,12 @@ public class MedicalHistory extends javax.swing.JFrame {
     }
 
     public void hideSearch() {
-        searchText.setVisible(false);
+        searchComboBox.setVisible(false);
         searchButton.setVisible(false);
     }
 
     public void showSearch() {
-        searchText.setVisible(true);
+        searchComboBox.setVisible(true);
         searchButton.setVisible(true);
     }
 
@@ -260,7 +284,7 @@ public class MedicalHistory extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> displayComboBox;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton searchButton;
-    private javax.swing.JTextField searchText;
+    private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JSeparator separator;
     private javax.swing.JScrollPane servicesSP;
     private javax.swing.JTable servicesTable;

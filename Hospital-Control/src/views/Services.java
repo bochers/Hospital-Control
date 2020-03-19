@@ -2,6 +2,7 @@ package views;
 
 import classes.Database;
 import classes.Item;
+import classes.Person;
 import classes.Service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,13 +25,16 @@ public class Services extends javax.swing.JFrame {
      */
     Database db;
     String uType;
-    
+
     public Services(String userType) {
         uType = userType;
         initComponents();
         db = new Database();
         this.setLocationRelativeTo(null);
         clearTxt();
+        fillComboBox();
+        textId.setEnabled(false);
+        textPrice.setEnabled(false);
     }
 
     public Services() {
@@ -39,14 +43,51 @@ public class Services extends javax.swing.JFrame {
         db = new Database();
         this.setLocationRelativeTo(null);
         clearTxt();
+        fillComboBox();
+        textId.setEnabled(false);
+        textPrice.setEnabled(false);
+    }
+
+    public void fillComboBox() {
+        ArrayList<Person> patients = db.getPatients();
+        searchComboBox.removeAllItems();
+        patients.forEach((p) -> {
+            searchComboBox.addItem(p.getName() + " " + p.getLast() + " " + p.getSLast());
+        });
+        searchComboBox.setSelectedIndex(-1);
+    }
+    
+    public void setPrice()
+    {
+        if(comboBox.getSelectedIndex() == -1)
+        {
+            textPrice.setText("");
+        }
+        else if(comboBox.getSelectedItem().equals("Consulta"))
+        {
+            textPrice.setText("900");
+        }
+        else if(comboBox.getSelectedItem().equals("Operación"))
+        {
+            textPrice.setText("20000");
+        }
+        else if(comboBox.getSelectedItem().equals("Ambulancia"))
+        {
+            textPrice.setText("2500");
+        }
+        else if(comboBox.getSelectedItem().equals("Examenes"))
+        {
+            textPrice.setText("1500");
+        }
     }
 
     public void clearTxt() {
         textId.setText(Integer.toString(autoId()));
         textPrice.setText("");
-        textClient.setText("");
+        searchComboBox.setSelectedIndex(-1);
         textDescription.setText("");
         comboBox.setSelectedIndex(-1);
+        setPrice();
     }
 
     public int autoId() {
@@ -65,7 +106,7 @@ public class Services extends javax.swing.JFrame {
             throw new RuntimeException("Combobox must have a value");
         }
         service.setId(Integer.parseInt(textId.getText()));
-        service.setClientName(textClient.getText());
+        service.setClientName((String) searchComboBox.getSelectedItem());
         service.setType((String) comboBox.getSelectedItem());
         service.setPrice(price);
         service.setDescription(textDescription.getText().equals("") ? "none" : textDescription.getText());
@@ -98,7 +139,6 @@ public class Services extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         textPrice = new javax.swing.JTextField();
-        textClient = new javax.swing.JTextField();
         textDescription = new javax.swing.JTextField();
         textId = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
@@ -106,52 +146,61 @@ public class Services extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         separator = new javax.swing.JSeparator();
+        searchComboBox = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Número de servicio:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 140, 30));
 
-        comboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consulta", "Abulancia", "Operacion", "Examenes" }));
-        getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 120, -1));
+        comboBox.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consulta", "Ambulancia", "Operación", "Examenes" }));
+        comboBox.setSelectedIndex(-1);
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 120, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Tipo de servicio:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 140, 30));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Cliente:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 140, 30));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Descripción:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 140, 30));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Precio:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 140, 30));
 
         textPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 130, 30));
-
-        textClient.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textClient, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 400, 30));
+        getContentPane().add(textPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 130, 30));
 
         textDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 620, 150));
+        getContentPane().add(textDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 260, 30));
 
         textId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(textId, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 60, 30));
+        getContentPane().add(textId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 60, 30));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBack.setText("Regresar");
@@ -160,7 +209,7 @@ public class Services extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, -1, 30));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, -1, 30));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSave.setText("Guardar");
@@ -169,7 +218,7 @@ public class Services extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 100, 40));
 
         btnCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancel.setText("Cancelar");
@@ -178,7 +227,7 @@ public class Services extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, -1, -1));
+        getContentPane().add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 100, 40));
 
         jLabel1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,9 +235,21 @@ public class Services extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         separator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
-        getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 740, 4));
+        getContentPane().add(separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 740, 4));
+
+        searchComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchComboBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(searchComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 260, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/dogo.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 290, 350));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/blue.jpg"))); // NOI18N
+        jLabel2.setMaximumSize(new java.awt.Dimension(800, 500));
+        jLabel2.setPreferredSize(new java.awt.Dimension(800, 500));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
@@ -220,6 +281,16 @@ public class Services extends javax.swing.JFrame {
         // TODO add your handling code here:
         clearTxt();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void searchComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchComboBoxActionPerformed
+
+
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        
+        setPrice();
+    }//GEN-LAST:event_comboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,8 +339,9 @@ public class Services extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JComboBox<String> searchComboBox;
     private javax.swing.JSeparator separator;
-    private javax.swing.JTextField textClient;
     private javax.swing.JTextField textDescription;
     private javax.swing.JTextField textId;
     private javax.swing.JTextField textPrice;

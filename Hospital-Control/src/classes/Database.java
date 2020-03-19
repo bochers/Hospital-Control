@@ -430,6 +430,18 @@ public class Database {
         return services;
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public ArrayList<Person> getPatients() {
+        return patients;
+    }
+
+    public ArrayList<Person> getMedics() {
+        return medics;
+    }
+
     public boolean verifyAppointment(String date, String hour) {
         for (Person p : appointments) {
             if (p.getDate().equals(date) && p.getHour().equals(hour)) {
@@ -612,29 +624,28 @@ public class Database {
     }
 
     public int lastPatientID() {
-        
-        
-        if(patients.size() == 0)
+
+        if (patients.size() == 0) {
             return 0;
+        }
 
         return patients.get(patients.size() - 1).getID();
     }
 
     public int lastMedicID() {
-        
-        if(medics.size() == 0)
+
+        if (medics.size() == 0) {
             return 0;
+        }
         return medics.get(medics.size() - 1).getID();
     }
 
     public int lastAppointmenID() {
-        if(appointments.size() == 0)
+        if (appointments.size() == 0) {
             return 0;
-        
+        }
+
         return appointments.get(appointments.size() - 1).getID();
     }
-            
-    
-    
-    
+
 }
